@@ -1,0 +1,695 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+<title>Starlink to Mobile — by Airtel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+box-sizing:border-box;
+-webkit-tap-highlight-color: transparent;
+}
+
+html,body{
+margin:0;
+padding:0;
+font-family:"Plus Jakarta Sans",system-ui;
+}
+
+:root{
+--primary:#e60000;
+--primary-dark:#b80000;
+--primary-soft:#ffe5e5;
+--accent:#ffffff;
+--bg:#fff5f5;
+}
+
+/* page background */
+
+body{
+
+background:
+linear-gradient(180deg,#fff5f5,#ffdede);
+
+min-height:100vh;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+padding:20px;
+
+overflow-x:hidden;
+
+}
+
+/* waves */
+
+.wave{
+position:fixed;
+width:900px;
+height:900px;
+border-radius:50%;
+
+background:
+radial-gradient(circle,
+rgba(230,0,0,0.16),
+transparent 70%);
+
+filter:blur(50px);
+
+animation:float 18s infinite linear;
+
+z-index:-1;
+
+}
+
+.wave.one{
+top:-300px;
+left:-200px;
+}
+
+.wave.two{
+bottom:-300px;
+right:-200px;
+animation-duration:25s;
+}
+
+.wave.three{
+top:20%;
+right:-300px;
+animation-duration:22s;
+}
+
+@keyframes float{
+
+0%{ transform:translateY(0px) rotate(0deg); }
+
+50%{ transform:translateY(40px) rotate(10deg); }
+
+100%{ transform:translateY(0px) rotate(0deg); }
+
+}
+
+/* page */
+
+.page{
+
+width:100%;
+max-width:1050px;
+
+background:white;
+
+border-radius:24px;
+
+padding:26px;
+
+border:1px solid rgba(230,0,0,0.08);
+
+box-shadow:
+0 30px 70px rgba(230,0,0,0.10),
+inset 0 1px 0 rgba(255,255,255,0.8);
+
+backdrop-filter:blur(10px);
+
+}
+
+/* header */
+
+.header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+margin-bottom:20px;
+
+flex-wrap:wrap;
+
+}
+
+.title-block h1{
+margin:0;
+font-size:28px;
+font-weight:800;
+
+background:linear-gradient(
+90deg,
+var(--primary),
+#ff4d4d
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.title-block p{
+margin:5px 0 0;
+font-size:13px;
+color:#555;
+}
+
+/* powered by */
+
+.powered{
+
+display:flex;
+align-items:center;
+gap:10px;
+
+font-size:13px;
+font-weight:600;
+
+}
+
+.powered img{
+
+height:70px;
+
+}
+
+/* cards */
+
+.plans-grid{
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:16px;
+
+}
+
+.plan-card{
+
+position:relative;
+overflow:hidden;
+
+border-radius:20px;
+
+padding:18px;
+
+cursor:pointer;
+
+background:white;
+
+border:1px solid rgba(230,0,0,0.08);
+
+transition:.25s;
+
+backdrop-filter:blur(10px);
+
+}
+
+/* glow */
+
+.plan-card::before{
+
+content:"";
+
+position:absolute;
+
+top:-40%;
+right:-30%;
+
+width:160px;
+height:160px;
+
+background:
+radial-gradient(circle,
+rgba(255,255,255,0.35),
+transparent 70%);
+
+filter:blur(20px);
+
+}
+
+.plan-card::after{
+
+content:"";
+
+position:absolute;
+
+bottom:-40%;
+left:-30%;
+
+width:160px;
+height:160px;
+
+background:
+radial-gradient(circle,
+rgba(230,0,0,0.18),
+transparent 70%);
+
+filter:blur(18px);
+
+}
+
+/* hover */
+
+.plan-card:hover{
+
+transform:translateY(-6px) scale(1.03);
+
+box-shadow:
+0 20px 40px rgba(230,0,0,0.20);
+
+border-color:var(--primary);
+
+}
+
+/* icon */
+
+.icon{
+
+width:44px;
+height:44px;
+
+color:var(--primary);
+
+opacity:.95;
+
+margin-bottom:8px;
+
+}
+
+/* texts */
+
+.plan-tag{
+
+font-size:11px;
+
+background:rgba(230,0,0,0.08);
+
+color:var(--primary);
+
+border:1px solid rgba(230,0,0,0.25);
+
+padding:4px 8px;
+
+border-radius:999px;
+
+display:inline-block;
+
+margin-bottom:6px;
+
+font-weight:700;
+
+}
+
+.plan-name{
+
+font-weight:800;
+font-size:17px;
+
+}
+
+.plan-duration{
+
+font-size:12px;
+color:#666;
+
+margin-bottom:6px;
+
+}
+
+.plan-price{
+
+font-size:22px;
+
+font-weight:800;
+
+color:var(--primary);
+
+margin-bottom:6px;
+
+}
+
+.plan-cta{
+
+font-size:12px;
+font-weight:700;
+color:var(--primary);
+
+}
+
+/* modal */
+
+.modal-overlay{
+
+position:fixed;
+inset:0;
+
+background:rgba(0,0,0,0.45);
+
+display:none;
+
+align-items:center;
+justify-content:center;
+
+padding:20px;
+
+}
+
+.modal-box{
+
+background:white;
+
+padding:22px;
+
+border-radius:18px;
+
+width:100%;
+max-width:420px;
+
+box-shadow:
+0 30px 60px rgba(0,0,0,0.25);
+
+}
+
+.modal-title{
+
+font-weight:800;
+margin-bottom:6px;
+
+}
+
+.modal-details{
+
+background:#fafafa;
+
+padding:12px;
+
+border-radius:12px;
+
+margin-bottom:12px;
+
+}
+
+.modal-footer{
+
+display:flex;
+justify-content:flex-end;
+gap:10px;
+
+}
+
+.btn{
+
+padding:10px 14px;
+
+border-radius:10px;
+
+border:0;
+
+cursor:pointer;
+
+font-weight:700;
+
+}
+
+.btn-primary{
+
+background:linear-gradient(
+135deg,
+var(--primary),
+#ff3333
+);
+
+color:white;
+
+}
+
+.btn-primary:hover{
+
+background:var(--primary-dark);
+
+}
+
+.btn-ghost{
+
+background:#eee;
+
+}
+
+.note{
+
+margin-top:14px;
+
+font-size:12px;
+
+color:#555;
+
+}
+
+/* responsive */
+
+@media(max-width:720px){
+
+.plans-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:480px){
+
+.plans-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wave one"></div>
+<div class="wave two"></div>
+<div class="wave three"></div>
+
+<div class="page">
+
+<header class="header">
+
+<div class="title-block">
+
+<h1>Starlink to Mobile</h1>
+
+<p>Fast data powered by Airtel DRC</p>
+
+</div>
+
+<div class="powered">
+
+<span>Powered by</span>
+
+<img src="assets/wine.svg">
+
+</div>
+
+</header>
+
+<div class="plans-grid">
+
+<div class="plan-card" data-id="15gb">
+<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M4 20h2M8 16h2M12 12h2M16 8h2M20 4h2"/>
+</svg>
+<div class="plan-tag">Light use</div>
+<div class="plan-name">15GB Data</div>
+<div class="plan-duration">7-day plan</div>
+<div class="plan-price">USD 0.99</div>
+<div class="plan-cta">View details & pay →</div>
+</div>
+
+<div class="plan-card" data-id="35gb">
+<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M2 8a16 16 0 0120 0"/>
+<path d="M5 12a10 10 0 0114 0"/>
+<path d="M8 16a4 4 0 018 0"/>
+<circle cx="12" cy="20" r="1"/>
+</svg>
+<div class="plan-tag">Balanced</div>
+<div class="plan-name">35GB Data</div>
+<div class="plan-duration">14-day plan</div>
+<div class="plan-price">USD 1.99</div>
+<div class="plan-cta">View details & pay →</div>
+</div>
+
+<div class="plan-card" data-id="50gb">
+<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M12 2c4 1 8 5 9 9-3 2-7 2-9-1S10 5 12 2z"/>
+<path d="M5 19l4-4M15 9l4-4"/>
+</svg>
+<div class="plan-tag">Heavy use</div>
+<div class="plan-name">50GB Data</div>
+<div class="plan-duration">21-day plan</div>
+<div class="plan-price">USD 2.99</div>
+<div class="plan-cta">View details & pay →</div>
+</div>
+
+<div class="plan-card" data-id="unlimited">
+<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M18 8c-2-2-6 2-6 2s-4-4-6-2 0 6 2 6 4-4 4-4 2 4 4 4 4-4 2-6z"/>
+</svg>
+<div class="plan-tag">Most popular</div>
+<div class="plan-name">Monthly Unlimited</div>
+<div class="plan-duration">30-day plan</div>
+<div class="plan-price">USD 3.99</div>
+<div class="plan-cta">View details & pay →</div>
+</div>
+
+</div>
+
+<div class="note">
+Selecting a plan redirects to secure Airtel Money login.<br>
+Plan activates once your line is registered.
+</div>
+
+</div>
+
+<div class="modal-overlay" id="modal">
+
+<div class="modal-box">
+
+<div class="modal-title" id="title"></div>
+
+<p id="summary"></p>
+
+<div class="modal-details" id="details"></div>
+
+<div class="modal-footer">
+
+<button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+
+<button class="btn btn-primary" onclick="goLogin()">Pay with Airtel Money</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const plans={
+
+"15gb":{
+
+name:"15GB Data — 7-day plan",
+
+summary:"Perfect for light browsing, messaging, and basic apps.",
+
+details:[
+"15GB Starlink to Mobile data",
+"Valid for 7 days",
+"Ideal for light users"
+]
+
+},
+
+"35gb":{
+
+name:"35GB Data — 14-day plan",
+
+summary:"Balanced plan for browsing, social media, and video calls.",
+
+details:[
+"35GB Starlink to Mobile data",
+"Valid for 14 days",
+"Great balance of speed and value"
+]
+
+},
+
+"50gb":{
+
+name:"50GB Data — 21-day plan",
+
+summary:"Heavy usage including streaming and downloads.",
+
+details:[
+"50GB Starlink to Mobile data",
+"Valid for 21 days",
+"Recommended for power users"
+]
+
+},
+
+"unlimited":{
+
+name:"Monthly Unlimited Plan",
+
+summary:"Unlimited internet for 30 days.",
+
+details:[
+"Unlimited Starlink to Mobile data",
+"Valid for 30 days",
+"Fair usage policy applies"
+]
+
+}
+
+};
+
+let selectedPlan=null;
+
+const modal=document.getElementById("modal");
+const title=document.getElementById("title");
+const summary=document.getElementById("summary");
+const details=document.getElementById("details");
+
+document.querySelectorAll(".plan-card").forEach(card=>{
+
+card.onclick=()=>{
+
+const p=plans[card.dataset.id];
+
+selectedPlan=p;
+
+title.textContent=p.name;
+summary.textContent=p.summary;
+
+details.innerHTML=p.details.map(d=>`<div>• ${d}</div>`).join("");
+
+modal.style.display="flex";
+
+};
+
+});
+
+function closeModal(){
+
+modal.style.display="none";
+
+}
+
+function goLogin(){
+
+sessionStorage.setItem("selectedPlan",JSON.stringify(selectedPlan));
+
+window.location.href="login.html";
+
+}
+
+modal.onclick=e=>{
+
+if(e.target===modal) closeModal();
+
+};
+
+</script>
+
+</body>
+
+</html>
