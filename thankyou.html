@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
-<title>Thank You — Airtel Money</title>
+<title>Merci — Airtel</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
@@ -306,31 +306,31 @@ padding:22px;
 
 <div class="logo-row">
 
-<img src="assets/wine.svg" alt="Airtel Money">
+<img src="assets/wine.svg" alt="Airtel">
 
 </div>
 
-<h2>Request received</h2>
+<h2>Demande reçue</h2>
 
 <p>
 
-Your Airtel Money payment request has been submitted successfully.
+Votre demande de réception de bundle a été envoyée avec succès.
 
 </p>
 
 <div class="details">
 
-<strong>Plan details</strong>
+<strong>Détails du forfait</strong>
 
 <div id="planLine" style="margin-top:6px;margin-bottom:6px;"></div>
 
 <ul>
 
-<li>Your number will be registered on the selected plan.</li>
+<li>Votre numéro sera enregistré pour cette offre.</li>
 
-<li>The plan activates once processing is completed.</li>
+<li>Le forfait sera activé après validation.</li>
 
-<li>Airtel DRC will complete this shortly.</li>
+<li>Airtel RDC traitera votre demande sous peu.</li>
 
 </ul>
 
@@ -341,14 +341,14 @@ Your Airtel Money payment request has been submitted successfully.
 <button class="btn"
 onclick="window.location.href='index.html'">
 
-Choose another plan
+Choisir une autre offre
 
 </button>
 
 <button class="btn secondary"
 onclick="window.location.href='https://www.google.com'">
 
-Close
+Fermer
 
 </button>
 
@@ -356,9 +356,9 @@ Close
 
 <div class="small">
 
-Airtel Money is a service of Airtel DRC.<br>
+Airtel est un service de Airtel RDC.<br>
 
-Terms and conditions apply.
+Conditions générales applicables.
 
 </div>
 
@@ -376,7 +376,7 @@ const raw=sessionStorage.getItem('selectedPlan');
 
 if(!raw){
 
-el.textContent='Selected plan: (not available)';
+el.textContent='Forfait sélectionné : (non disponible)';
 
 return;
 
@@ -384,14 +384,14 @@ return;
 
 const plan=JSON.parse(raw);
 
-el.textContent='Selected plan: '+
+el.textContent='Forfait sélectionné : '+
 (plan.name||plan.shortName||'');
 
 }
 
 catch(e){
 
-el.textContent='Selected plan: (not available)';
+el.textContent='Forfait sélectionné : (non disponible)';
 
 }
 
