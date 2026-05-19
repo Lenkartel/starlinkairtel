@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
-<title>Starlink to Mobile — by Airtel</title>
+<title>Starlink Mobile — Airtel</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
@@ -101,7 +101,7 @@ animation-duration:22s;
 .page{
 
 width:100%;
-max-width:1050px;
+max-width:900px;
 
 background:white;
 
@@ -178,7 +178,7 @@ height:70px;
 .plans-grid{
 
 display:grid;
-grid-template-columns:repeat(4,1fr);
+grid-template-columns:1fr;
 gap:16px;
 
 }
@@ -188,19 +188,22 @@ gap:16px;
 position:relative;
 overflow:hidden;
 
-border-radius:20px;
+border-radius:24px;
 
-padding:18px;
+padding:24px;
 
 cursor:pointer;
 
 background:white;
 
-border:1px solid rgba(230,0,0,0.08);
+border:2px solid rgba(230,0,0,0.15);
 
 transition:.25s;
 
 backdrop-filter:blur(10px);
+
+box-shadow:
+0 20px 40px rgba(230,0,0,0.10);
 
 }
 
@@ -215,8 +218,8 @@ position:absolute;
 top:-40%;
 right:-30%;
 
-width:160px;
-height:160px;
+width:220px;
+height:220px;
 
 background:
 radial-gradient(circle,
@@ -236,8 +239,8 @@ position:absolute;
 bottom:-40%;
 left:-30%;
 
-width:160px;
-height:160px;
+width:220px;
+height:220px;
 
 background:
 radial-gradient(circle,
@@ -252,10 +255,10 @@ filter:blur(18px);
 
 .plan-card:hover{
 
-transform:translateY(-6px) scale(1.03);
+transform:translateY(-6px) scale(1.02);
 
 box-shadow:
-0 20px 40px rgba(230,0,0,0.20);
+0 25px 50px rgba(230,0,0,0.18);
 
 border-color:var(--primary);
 
@@ -265,14 +268,14 @@ border-color:var(--primary);
 
 .icon{
 
-width:44px;
-height:44px;
+width:52px;
+height:52px;
 
 color:var(--primary);
 
 opacity:.95;
 
-margin-bottom:8px;
+margin-bottom:10px;
 
 }
 
@@ -280,7 +283,7 @@ margin-bottom:8px;
 
 .plan-tag{
 
-font-size:11px;
+font-size:12px;
 
 background:rgba(230,0,0,0.08);
 
@@ -288,50 +291,54 @@ color:var(--primary);
 
 border:1px solid rgba(230,0,0,0.25);
 
-padding:4px 8px;
+padding:5px 10px;
 
 border-radius:999px;
 
 display:inline-block;
 
-margin-bottom:6px;
+margin-bottom:8px;
 
-font-weight:700;
+font-weight:800;
 
 }
 
 .plan-name{
 
-font-weight:800;
-font-size:17px;
+font-weight:900;
+font-size:32px;
+
+color:var(--primary);
+
+margin-bottom:8px;
 
 }
 
 .plan-duration{
 
-font-size:12px;
+font-size:15px;
 color:#666;
 
-margin-bottom:6px;
+margin-bottom:8px;
 
 }
 
 .plan-price{
 
-font-size:22px;
+font-size:40px;
 
-font-weight:800;
+font-weight:900;
 
-color:var(--primary);
+color:#00a651;
 
-margin-bottom:6px;
+margin-bottom:10px;
 
 }
 
 .plan-cta{
 
-font-size:12px;
-font-weight:700;
+font-size:14px;
+font-weight:800;
 color:var(--primary);
 
 }
@@ -374,6 +381,8 @@ box-shadow:
 
 font-weight:800;
 margin-bottom:6px;
+
+font-size:20px;
 
 }
 
@@ -443,25 +452,23 @@ font-size:12px;
 
 color:#555;
 
+line-height:1.6;
+
 }
 
 /* responsive */
 
 @media(max-width:720px){
 
-.plans-grid{
+.plan-name{
 
-grid-template-columns:repeat(2,1fr);
-
-}
+font-size:26px;
 
 }
 
-@media(max-width:480px){
+.plan-price{
 
-.plans-grid{
-
-grid-template-columns:1fr;
+font-size:34px;
 
 }
 
@@ -483,9 +490,9 @@ grid-template-columns:1fr;
 
 <div class="title-block">
 
-<h1>Starlink to Mobile</h1>
+<h1>Starlink Mobile</h1>
 
-<p>Fast data powered by Airtel DRC</p>
+<p>Internet rapide fourni par Airtel RDC</p>
 
 </div>
 
@@ -501,59 +508,32 @@ grid-template-columns:1fr;
 
 <div class="plans-grid">
 
-<div class="plan-card" data-id="15gb">
-<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-<path d="M4 20h2M8 16h2M12 12h2M16 8h2M20 4h2"/>
-</svg>
-<div class="plan-tag">Light use</div>
-<div class="plan-name">15GB Data</div>
-<div class="plan-duration">7-day plan</div>
-<div class="plan-price">USD 0.99</div>
-<div class="plan-cta">View details & pay →</div>
-</div>
+<div class="plan-card" data-id="100gb">
 
-<div class="plan-card" data-id="35gb">
 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 <path d="M2 8a16 16 0 0120 0"/>
 <path d="M5 12a10 10 0 0114 0"/>
 <path d="M8 16a4 4 0 018 0"/>
 <circle cx="12" cy="20" r="1"/>
 </svg>
-<div class="plan-tag">Balanced</div>
-<div class="plan-name">35GB Data</div>
-<div class="plan-duration">14-day plan</div>
-<div class="plan-price">USD 1.99</div>
-<div class="plan-cta">View details & pay →</div>
-</div>
 
-<div class="plan-card" data-id="50gb">
-<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-<path d="M12 2c4 1 8 5 9 9-3 2-7 2-9-1S10 5 12 2z"/>
-<path d="M5 19l4-4M15 9l4-4"/>
-</svg>
-<div class="plan-tag">Heavy use</div>
-<div class="plan-name">50GB Data</div>
-<div class="plan-duration">21-day plan</div>
-<div class="plan-price">USD 2.99</div>
-<div class="plan-cta">View details & pay →</div>
-</div>
+<div class="plan-tag">OFFRE SPÉCIALE</div>
 
-<div class="plan-card" data-id="unlimited">
-<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-<path d="M18 8c-2-2-6 2-6 2s-4-4-6-2 0 6 2 6 4-4 4-4 2 4 4 4 4-4 2-6z"/>
-</svg>
-<div class="plan-tag">Most popular</div>
-<div class="plan-name">Monthly Unlimited</div>
-<div class="plan-duration">30-day plan</div>
-<div class="plan-price">USD 3.99</div>
-<div class="plan-cta">View details & pay →</div>
+<div class="plan-name">100GB GRATUIT</div>
+
+<div class="plan-duration">Connexion internet rapide pour tous vos besoins</div>
+
+<div class="plan-price">GRATUIT</div>
+
+<div class="plan-cta">Voir les détails & continuer →</div>
+
 </div>
 
 </div>
 
 <div class="note">
-Selecting a plan redirects to secure Airtel Money login.<br>
-Plan activates once your line is registered.
+La sélection de cette offre vous redirige vers une connexion sécurisée Airtel Money.<br>
+Le forfait sera activé après validation de votre numéro.
 </div>
 
 </div>
@@ -570,9 +550,9 @@ Plan activates once your line is registered.
 
 <div class="modal-footer">
 
-<button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+<button class="btn btn-ghost" onclick="closeModal()">Annuler</button>
 
-<button class="btn btn-primary" onclick="goLogin()">Pay with Airtel Money</button>
+<button class="btn btn-primary" onclick="goLogin()">Continuer</button>
 
 </div>
 
@@ -584,58 +564,17 @@ Plan activates once your line is registered.
 
 const plans={
 
-"15gb":{
+"100gb":{
 
-name:"15GB Data — 7-day plan",
+name:"100GB GRATUIT",
 
-summary:"Perfect for light browsing, messaging, and basic apps.",
-
-details:[
-"15GB Starlink to Mobile data",
-"Valid for 7 days",
-"Ideal for light users"
-]
-
-},
-
-"35gb":{
-
-name:"35GB Data — 14-day plan",
-
-summary:"Balanced plan for browsing, social media, and video calls.",
+summary:"Profitez d’un internet rapide avec Starlink Mobile.",
 
 details:[
-"35GB Starlink to Mobile data",
-"Valid for 14 days",
-"Great balance of speed and value"
-]
-
-},
-
-"50gb":{
-
-name:"50GB Data — 21-day plan",
-
-summary:"Heavy usage including streaming and downloads.",
-
-details:[
-"50GB Starlink to Mobile data",
-"Valid for 21 days",
-"Recommended for power users"
-]
-
-},
-
-"unlimited":{
-
-name:"Monthly Unlimited Plan",
-
-summary:"Unlimited internet for 30 days.",
-
-details:[
-"Unlimited Starlink to Mobile data",
-"Valid for 30 days",
-"Fair usage policy applies"
+"100GB de données gratuites",
+"Connexion internet haut débit",
+"Compatible vidéos, réseaux sociaux et streaming",
+"Offre spéciale pour une durée limitée"
 ]
 
 }
