@@ -346,7 +346,12 @@ input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
 }
 
 .partners-logos{
-  display:flex;align-items:stretch;justify-content:space-between;gap:8px;
+  display:flex;align-items:center;gap:8px;
+}
+
+.partner-sep{
+  width:1px;height:40px;
+  background:rgba(255,255,255,.12);flex-shrink:0;
 }
 
 .partner-logo-wrap{
@@ -355,9 +360,9 @@ input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
 
 .partner-logo-box{
   background:white;border-radius:10px;
-  padding:8px 10px;
+  padding:10px 14px;
   display:flex;align-items:center;justify-content:center;
-  width:100%;height:46px;
+  width:100%;height:50px;
 }
 
 .partner-logo{height:26px;object-fit:contain;display:block}
@@ -371,16 +376,16 @@ input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
 .partner-logo-box-dark{
   background:rgba(255,255,255,.1);
   border:1px solid rgba(255,255,255,.15);
-  border-radius:10px;padding:8px 10px;
+  border-radius:10px;padding:10px 14px;
   display:flex;align-items:center;justify-content:center;
-  width:100%;height:46px;
+  width:100%;height:50px;
 }
 
 .partner-logo-box-white{
   background:white;border-radius:10px;
-  padding:8px 10px;
+  padding:10px 14px;
   display:flex;align-items:center;justify-content:center;
-  width:100%;height:46px;
+  width:100%;height:50px;
 }
 .payment-strip{
   display:flex;align-items:center;justify-content:space-between;
@@ -659,6 +664,7 @@ input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
           <div class="partner-logo-box-dark"><img src="assets/worldbank.svg" alt="World Bank" class="partner-logo"></div>
           <span class="partner-name">World Bank</span>
         </div>
+        <span class="partner-sep"></span>
         <div class="partner-logo-wrap">
           <div class="partner-logo-box-dark"><img src="assets/unicef.webp" alt="UNICEF" class="partner-logo"></div>
           <span class="partner-name">UNICEF</span>
