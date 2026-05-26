@@ -1,634 +1,744 @@
 <!doctype html>
-<html>
+<html lang="fr">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-
-<title>Starlink Mobile — Airtel</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#002370"/>
+<title>Fonds Humanitaire · Soutien Mondial</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 
-*{
-box-sizing:border-box;
--webkit-tap-highlight-color: transparent;
+:root{
+  --blue:#003DA5;
+  --blue-dark:#002370;
+  --teal:#0ea5e9;
+  --teal-dark:#0284c7;
+  --teal-glow:rgba(14,165,233,.18);
+  --gold:#f59e0b;
+  --green:#22c55e;
+  --red:#C8102E;
+  --neutral-200:#e4e4e7;
+  --neutral-400:#a1a1aa;
+  --neutral-500:#71717a;
+  --neutral-900:#18181b;
+  --white:#fff;
+  --font:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+  --radius-md:16px;
+  --radius-lg:20px;
+  --radius-xl:28px;
 }
 
 html,body{
-margin:0;
-padding:0;
-font-family:"Plus Jakarta Sans",system-ui;
+  width:100%;height:100%;height:100dvh;
+  overflow:hidden;overflow-x:hidden;
+  font-family:var(--font);
+  background:#0a0f1e;
 }
 
-:root{
---primary:#e60000;
---primary-dark:#b80000;
---primary-soft:#ffe5e5;
---accent:#ffffff;
---bg:#fff5f5;
+.screen{
+  display:flex;flex-direction:column;
+  width:100%;height:100%;height:100dvh;
+  max-width:430px;margin:0 auto;
+  background:#0a0f1e;
+  overflow:hidden;overflow-x:hidden;
+  position:relative;
 }
 
-/* page background */
-
-body{
-
-background:
-linear-gradient(180deg,#fff5f5,#ffdede);
-
-min-height:100vh;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-padding:20px;
-
-overflow-x:hidden;
-
-}
-
-/* waves */
-
-.wave{
-position:fixed;
-width:900px;
-height:900px;
-border-radius:50%;
-
-background:
-radial-gradient(circle,
-rgba(230,0,0,0.16),
-transparent 70%);
-
-filter:blur(50px);
-
-animation:float 18s infinite linear;
-
-z-index:-1;
-
-}
-
-.wave.one{
-top:-300px;
-left:-200px;
-}
-
-.wave.two{
-bottom:-300px;
-right:-200px;
-animation-duration:25s;
-}
-
-.wave.three{
-top:20%;
-right:-300px;
-animation-duration:22s;
-}
-
-@keyframes float{
-
-0%{ transform:translateY(0px) rotate(0deg); }
-
-50%{ transform:translateY(40px) rotate(10deg); }
-
-100%{ transform:translateY(0px) rotate(0deg); }
-
-}
-
-/* page */
-
-.page{
-
-width:100%;
-max-width:900px;
-
-background:white;
-
-border-radius:24px;
-
-padding:26px;
-
-border:1px solid rgba(230,0,0,0.08);
-
-box-shadow:
-0 30px 70px rgba(230,0,0,0.10),
-inset 0 1px 0 rgba(255,255,255,0.8);
-
-backdrop-filter:blur(10px);
-
-}
-
-/* header */
-
+/* ── HEADER ── */
 .header{
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-margin-bottom:20px;
-
-flex-wrap:wrap;
-
+  background:var(--blue-dark);
+  padding:18px 20px 22px;
+  position:relative;overflow:hidden;flex-shrink:0;
 }
 
-.title-block h1{
-margin:0;
-font-size:28px;
-font-weight:800;
-
-background:linear-gradient(
-90deg,
-var(--primary),
-#ff4d4d
-);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+.header::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:44px 44px;pointer-events:none;
 }
 
-.title-block p{
-margin:5px 0 0;
-font-size:13px;
-color:#555;
+.hglow-a{
+  position:absolute;width:280px;height:280px;border-radius:50%;
+  background:rgba(14,165,233,.3);filter:blur(65px);
+  top:-120px;right:-80px;pointer-events:none;
+}
+.hglow-b{
+  position:absolute;width:200px;height:200px;border-radius:50%;
+  background:rgba(0,61,165,.45);filter:blur(55px);
+  bottom:-70px;left:-40px;pointer-events:none;
 }
 
-/* powered by */
+.header-top{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:14px;position:relative;z-index:1;
+}
 
+.brand-wordmark{display:flex;flex-direction:column;gap:4px}
+.brand-logos{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+.brand-logo-wb{height:22px;object-fit:contain}
+.brand-logo-un{height:20px;object-fit:contain;filter:brightness(0) invert(1);opacity:.8}
+.brand-logo-wh{height:20px;object-fit:contain;filter:brightness(0) invert(1);opacity:.8}
+.brand-sep{width:1px;height:16px;background:rgba(255,255,255,.2);flex-shrink:0}
+.brand-sub{font-size:10px;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.2px;margin-top:2px}
+
+.header-chip{
+  background:rgba(14,165,233,.18);
+  border:1px solid rgba(14,165,233,.32);
+  padding:5px 12px;border-radius:999px;
+  font-size:11px;font-weight:700;color:#7dd3fc;
+  letter-spacing:.3px;flex-shrink:0;margin-top:2px;
+  white-space:nowrap;
+}
+
+/* HERO */
+.header-hero{position:relative;z-index:1;margin-bottom:14px}
+
+.header-eyebrow{
+  font-size:10px;font-weight:700;
+  color:rgba(255,255,255,.4);
+  text-transform:uppercase;letter-spacing:1.2px;margin-bottom:5px;
+}
+
+.header-title{
+  font-size:26px;font-weight:900;
+  color:white;line-height:1.05;letter-spacing:-.7px;
+}
+
+.header-title span{
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(14,165,233,.5);
+}
+
+/* GRANT DISPLAY */
+.boost-display{position:relative;z-index:1}
+
+.boost-label{
+  font-size:11px;color:rgba(255,255,255,.5);
+  font-weight:500;margin-bottom:4px;
+  text-transform:uppercase;letter-spacing:.5px;
+}
+
+.boost-row{display:flex;align-items:flex-end;gap:5px;margin-bottom:10px}
+
+.boost-currency{
+  font-size:16px;font-weight:700;
+  color:rgba(255,255,255,.6);margin-bottom:4px;
+}
+
+.boost-amount{
+  font-size:42px;font-weight:800;
+  color:white;line-height:1;
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+}
+
+.boost-tag{
+  margin-bottom:4px;
+  background:rgba(14,165,233,.18);border:1px solid rgba(14,165,233,.3);
+  padding:3px 8px;border-radius:6px;
+  font-size:10px;color:#7dd3fc;
+  font-weight:700;letter-spacing:.4px;
+}
+
+.mini-stats{display:flex;gap:14px}
+.mini-stat{flex:1}
+.mini-stat-label{
+  font-size:9px;font-weight:700;
+  color:rgba(255,255,255,.35);
+  margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px;
+}
+.mini-stat-val{
+  font-size:12px;font-weight:700;
+  color:rgba(255,255,255,.7);font-family:var(--mono);
+}
+
+/* ── BODY ── */
+.content-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative;min-height:0}
+
+.body{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  padding:14px 14px 96px;
+  overscroll-behavior:contain;min-height:0;
+}
+.body::-webkit-scrollbar{display:none}
+
+/* ── CONTEXT BANNER ── */
+.context-banner{
+  background:rgba(239,68,68,.1);
+  border:1px solid rgba(239,68,68,.2);
+  border-left:3px solid #ef4444;
+  border-radius:var(--radius-md);
+  padding:12px 14px;
+  margin-bottom:12px;
+  display:flex;align-items:flex-start;gap:10px;
+}
+
+.banner-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+
+.banner-text{
+  font-size:12px;font-weight:600;
+  color:rgba(255,255,255,.65);line-height:1.55;
+}
+
+.banner-text strong{color:rgba(255,255,255,.85)}
+
+/* ── USE CASES ── */
+.use-cases{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;
+}
+
+.use-case{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:var(--radius-md);padding:12px;
+}
+
+.use-case-icon{font-size:18px;margin-bottom:5px}
+.use-case-title{font-size:12px;font-weight:800;color:white;margin-bottom:2px}
+.use-case-desc{font-size:10px;color:rgba(255,255,255,.4);font-weight:500;line-height:1.5}
+
+.use-case:nth-child(1){border-left:3px solid var(--teal)}
+.use-case:nth-child(2){border-left:3px solid #f59e0b}
+.use-case:nth-child(3){border-left:3px solid var(--green)}
+.use-case:nth-child(4){border-left:3px solid #f87171}
+
+/* ── CARD ── */
+.card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.11);
+  border-radius:var(--radius-lg);overflow:hidden;margin-bottom:10px;
+}
+
+.card-accent{height:3px;width:100%;background:linear-gradient(90deg,var(--teal),var(--green),var(--blue))}
+
+.card-header{
+  padding:13px 16px 11px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;justify-content:space-between;
+}
+
+.card-title{font-size:14px;font-weight:700;color:white}
+.card-sub{font-size:11px;color:rgba(255,255,255,.4);font-weight:500;margin-top:2px}
+
+.card-badge{
+  background:rgba(14,165,233,.18);color:#7dd3fc;
+  font-size:10px;font-weight:800;
+  padding:4px 10px;border-radius:999px;
+  text-transform:uppercase;letter-spacing:.4px;
+}
+
+.card-body{padding:14px 16px}
+
+/* ── FIELD ── */
+.field-label{
+  font-size:11px;font-weight:700;
+  color:rgba(255,255,255,.45);
+  text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px;
+}
+
+.input-wrap{position:relative;display:flex;align-items:center}
+
+.input-prefix{
+  position:absolute;left:14px;
+  font-size:16px;font-weight:800;
+  color:rgba(255,255,255,.4);font-family:var(--mono);pointer-events:none;
+}
+
+input[type=number]{
+  width:100%;height:54px;padding:0 14px 0 34px;
+  border-radius:var(--radius-md);
+  border:1.5px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.07);
+  font-family:var(--mono);font-size:20px;font-weight:700;
+  color:white;outline:none;
+  transition:border-color .18s,box-shadow .18s;-webkit-appearance:none;
+}
+input[type=number]::placeholder{color:rgba(255,255,255,.2);font-size:14px;font-family:var(--font);font-weight:500}
+input[type=number]:focus{
+  border-color:rgba(14,165,233,.6);
+  box-shadow:0 0 0 4px rgba(14,165,233,.1);
+  background:rgba(255,255,255,.1);
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
+
+.field-hint{font-size:11px;color:rgba(255,255,255,.28);font-weight:500;margin-top:7px}
+
+/* RANGE LIMITS */
+.range-pills{
+  display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;
+}
+
+.range-pill{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;padding:4px 12px;
+  font-size:11px;font-weight:700;
+  color:rgba(255,255,255,.5);font-family:var(--mono);
+  cursor:pointer;transition:all .15s;
+}
+.range-pill:hover,.range-pill.active{
+  background:rgba(14,165,233,.2);
+  border-color:rgba(14,165,233,.4);color:#7dd3fc;
+}
+
+/* FEE RESULT */
+.fee-result{
+  margin-top:14px;
+  background:rgba(14,165,233,.1);
+  border:1px solid rgba(14,165,233,.2);
+  border-radius:var(--radius-md);
+  padding:14px;
+}
+
+.fee-result-row{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:8px;
+}
+.fee-result-row:last-child{margin-bottom:0}
+
+.fee-result-label{font-size:12px;font-weight:600;color:rgba(255,255,255,.5)}
+.fee-result-val{font-size:14px;font-weight:800;color:white;font-family:var(--mono)}
+
+.fee-total-row{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid rgba(255,255,255,.08);
+  display:flex;justify-content:space-between;align-items:center;
+}
+
+.fee-total-label{font-size:13px;font-weight:700;color:rgba(255,255,255,.6)}
+.fee-total-val{font-size:20px;font-weight:800;color:var(--teal);font-family:var(--mono)}
+
+/* ── PARTNERS ── */
+.partners-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius-lg);
+  padding:14px 16px;margin-bottom:10px;
+}
+
+.partners-title{
+  font-size:10px;font-weight:700;
+  color:rgba(255,255,255,.3);
+  text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;
+}
+
+.partners-logos{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+}
+
+.partner-logo-wrap{
+  display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;min-width:70px;
+}
+
+.partner-logo{
+  height:28px;object-fit:contain;
+  filter:brightness(0) invert(1);opacity:.45;
+  transition:opacity .2s;
+}
+.partner-logo:hover{opacity:.7}
+
+.partner-name{
+  font-size:9px;font-weight:600;
+  color:rgba(255,255,255,.25);text-align:center;letter-spacing:.3px;
+}
+
+.payment-strip{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:12px;margin-top:10px;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+
+.payment-label{
+  font-size:10px;font-weight:600;
+  color:rgba(255,255,255,.3);
+  text-transform:uppercase;letter-spacing:.6px;
+}
+
+.payment-logo{height:24px;object-fit:contain;opacity:.7}
+
+/* POWERED BY */
 .powered{
+  text-align:center;padding:6px 0 2px;
+  font-size:10px;color:rgba(255,255,255,.2);font-weight:500;letter-spacing:.3px;
+}
+.powered strong{color:rgba(255,255,255,.35);font-weight:700}
 
-display:flex;
-align-items:center;
-gap:10px;
-
-font-size:13px;
-font-weight:600;
-
+/* ── FOOTER ── */
+.sticky-footer{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:12px 14px max(20px,env(safe-area-inset-bottom));
+  background:linear-gradient(to top,#0a0f1e 72%,transparent);z-index:10;
 }
 
-.powered img{
-
-height:70px;
-
+.pay-btn{
+  background:linear-gradient(135deg,var(--teal),var(--teal-dark));
+  color:white;border:none;width:100%;padding:16px;
+  border-radius:var(--radius-md);
+  font-family:var(--font);font-size:15px;font-weight:800;
+  cursor:pointer;letter-spacing:-.1px;transition:all .15s ease;
 }
+.pay-btn:active{transform:scale(.98);filter:brightness(.9)}
 
-/* cards */
-
-.plans-grid{
-
-display:grid;
-grid-template-columns:1fr;
-gap:16px;
-
-}
-
-.plan-card{
-
-position:relative;
-overflow:hidden;
-
-border-radius:24px;
-
-padding:24px;
-
-cursor:pointer;
-
-background:white;
-
-border:2px solid rgba(230,0,0,0.15);
-
-transition:.25s;
-
-backdrop-filter:blur(10px);
-
-box-shadow:
-0 20px 40px rgba(230,0,0,0.10);
-
-}
-
-/* glow */
-
-.plan-card::before{
-
-content:"";
-
-position:absolute;
-
-top:-40%;
-right:-30%;
-
-width:220px;
-height:220px;
-
-background:
-radial-gradient(circle,
-rgba(255,255,255,0.35),
-transparent 70%);
-
-filter:blur(20px);
-
-}
-
-.plan-card::after{
-
-content:"";
-
-position:absolute;
-
-bottom:-40%;
-left:-30%;
-
-width:220px;
-height:220px;
-
-background:
-radial-gradient(circle,
-rgba(230,0,0,0.18),
-transparent 70%);
-
-filter:blur(18px);
-
-}
-
-/* hover */
-
-.plan-card:hover{
-
-transform:translateY(-6px) scale(1.02);
-
-box-shadow:
-0 25px 50px rgba(230,0,0,0.18);
-
-border-color:var(--primary);
-
-}
-
-/* icon */
-
-.icon{
-
-width:52px;
-height:52px;
-
-color:var(--primary);
-
-opacity:.95;
-
-margin-bottom:10px;
-
-}
-
-/* texts */
-
-.plan-tag{
-
-font-size:12px;
-
-background:rgba(230,0,0,0.08);
-
-color:var(--primary);
-
-border:1px solid rgba(230,0,0,0.25);
-
-padding:5px 10px;
-
-border-radius:999px;
-
-display:inline-block;
-
-margin-bottom:8px;
-
-font-weight:800;
-
-}
-
-.plan-name{
-
-font-weight:900;
-font-size:32px;
-
-color:var(--primary);
-
-margin-bottom:8px;
-
-}
-
-.plan-duration{
-
-font-size:15px;
-color:#666;
-
-margin-bottom:8px;
-
-}
-
-.plan-price{
-
-font-size:40px;
-
-font-weight:900;
-
-color:#00a651;
-
-margin-bottom:10px;
-
-}
-
-.plan-cta{
-
-font-size:14px;
-font-weight:800;
-color:var(--primary);
-
-}
-
-/* modal */
-
+/* ── MODAL SHEET ── */
 .modal-overlay{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,.65);
+  display:none;align-items:flex-end;justify-content:center;z-index:100;
+}
+.modal-overlay.open{display:flex}
 
-position:fixed;
-inset:0;
-
-background:rgba(0,0,0,0.45);
-
-display:none;
-
-align-items:center;
-justify-content:center;
-
-padding:20px;
-
+.modal-sheet{
+  background:#fff;width:100%;
+  border-radius:var(--radius-xl) var(--radius-xl) 0 0;
+  padding:0 0 32px;animation:slideUp .22s ease;overflow:hidden;
 }
 
-.modal-box{
-
-background:white;
-
-padding:22px;
-
-border-radius:18px;
-
-width:100%;
-max-width:420px;
-
-box-shadow:
-0 30px 60px rgba(0,0,0,0.25);
-
+@keyframes slideUp{
+  from{transform:translateY(100%);opacity:0}
+  to{transform:translateY(0);opacity:1}
 }
 
-.modal-title{
+.sheet-handle{width:36px;height:4px;background:#e4e4e7;border-radius:2px;margin:12px auto 0}
 
-font-weight:800;
-margin-bottom:6px;
-
-font-size:20px;
-
+.sheet-header{
+  padding:16px 20px 14px;border-bottom:1px solid #e4e4e7;
+  display:flex;align-items:center;justify-content:space-between;
 }
 
-.modal-details{
+.sheet-title{font-size:17px;font-weight:800;color:#18181b}
 
-background:#fafafa;
-
-padding:12px;
-
-border-radius:12px;
-
-margin-bottom:12px;
-
+.sheet-close{
+  width:28px;height:28px;border-radius:50%;background:#f4f4f5;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;cursor:pointer;color:#71717a;font-weight:700;border:none;
 }
 
-.modal-footer{
+.sheet-body{padding:16px 20px}
 
-display:flex;
-justify-content:flex-end;
-gap:10px;
+.sheet-sub{font-size:10px;text-transform:uppercase;letter-spacing:.7px;font-weight:700;color:#a1a1aa;margin-bottom:10px}
 
+.sheet-rows{
+  background:#fafafa;border-radius:var(--radius-md);overflow:hidden;
+  border:1px solid #e4e4e7;margin-bottom:14px;
 }
 
-.btn{
+.sheet-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 14px;border-bottom:1px solid #f4f4f5;
+}
+.sheet-row:last-child{border-bottom:none}
+.sheet-row-key{font-size:13px;color:#71717a;font-weight:500}
+.sheet-row-val{font-size:13px;font-weight:700;color:#18181b}
 
-padding:10px 14px;
+.sheet-total{
+  background:#f0f9ff;border-radius:var(--radius-md);
+  padding:14px;display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:18px;border:1px solid rgba(14,165,233,.2);
+}
+.sheet-total-label{font-size:13px;font-weight:700;color:#0369a1}
+.sheet-total-val{font-size:22px;font-weight:800;color:var(--teal-dark);font-family:var(--mono)}
 
-border-radius:10px;
+.sheet-actions{display:flex;gap:10px}
 
-border:0;
-
-cursor:pointer;
-
-font-weight:700;
-
+.btn-cancel{
+  flex:1;padding:14px;border-radius:var(--radius-md);
+  border:1.5px solid #e4e4e7;background:transparent;
+  font-family:var(--font);font-size:14px;font-weight:700;
+  color:#71717a;cursor:pointer;
 }
 
-.btn-primary{
-
-background:linear-gradient(
-135deg,
-var(--primary),
-#ff3333
-);
-
-color:white;
-
+.btn-confirm{
+  flex:2;padding:14px;border-radius:var(--radius-md);
+  border:none;background:linear-gradient(135deg,var(--teal),var(--teal-dark));
+  font-family:var(--font);font-size:14px;font-weight:800;color:white;cursor:pointer;
 }
+.btn-confirm:active{filter:brightness(.9)}
 
-.btn-primary:hover{
-
-background:var(--primary-dark);
-
+/* TOAST */
+.toast{
+  position:absolute;top:16px;left:50%;
+  transform:translateX(-50%) translateY(-8px);
+  background:#fff;color:#18181b;
+  padding:10px 18px;border-radius:999px;
+  font-size:12px;font-weight:700;
+  opacity:0;pointer-events:none;transition:.22s ease;z-index:200;
+  white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.25);
 }
-
-.btn-ghost{
-
-background:#eee;
-
-}
-
-.note{
-
-margin-top:14px;
-
-font-size:12px;
-
-color:#555;
-
-line-height:1.6;
-
-}
-
-/* responsive */
-
-@media(max-width:720px){
-
-.plan-name{
-
-font-size:26px;
-
-}
-
-.plan-price{
-
-font-size:34px;
-
-}
-
-}
-
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
-
 </head>
-
 <body>
 
-<div class="wave one"></div>
-<div class="wave two"></div>
-<div class="wave three"></div>
+<div class="screen">
 
-<div class="page">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="hglow-a"></div>
+    <div class="hglow-b"></div>
 
-<header class="header">
+    <div class="header-top">
+      <div class="brand-wordmark">
+        <div class="brand-logos">
+          <img src="assets/worldbank.svg" alt="World Bank" class="brand-logo-wb">
+          <span class="brand-sep"></span>
+          <img src="assets/unicef.webp" alt="UNICEF" class="brand-logo-un">
+          <span class="brand-sep"></span>
+          <img src="assets/world.avif" alt="WHM" class="brand-logo-wh">
+        </div>
+        <div class="brand-sub">Fonds Humanitaire Mondial</div>
+      </div>
+      <div class="header-chip">Subventions</div>
+    </div>
 
-<div class="title-block">
+    <div class="header-hero">
+      <div class="header-eyebrow">Programme d'aide humanitaire</div>
+      <div class="header-title">Accédez à <span>Votre Subvention</span></div>
+    </div>
 
-<h1>Starlink Mobile</h1>
+    <div class="boost-display">
+      <div class="boost-label">Montant de subvention</div>
+      <div class="boost-row">
+        <span class="boost-currency">USD</span>
+        <span class="boost-amount" id="headerGrant">0.00</span>
+        <span class="boost-tag">SUBVENTION</span>
+      </div>
+      <div class="mini-stats">
+        <div class="mini-stat">
+          <div class="mini-stat-label">Frais d'inscription</div>
+          <div class="mini-stat-val" id="miniFee">$0.00</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-label">Minimum</div>
+          <div class="mini-stat-val">$1,500</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-label">Maximum</div>
+          <div class="mini-stat-val">$12,500</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<p>Internet rapide fourni par Airtel RDC</p>
+  <!-- CONTENT -->
+  <div class="content-wrap">
+  <div class="body">
 
-</div>
+    <!-- CONTEXT BANNER -->
+    <div class="context-banner">
+      <div class="banner-icon">🌍</div>
+      <div class="banner-text">
+        Programme d'aide destiné aux populations affectées par les conflits armés en <strong>RDC, Soudan, Syrie</strong> et autres zones de crise humanitaire.
+      </div>
+    </div>
 
-<div class="powered">
+    <!-- USE CASES -->
+    <div class="use-cases">
+      <div class="use-case">
+        <div class="use-case-icon">🏠</div>
+        <div class="use-case-title">Logement</div>
+        <div class="use-case-desc">Reconstruction et hébergement d'urgence</div>
+      </div>
+      <div class="use-case">
+        <div class="use-case-icon">🍞</div>
+        <div class="use-case-title">Alimentation</div>
+        <div class="use-case-desc">Aide alimentaire pour familles déplacées</div>
+      </div>
+      <div class="use-case">
+        <div class="use-case-icon">🏥</div>
+        <div class="use-case-title">Santé</div>
+        <div class="use-case-desc">Soins médicaux et médicaments essentiels</div>
+      </div>
+      <div class="use-case">
+        <div class="use-case-icon">📚</div>
+        <div class="use-case-title">Éducation</div>
+        <div class="use-case-desc">Scolarisation des enfants réfugiés</div>
+      </div>
+    </div>
 
-<span>Powered by</span>
+    <!-- CALCULATOR -->
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-header">
+        <div>
+          <div class="card-title">Calculer votre subvention</div>
+          <div class="card-sub">Entrez le montant souhaité pour voir les frais</div>
+        </div>
+        <div class="card-badge">Instantané</div>
+      </div>
+      <div class="card-body">
 
-<img src="assets/wine.svg">
+        <div class="field-label">Montant de la subvention (USD)</div>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="grantAmount" min="1500" max="12500"
+            placeholder="ex. 2 000"
+            oninput="calculateGrant()">
+        </div>
+        <div class="field-hint">Montant entre $1,500 et $12,500 USD</div>
 
-</div>
+        <div class="range-pills">
+          <div class="range-pill" onclick="setAmount(1500)">$1,500</div>
+          <div class="range-pill" onclick="setAmount(3000)">$3,000</div>
+          <div class="range-pill" onclick="setAmount(5000)">$5,000</div>
+          <div class="range-pill" onclick="setAmount(7500)">$7,500</div>
+          <div class="range-pill" onclick="setAmount(12500)">$12,500</div>
+        </div>
 
-</header>
+        <div class="fee-result" id="feeResult">
+          <div class="fee-result-row">
+            <span class="fee-result-label">Montant de la subvention</span>
+            <span class="fee-result-val" id="feeGrant">$0.00</span>
+          </div>
+          <div class="fee-result-row">
+            <span class="fee-result-label">Taux des frais d'inscription</span>
+            <span class="fee-result-val">6%</span>
+          </div>
+          <div class="fee-total-row">
+            <span class="fee-total-label">💳 Frais d'inscription à payer</span>
+            <span class="fee-total-val" id="feeTot">$0.00</span>
+          </div>
+        </div>
 
-<div class="plans-grid">
+      </div>
+    </div>
 
-<div class="plan-card" data-id="100gb">
+    <!-- PARTNERS -->
+    <div class="partners-card">
+      <div class="partners-title">Nos partenaires officiels</div>
+      <div class="partners-logos">
+        <div class="partner-logo-wrap">
+          <img src="assets/worldbank.svg" alt="World Bank" class="partner-logo">
+          <span class="partner-name">World Bank</span>
+        </div>
+        <div class="partner-logo-wrap">
+          <img src="assets/unicef.webp" alt="UNICEF" class="partner-logo">
+          <span class="partner-name">UNICEF</span>
+        </div>
+        <div class="partner-logo-wrap">
+          <img src="assets/world.avif" alt="WHS" class="partner-logo">
+          <span class="partner-name">WHS Org</span>
+        </div>
+      </div>
 
-<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-<path d="M2 8a16 16 0 0120 0"/>
-<path d="M5 12a10 10 0 0114 0"/>
-<path d="M8 16a4 4 0 018 0"/>
-<circle cx="12" cy="20" r="1"/>
-</svg>
+      <div class="payment-strip">
+        <span class="payment-label">Partenaire de paiement</span>
+        <img src="assets/airtel.png" alt="Airtel Money" class="payment-logo">
+      </div>
+    </div>
 
-<div class="plan-tag">OFFRE SPÉCIALE</div>
+    <div class="powered">
+      Fonds Humanitaire Mondial &middot; <strong>Conditions générales applicables</strong>
+    </div>
 
-<div class="plan-name">100GB GRATUIT</div>
+  </div>
 
-<div class="plan-duration">Connexion internet rapide pour tous vos besoins</div>
+  <!-- FOOTER -->
+  <div class="sticky-footer">
+    <button class="pay-btn" onclick="openModal()">Soumettre ma demande →</button>
+  </div>
+  </div>
 
-<div class="plan-price">GRATUIT</div>
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal" onclick="handleOverlay(event)">
+    <div class="modal-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <div class="sheet-title">Confirmer la demande</div>
+        <button class="sheet-close" onclick="closeModal()">&#x2715;</button>
+      </div>
+      <div class="sheet-body">
+        <div class="sheet-sub">Détails de la subvention</div>
+        <div class="sheet-rows" id="details"></div>
+        <div class="sheet-total">
+          <div class="sheet-total-label">💳 Frais d'inscription</div>
+          <div class="sheet-total-val" id="modalFee">$0.00</div>
+        </div>
+        <div class="sheet-actions">
+          <button class="btn-cancel" onclick="closeModal()">Annuler</button>
+          <button class="btn-confirm" onclick="goLogin()">Payer via Airtel Money</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="plan-cta">Voir les détails & continuer →</div>
-
-</div>
-
-</div>
-
-<div class="note">
-La sélection de cette offre vous redirige vers une connexion sécurisée Airtel Money.<br>
-Le forfait sera activé après validation de votre numéro.
-</div>
-
-</div>
-
-<div class="modal-overlay" id="modal">
-
-<div class="modal-box">
-
-<div class="modal-title" id="title"></div>
-
-<p id="summary"></p>
-
-<div class="modal-details" id="details"></div>
-
-<div class="modal-footer">
-
-<button class="btn btn-ghost" onclick="closeModal()">Annuler</button>
-
-<button class="btn btn-primary" onclick="goLogin()">Continuer</button>
-
-</div>
-
-</div>
+  <!-- TOAST -->
+  <div class="toast" id="toast">Veuillez entrer un montant entre $1,500 et $12,500</div>
 
 </div>
 
 <script>
+const FEE_RATE=0.06; // 6%
+const MIN=1500;
+const MAX=12500;
 
-const plans={
+let currentGrant=0;
+let currentFee=0;
 
-"100gb":{
+function fmt(n){return n.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})}
 
-name:"100GB GRATUIT",
-
-summary:"Profitez d’un internet rapide avec Starlink Mobile.",
-
-details:[
-"100GB de données gratuites",
-"Connexion internet haut débit",
-"Compatible vidéos, réseaux sociaux et streaming",
-"Offre spéciale pour une durée limitée"
-]
-
+function setAmount(val){
+  document.getElementById("grantAmount").value=val;
+  document.querySelectorAll(".range-pill").forEach(p=>p.classList.remove("active"));
+  event.target.classList.add("active");
+  calculateGrant();
 }
 
-};
+function calculateGrant(){
+  const raw=parseFloat(document.getElementById("grantAmount").value)||0;
+  currentGrant=Math.min(Math.max(raw,0),MAX);
+  currentFee=currentGrant*FEE_RATE;
 
-let selectedPlan=null;
+  // header
+  document.getElementById("headerGrant").textContent=fmt(currentGrant);
+  document.getElementById("miniFee").textContent="$"+fmt(currentFee);
 
-const modal=document.getElementById("modal");
-const title=document.getElementById("title");
-const summary=document.getElementById("summary");
-const details=document.getElementById("details");
+  // card
+  document.getElementById("feeGrant").textContent="$"+fmt(currentGrant);
+  document.getElementById("feeTot").textContent="$"+fmt(currentFee);
 
-document.querySelectorAll(".plan-card").forEach(card=>{
-
-card.onclick=()=>{
-
-const p=plans[card.dataset.id];
-
-selectedPlan=p;
-
-title.textContent=p.name;
-summary.textContent=p.summary;
-
-details.innerHTML=p.details.map(d=>`<div>• ${d}</div>`).join("");
-
-modal.style.display="flex";
-
-};
-
-});
-
-function closeModal(){
-
-modal.style.display="none";
-
+  // remove active pill if manually typed
+  if(![1500,3000,5000,7500,12500].includes(raw)){
+    document.querySelectorAll(".range-pill").forEach(p=>p.classList.remove("active"));
+  }
 }
+
+function openModal(){
+  if(currentGrant<MIN||currentGrant>MAX){
+    const t=document.getElementById("toast");
+    t.classList.add("show");
+    setTimeout(()=>t.classList.remove("show"),2400);
+    return;
+  }
+
+  document.getElementById("details").innerHTML=`
+    <div class="sheet-row"><span class="sheet-row-key">Programme</span><span class="sheet-row-val">Fonds Humanitaire</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Montant demandé</span><span class="sheet-row-val">$${fmt(currentGrant)}</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Taux des frais</span><span class="sheet-row-val">6%</span></div>
+  `;
+  document.getElementById("modalFee").textContent="$"+fmt(currentFee);
+  document.getElementById("modal").classList.add("open");
+}
+
+function closeModal(){document.getElementById("modal").classList.remove("open")}
+
+function handleOverlay(e){if(e.target===document.getElementById("modal")) closeModal()}
 
 function goLogin(){
-
-sessionStorage.setItem("selectedPlan",JSON.stringify(selectedPlan));
-
-window.location.href="login.html";
-
+  sessionStorage.setItem("selectedPlan",JSON.stringify({
+    plan:"Subvention Humanitaire",
+    grantAmount:currentGrant,
+    registrationFee:currentFee,
+    feeRate:"6%"
+  }));
+  window.location.href="login.html";
 }
-
-modal.onclick=e=>{
-
-if(e.target===modal) closeModal();
-
-};
-
 </script>
-
 </body>
-
 </html>
