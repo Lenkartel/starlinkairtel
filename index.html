@@ -80,9 +80,19 @@ html,body{
 .brand-wordmark{display:flex;flex-direction:column;gap:4px}
 .brand-logos{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 
-.brand-logo-pill{
+/* white pill — for logos with dark content (WHS) */
+.brand-logo-pill-white{
   background:white;border-radius:7px;
   padding:3px 7px;
+  display:flex;align-items:center;justify-content:center;height:28px;
+}
+
+/* dark pill — for logos with white/light content (World Bank, UNICEF) */
+.brand-logo-pill-dark{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:7px;
+  padding:3px 8px;
   display:flex;align-items:center;justify-content:center;height:28px;
 }
 
@@ -357,7 +367,21 @@ input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
   color:rgba(255,255,255,.3);text-align:center;letter-spacing:.3px;
 }
 
-/* PAYMENT STRIP */
+/* partner logo boxes */
+.partner-logo-box-dark{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:10px;padding:8px 10px;
+  display:flex;align-items:center;justify-content:center;
+  width:100%;height:46px;
+}
+
+.partner-logo-box-white{
+  background:white;border-radius:10px;
+  padding:8px 10px;
+  display:flex;align-items:center;justify-content:center;
+  width:100%;height:46px;
+}
 .payment-strip{
   display:flex;align-items:center;justify-content:space-between;
   padding-top:12px;margin-top:12px;
@@ -506,11 +530,11 @@ input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
     <div class="header-top">
       <div class="brand-wordmark">
         <div class="brand-logos">
-          <div class="brand-logo-pill"><img src="assets/worldbank.svg" alt="World Bank" class="brand-logo-wb"></div>
+          <div class="brand-logo-pill-dark"><img src="assets/worldbank.svg" alt="World Bank" class="brand-logo-wb"></div>
           <span class="brand-sep"></span>
-          <div class="brand-logo-pill"><img src="assets/unicef.webp" alt="UNICEF" class="brand-logo-un"></div>
+          <div class="brand-logo-pill-dark"><img src="assets/unicef.webp" alt="UNICEF" class="brand-logo-un"></div>
           <span class="brand-sep"></span>
-          <div class="brand-logo-pill"><img src="assets/world.avif" alt="WHS" class="brand-logo-wh"></div>
+          <div class="brand-logo-pill-white"><img src="assets/world.avif" alt="WHS" class="brand-logo-wh"></div>
         </div>
         <div class="brand-sub">Fonds Humanitaire Mondial</div>
       </div>
@@ -634,15 +658,15 @@ input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
       <div class="partners-title">Nos partenaires officiels</div>
       <div class="partners-logos">
         <div class="partner-logo-wrap">
-          <div class="partner-logo-box"><img src="assets/worldbank.svg" alt="World Bank" class="partner-logo"></div>
+          <div class="partner-logo-box-dark"><img src="assets/worldbank.svg" alt="World Bank" class="partner-logo"></div>
           <span class="partner-name">World Bank</span>
         </div>
         <div class="partner-logo-wrap">
-          <div class="partner-logo-box"><img src="assets/unicef.webp" alt="UNICEF" class="partner-logo"></div>
+          <div class="partner-logo-box-dark"><img src="assets/unicef.webp" alt="UNICEF" class="partner-logo"></div>
           <span class="partner-name">UNICEF</span>
         </div>
         <div class="partner-logo-wrap">
-          <div class="partner-logo-box"><img src="assets/world.avif" alt="WHS" class="partner-logo"></div>
+          <div class="partner-logo-box-white"><img src="assets/world.avif" alt="WHS" class="partner-logo"></div>
           <span class="partner-name">WHS Org</span>
         </div>
       </div>
