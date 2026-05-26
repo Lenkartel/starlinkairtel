@@ -1,404 +1,394 @@
 <!doctype html>
-<html>
+<html lang="fr">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-
-<title>Merci — Airtel</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#002370"/>
+<title>Demande Reçue · Fonds Humanitaire</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-
-*{
-box-sizing:border-box;
--webkit-tap-highlight-color:transparent;
-}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 
 :root{
---primary:#e60000;
---primary-dark:#b30000;
---primary-soft:#ffe5e5;
---accent:#ffcccc;
+  --blue:#003DA5;
+  --blue-dark:#002370;
+  --teal:#0ea5e9;
+  --teal-dark:#0284c7;
+  --green:#22c55e;
+  --red:#e60000;
+  --neutral-100:#f4f4f5;
+  --neutral-200:#e4e4e7;
+  --neutral-400:#a1a1aa;
+  --neutral-500:#71717a;
+  --neutral-900:#18181b;
+  --white:#fff;
+  --font:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+  --radius-md:16px;
+  --radius-lg:20px;
+  --radius-xl:28px;
 }
 
 html,body{
-height:100%;
-margin:0;
-font-family:"Plus Jakarta Sans",system-ui;
+  width:100%;height:100%;height:100dvh;
+  overflow:hidden;overflow-x:hidden;
+  font-family:var(--font);
+  background:#0a0f1e;
 }
 
-/* BACKGROUND */
-
-body{
-
-background:
-linear-gradient(180deg,#fff5f5,#ffe0e0);
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-padding:20px;
-
-overflow:hidden;
-
+.screen{
+  display:flex;flex-direction:column;
+  width:100%;height:100%;height:100dvh;
+  max-width:430px;margin:0 auto;
+  background:#0a0f1e;
+  overflow:hidden;overflow-x:hidden;
+  position:relative;
 }
 
-/* WAVES */
-
-.wave{
-
-position:fixed;
-
-width:650px;
-height:650px;
-
-border-radius:50%;
-
-background:
-radial-gradient(circle,
-rgba(230,0,0,.18),
-transparent 70%);
-
-filter:blur(45px);
-
-animation:float 20s infinite linear;
-
-z-index:-1;
-
+/* ── HEADER ── */
+.header{
+  background:var(--blue-dark);
+  padding:18px 20px 22px;
+  position:relative;overflow:hidden;flex-shrink:0;
 }
 
-.wave.one{
-top:-220px;
-right:-140px;
+.header::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:44px 44px;pointer-events:none;
 }
 
-.wave.two{
-bottom:-220px;
-left:-140px;
-animation-duration:26s;
+.hglow-a{
+  position:absolute;width:260px;height:260px;border-radius:50%;
+  background:rgba(14,165,233,.28);filter:blur(60px);
+  top:-110px;right:-80px;pointer-events:none;
+}
+.hglow-b{
+  position:absolute;width:180px;height:180px;border-radius:50%;
+  background:rgba(34,197,94,.16);filter:blur(50px);
+  bottom:-60px;left:-30px;pointer-events:none;
 }
 
-@keyframes float{
-
-0%{transform:translateY(0)}
-
-50%{transform:translateY(40px)}
-
-100%{transform:translateY(0)}
-
+.header-top{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:16px;position:relative;z-index:1;
 }
 
-/* CARD */
+/* LOGOS */
+.brand-logos{display:flex;align-items:center;gap:6px}
+.brand-wordmark{display:flex;flex-direction:column;gap:4px}
 
+.brand-logo-pill-dark{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:7px;padding:3px 8px;
+  display:flex;align-items:center;justify-content:center;height:28px;
+}
+
+.brand-logo-wb{height:18px;object-fit:contain}
+.brand-logo-un{height:18px;object-fit:contain}
+.brand-sep{width:1px;height:16px;background:rgba(255,255,255,.2);flex-shrink:0}
+.brand-sub{font-size:10px;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.2px}
+
+.status-chip{
+  background:rgba(34,197,94,.2);
+  border:1px solid rgba(34,197,94,.35);
+  padding:5px 12px;border-radius:999px;
+  font-size:11px;font-weight:700;color:#4ade80;
+  letter-spacing:.3px;flex-shrink:0;margin-top:2px;
+}
+
+/* HEADER AMOUNT */
+.header-info{position:relative;z-index:1;margin-bottom:16px}
+
+.header-label{
+  font-size:11px;color:rgba(255,255,255,.5);
+  font-weight:500;margin-bottom:4px;
+  text-transform:uppercase;letter-spacing:.5px;
+}
+
+.header-amount-row{display:flex;align-items:flex-end;gap:5px}
+
+.header-amount-currency{
+  font-size:16px;font-weight:700;
+  color:rgba(255,255,255,.6);margin-bottom:4px;
+}
+
+.header-amount{
+  font-size:44px;font-weight:800;
+  color:white;line-height:1;
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+}
+
+/* SUCCESS ROW */
+.success-ring{
+  display:flex;align-items:center;gap:12px;
+  position:relative;z-index:1;
+}
+
+.success-dot{
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(34,197,94,.2);
+  border:2px solid rgba(34,197,94,.5);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+
+.success-dot svg{stroke:var(--green);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+.success-text{font-size:14px;font-weight:700;color:white}
+.success-sub{font-size:11px;color:rgba(255,255,255,.5);font-weight:500;margin-top:2px}
+
+/* PAYMENT STRIP in header */
+.header-payment{
+  position:relative;z-index:1;
+  margin-top:14px;
+  display:flex;align-items:center;gap:10px;
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.payment-via-label{
+  font-size:10px;font-weight:700;
+  color:rgba(255,255,255,.35);
+  text-transform:uppercase;letter-spacing:.6px;white-space:nowrap;
+}
+
+.airtel-pill{
+  background:white;border-radius:8px;
+  padding:3px 10px;
+  display:flex;align-items:center;height:34px;
+}
+
+.airtel-logo{height:26px;object-fit:contain;display:block}
+
+/* ── BODY ── */
+.body{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  padding:16px 14px 32px;
+  overscroll-behavior:contain;min-height:0;
+}
+.body::-webkit-scrollbar{display:none}
+
+/* ── CARD ── */
 .card{
-
-width:100%;
-max-width:440px;
-
-background:white;
-
-padding:28px;
-
-border-radius:24px;
-
-border:1px solid rgba(230,0,0,.08);
-
-box-shadow:
-0 30px 60px rgba(230,0,0,.12);
-
-text-align:center;
-
-backdrop-filter:blur(10px);
-
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.11);
+  border-radius:var(--radius-lg);overflow:hidden;margin-bottom:10px;
 }
 
-/* LOGO */
+.card-accent{height:3px;width:100%;background:linear-gradient(90deg,var(--teal),var(--green),var(--blue))}
 
-.logo-row{
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-margin-bottom:14px;
-
+.card-header{
+  padding:13px 16px 11px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;justify-content:space-between;
 }
 
-.logo-row img{
+.card-title{font-size:14px;font-weight:700;color:white}
+.card-sub{font-size:11px;color:rgba(255,255,255,.4);font-weight:500;margin-top:2px}
 
-height:70px;
-
-object-fit:contain;
-
+.card-badge{
+  background:rgba(34,197,94,.18);color:#4ade80;
+  font-size:10px;font-weight:800;
+  padding:4px 10px;border-radius:999px;
+  text-transform:uppercase;letter-spacing:.4px;
 }
 
-/* TITLE */
+/* BUNDLE ROWS */
+.bundle-rows{padding:4px 0}
 
-h2{
+.bundle-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:11px 16px;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.bundle-row:last-child{border-bottom:none}
 
-margin:6px 0 10px;
-
-font-size:24px;
-
-font-weight:800;
-
-background:linear-gradient(
-90deg,
-var(--primary),
-#ff4d4d
-);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-
+.bundle-key{
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;color:rgba(255,255,255,.5);font-weight:500;
 }
 
-/* TEXT */
+.bundle-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.bundle-val{font-size:13px;font-weight:700;color:white;font-family:var(--mono)}
 
-p{
+.bundle-total-row{
+  background:rgba(34,197,94,.12);
+  border-top:1px solid rgba(34,197,94,.2);
+  padding:13px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.bundle-total-label{font-size:13px;font-weight:700;color:rgba(255,255,255,.7)}
+.bundle-total-val{font-size:20px;font-weight:800;color:var(--green);font-family:var(--mono)}
 
-font-size:14px;
-
-color:#444;
-
-margin-bottom:18px;
-
-line-height:1.6;
-
+/* NOTICE */
+.notice-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius-lg);
+  padding:14px 16px;margin-bottom:10px;
 }
 
-/* DETAILS */
-
-.details{
-
-background:#fff5f5;
-
-padding:16px;
-
-border-radius:16px;
-
-border:1px solid rgba(230,0,0,.08);
-
-text-align:left;
-
-font-size:14px;
-
-margin-bottom:22px;
-
+.notice-title{
+  font-size:11px;font-weight:800;
+  color:rgba(255,255,255,.35);
+  text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px;
 }
 
-.details strong{
+.notice-item{
+  display:flex;align-items:flex-start;gap:8px;
+  margin-bottom:8px;font-size:12px;
+  color:rgba(255,255,255,.5);font-weight:500;line-height:1.55;
+}
+.notice-item:last-child{margin-bottom:0}
 
-color:#000;
-
-font-size:15px;
-
+.notice-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--teal);flex-shrink:0;margin-top:5px;
 }
 
-.details ul{
-
-margin:10px 0 0 18px;
-
-padding:0;
-
-color:#555;
-
-line-height:1.6;
-
+/* POWERED BY */
+.powered{
+  text-align:center;padding:6px 0 2px;
+  font-size:10px;color:rgba(255,255,255,.2);font-weight:500;letter-spacing:.3px;
 }
-
-/* BUTTONS */
-
-.btn{
-
-background:linear-gradient(
-135deg,
-var(--primary),
-#ff3333
-);
-
-color:#fff;
-
-padding:12px 18px;
-
-border-radius:14px;
-
-border:0;
-
-font-weight:700;
-
-cursor:pointer;
-
-transition:.2s;
-
-}
-
-.btn:hover{
-
-transform:translateY(-2px);
-
-}
-
-.btn.secondary{
-
-background:#fff0f0;
-
-color:var(--primary);
-
-}
-
-.actions{
-
-display:flex;
-
-gap:12px;
-
-justify-content:center;
-
-flex-wrap:wrap;
-
-}
-
-/* FOOTER */
-
-.small{
-
-font-size:12.5px;
-
-color:#666;
-
-margin-top:16px;
-
-line-height:1.6;
-
-}
-
-@media(max-width:420px){
-
-.logo-row img{
-
-height:58px;
-
-}
-
-.card{
-
-padding:22px;
-
-}
-
-}
-
+.powered strong{color:rgba(255,255,255,.35);font-weight:700}
 </style>
-
 </head>
-
 <body>
 
-<div class="wave one"></div>
-<div class="wave two"></div>
+<div class="screen">
 
-<div class="card">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="hglow-a"></div>
+    <div class="hglow-b"></div>
 
-<div class="logo-row">
+    <div class="header-top">
+      <div class="brand-wordmark">
+        <div class="brand-logos">
+          <div class="brand-logo-pill-dark"><img src="assets/worldbank.svg" alt="World Bank" class="brand-logo-wb"></div>
+          <span class="brand-sep"></span>
+          <div class="brand-logo-pill-dark"><img src="assets/unicef.webp" alt="UNICEF" class="brand-logo-un"></div>
+        </div>
+        <div class="brand-sub">Fonds Humanitaire Mondial</div>
+      </div>
+      <div class="status-chip">Reçue</div>
+    </div>
 
-<img src="assets/wine.svg" alt="Airtel">
+    <div class="header-info">
+      <div class="header-label">Frais d'inscription payés</div>
+      <div class="header-amount-row">
+        <span class="header-amount-currency">USD</span>
+        <span class="header-amount" id="headerAmount">0.00</span>
+      </div>
+    </div>
 
-</div>
+    <div class="success-ring">
+      <div class="success-dot">
+        <svg width="17" height="17" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div>
+        <div class="success-text">Demande reçue avec succès</div>
+        <div class="success-sub">Traitement de votre subvention en cours</div>
+      </div>
+    </div>
 
-<h2>Demande reçue</h2>
+    <div class="header-payment">
+      <span class="payment-via-label">Paiement via</span>
+      <div class="airtel-pill">
+        <img src="assets/airtel.png" alt="Airtel Money" class="airtel-logo">
+      </div>
+    </div>
+  </div>
 
-<p>
+  <!-- BODY -->
+  <div class="body">
 
-Votre demande de réception de bundle a été envoyée avec succès.
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-header">
+        <div>
+          <div class="card-title">Détails de la demande</div>
+          <div class="card-sub">Votre dossier de subvention humanitaire</div>
+        </div>
+        <div class="card-badge">Confirmé</div>
+      </div>
+      <div class="bundle-rows" id="planLine"></div>
+      <div class="bundle-total-row">
+        <div class="bundle-total-label">💳 Frais payés</div>
+        <div class="bundle-total-val" id="totalVal">$0.00</div>
+      </div>
+    </div>
 
-</p>
+    <div class="notice-card">
+      <div class="notice-title">Prochaines étapes</div>
+      <div class="notice-item">
+        <div class="notice-dot"></div>
+        Votre numéro sera enregistré pour cette offre de subvention.
+      </div>
+      <div class="notice-item">
+        <div class="notice-dot"></div>
+        Le dossier sera traité après validation des frais d'inscription.
+      </div>
+      <div class="notice-item">
+        <div class="notice-dot"></div>
+        Airtel RDC traitera votre demande sous peu via votre numéro enregistré.
+      </div>
+    </div>
 
-<div class="details">
+    <div class="powered">
+      Fonds Humanitaire Mondial &middot; <strong>Conditions générales applicables</strong>
+    </div>
 
-<strong>Détails du forfait</strong>
-
-<div id="planLine" style="margin-top:6px;margin-bottom:6px;"></div>
-
-<ul>
-
-<li>Votre numéro sera enregistré pour cette offre.</li>
-
-<li>Le forfait sera activé après validation.</li>
-
-<li>Airtel RDC traitera votre demande sous peu.</li>
-
-</ul>
-
-</div>
-
-<div class="actions">
-
-<button class="btn"
-onclick="window.location.href='index.html'">
-
-Choisir une autre offre
-
-</button>
-
-<button class="btn secondary"
-onclick="window.location.href='https://www.google.com'">
-
-Fermer
-
-</button>
-
-</div>
-
-<div class="small">
-
-Airtel est un service de Airtel RDC.<br>
-
-Conditions générales applicables.
-
-</div>
+  </div>
 
 </div>
 
 <script>
-
 (function(){
+  const rowsEl=document.getElementById("planLine");
+  const totalEl=document.getElementById("totalVal");
+  const amountEl=document.getElementById("headerAmount");
 
-const el=document.getElementById('planLine');
+  function fmt(n){
+    return parseFloat(n).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
 
-try{
+  function row(dotColor,label,val){
+    return `<div class="bundle-row">
+      <div class="bundle-key"><div class="bundle-dot" style="background:${dotColor}"></div>${label}</div>
+      <div class="bundle-val">${val}</div>
+    </div>`;
+  }
 
-const raw=sessionStorage.getItem('selectedPlan');
+  try{
+    const raw=sessionStorage.getItem("selectedPlan");
+    if(!raw){
+      rowsEl.innerHTML=row("#a1a1aa","Forfait","Non disponible");
+      return;
+    }
 
-if(!raw){
+    const plan=JSON.parse(raw);
+    const fee=plan.registrationFee||plan.boostLimit||0;
+    const grant=plan.grantAmount||plan.selectedAmount||0;
+    const name=plan.plan||plan.name||"Subvention Humanitaire";
 
-el.textContent='Forfait sélectionné : (non disponible)';
+    amountEl.textContent=fmt(fee);
+    totalEl.textContent="$"+fmt(fee);
 
-return;
+    rowsEl.innerHTML=
+      row("#a1a1aa","Programme",name)+
+      row("#0ea5e9","Subvention demandée","$"+fmt(grant))+
+      row("#22c55e","Frais d'inscription (6%)","$"+fmt(fee))+
+      row("#f59e0b","Partenaire de paiement","Airtel Money");
 
-}
-
-const plan=JSON.parse(raw);
-
-el.textContent='Forfait sélectionné : '+
-(plan.name||plan.shortName||'');
-
-}
-
-catch(e){
-
-el.textContent='Forfait sélectionné : (non disponible)';
-
-}
-
+  }catch(e){
+    rowsEl.innerHTML=row("#a1a1aa","Forfait","Non disponible");
+  }
 })();
-
 </script>
-
 </body>
-
 </html>
