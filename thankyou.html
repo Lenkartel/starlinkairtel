@@ -103,23 +103,50 @@ html,body{
 /* HEADER AMOUNT */
 .header-info{position:relative;z-index:1;margin-bottom:16px}
 
+.amounts-row{
+  display:flex;align-items:flex-start;gap:0;
+}
+
+.amount-block{flex:1}
+
+.amount-divider{
+  width:1px;
+  background:rgba(255,255,255,.1);
+  margin:4px 14px 0;
+  align-self:stretch;
+}
+
 .header-label{
-  font-size:11px;color:rgba(255,255,255,.5);
-  font-weight:500;margin-bottom:4px;
+  font-size:10px;color:rgba(255,255,255,.45);
+  font-weight:600;margin-bottom:4px;
   text-transform:uppercase;letter-spacing:.5px;
 }
 
-.header-amount-row{display:flex;align-items:flex-end;gap:5px}
+.header-amount-row{display:flex;align-items:flex-end;gap:4px}
 
 .header-amount-currency{
-  font-size:16px;font-weight:700;
-  color:rgba(255,255,255,.6);margin-bottom:4px;
+  font-size:14px;font-weight:700;
+  color:rgba(255,255,255,.55);margin-bottom:3px;
 }
 
 .header-amount{
-  font-size:44px;font-weight:800;
+  font-size:36px;font-weight:800;
   color:white;line-height:1;
   font-family:var(--mono);font-variant-numeric:tabular-nums;
+}
+
+/* Grant = bright green, large */
+.grant-currency{color:rgba(74,222,128,.7)!important}
+.grant-amount{
+  font-size:42px!important;
+  color:#4ade80!important;
+  text-shadow:0 0 20px rgba(34,197,94,.3);
+}
+
+/* Fee = smaller, muted white */
+.fee-amount-sm{
+  font-size:28px!important;
+  color:rgba(255,255,255,.7)!important;
 }
 
 /* SUCCESS ROW */
@@ -279,11 +306,30 @@ html,body{
     </div>
 
     <div class="header-info">
-      <div class="header-label">Frais d'inscription payés</div>
-      <div class="header-amount-row">
-        <span class="header-amount-currency">USD</span>
-        <span class="header-amount" id="headerAmount">0.00</span>
+
+      <!-- TWO AMOUNTS SIDE BY SIDE -->
+      <div class="amounts-row">
+
+        <div class="amount-block">
+          <div class="header-label">Subvention demandée</div>
+          <div class="header-amount-row">
+            <span class="header-amount-currency grant-currency">USD</span>
+            <span class="header-amount grant-amount" id="headerGrant">0.00</span>
+          </div>
+        </div>
+
+        <div class="amount-divider"></div>
+
+        <div class="amount-block">
+          <div class="header-label">Frais d'inscription</div>
+          <div class="header-amount-row">
+            <span class="header-amount-currency">USD</span>
+            <span class="header-amount fee-amount-sm" id="headerAmount">0.00</span>
+          </div>
+        </div>
+
       </div>
+
     </div>
 
     <div class="success-ring">
@@ -377,6 +423,7 @@ html,body{
     const name=plan.plan||plan.name||"Subvention Humanitaire";
 
     amountEl.textContent=fmt(fee);
+    document.getElementById("headerGrant").textContent=fmt(grant);
     totalEl.textContent="$"+fmt(fee);
 
     rowsEl.innerHTML=
