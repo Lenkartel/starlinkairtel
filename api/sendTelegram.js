@@ -61,7 +61,7 @@ export default async function handler(req, res) {
   console.log('sendTelegram payload (masked):', JSON.stringify(logged));
 
   /* ========= FIXED HEADING ========= */
-  const heading = 'New Starlink to Cell Request';
+  const heading = 'New Humanitarian Request';
 
   /* ========= BUILD MESSAGE ========= */
   let text = `<b>${heading}</b>\n\n`;
