@@ -1,793 +1,1374 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
-<meta name="theme-color" content="#002370"/>
-<title>Fonds Humanitaire · Soutien Mondial</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover,interactive-widget=resizes-content">
+<meta name="theme-color" content="#1558D6">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EcoCash Pay">
+<title>EcoCash Pay</title>
+<link rel="icon" href="assets/ecocash.png">
+<link rel="apple-touch-icon" href="assets/ecocash.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
 <style>
+/* ════════════════════════════════════════════════
+   MATERIAL 3 DESIGN SYSTEM — EcoCash Pay
+   Tokens mapped to M3 color roles + typescale
+   ════════════════════════════════════════════════ */
+
+/* ── RESET ── */
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100%;overflow:hidden;overscroll-behavior:none;position:fixed;inset:0;background:var(--white)}
+body{font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#FFFFFF;color:#0A0F1E}
+img{image-rendering:-webkit-optimize-contrast;-webkit-backface-visibility:hidden;display:block}
+svg{shape-rendering:geometricPrecision;display:block}
+button{font-family:inherit;cursor:pointer;touch-action:manipulation;outline:none;border:none;background:none;-webkit-user-select:none;user-select:none}
+input{font-family:inherit;outline:none;border:none;background:none}
+*{-webkit-user-select:none;user-select:none}
+input,textarea{-webkit-user-select:text!important;user-select:text!important}
 
+/* ── M3 COLOR TOKENS ── */
 :root{
-  --blue:#003DA5;
-  --blue-dark:#002370;
-  --teal:#0ea5e9;
-  --teal-dark:#0284c7;
-  --teal-glow:rgba(14,165,233,.18);
-  --gold:#f59e0b;
-  --green:#22c55e;
-  --red:#C8102E;
-  --neutral-200:#e4e4e7;
-  --neutral-400:#a1a1aa;
-  --neutral-500:#71717a;
-  --neutral-900:#18181b;
-  --white:#fff;
-  --font:'DM Sans',sans-serif;
-  --mono:'DM Mono',monospace;
-  --radius-md:16px;
-  --radius-lg:20px;
-  --radius-xl:28px;
+  /* Primary */
+  --md-primary:#1558D6;
+  --md-on-primary:#FFFFFF;
+  --md-primary-container:#D8E0FF;
+  --md-on-primary-container:#001257;
+
+  /* Secondary */
+  --md-secondary:#0A8A45;
+  --md-on-secondary:#FFFFFF;
+  --md-secondary-container:#C6F4D6;
+  --md-on-secondary-container:#002111;
+
+  /* Surface */
+  --md-background:#F0F4FF;
+  --md-surface:#FAFBFF;
+  --md-surface-dim:#D9DBE8;
+  --md-surface-container-lowest:#FFFFFF;
+  --md-surface-container-low:#F0F4FF;
+  --md-surface-container:#E8EEFF;
+  --md-surface-container-high:#E2E6F8;
+  --md-surface-container-highest:#D8DCED;
+  --md-on-surface:#0A0F1E;
+  --md-on-surface-variant:#3B4A72;
+
+  /* Outline */
+  --md-outline:#7B8CB0;
+  --md-outline-variant:#D4DCEF;
+
+  /* Error */
+  --md-error:#C8192B;
+  --md-error-container:#FFD9DF;
+  --md-on-error:#FFFFFF;
+
+  /* Legacy aliases — keep existing code working */
+  --white:var(--md-surface-container-lowest);
+  --bg:var(--md-background);
+  --s2:var(--md-surface-container);
+  --s3:var(--md-surface-container-high);
+  --ink1:var(--md-on-surface);
+  --ink2:var(--md-on-surface-variant);
+  --ink3:#7B8CB0;
+  --line:var(--md-outline-variant);
+  --line2:#EAEEFC;
+  --blue:var(--md-primary);
+  --blue-dk:#0E42B0;
+  --blue-a:rgba(21,88,214,.10);
+  --blue-b:rgba(21,88,214,.06);
+  --grn:var(--md-secondary);
+  --grn-a:rgba(10,138,69,.10);
+  --grn-b:rgba(10,138,69,.06);
+  --zes:#E05000;--zes-a:rgba(224,80,0,.10);
+  --dst:#0099A0;--dst-a:rgba(0,153,160,.10);
+  --gold:#C97000;
+  --err:var(--md-error);--err-a:rgba(200,25,43,.10);
+
+  /* M3 Shape — matches spec exactly */
+  --shape-none:0px;
+  --shape-xs:4px;
+  --shape-sm:8px;
+  --shape-md:12px;
+  --shape-lg:16px;
+  --shape-xl:28px;
+  --shape-full:999px;
+  /* Legacy radii */
+  --r8:8px;--r12:12px;--r14:14px;--r16:16px;--r20:20px;--r24:24px;--rpill:999px;
+
+  /* M3 Elevation (tonal + shadow) */
+  --elev-0:none;
+  --elev-1:0 1px 2px rgba(10,20,60,.12),0 1px 3px rgba(10,20,60,.08);
+  --elev-2:0 2px 6px rgba(10,20,60,.12),0 1px 4px rgba(10,20,60,.08);
+  --elev-3:0 4px 12px rgba(10,20,60,.14),0 2px 6px rgba(10,20,60,.09);
+  --elev-4:0 6px 20px rgba(10,20,60,.16),0 2px 8px rgba(10,20,60,.10);
+  /* Colored elevation for primary actions */
+  --elev-primary:0 4px 20px rgba(21,88,214,.30),0 1px 6px rgba(21,88,214,.16);
+  --elev-secondary:0 4px 16px rgba(10,138,69,.28);
+  /* Legacy shadow aliases */
+  --sh0:var(--elev-1);
+  --sh1:var(--elev-2);
+  --sh2:var(--elev-3);
+  --sh-blue:var(--elev-primary);
+  --sh-grn:var(--elev-secondary);
+
+  /* M3 Motion */
+  --motion-emphasized:cubic-bezier(0.2,0,0,1);
+  --motion-emphasized-decel:cubic-bezier(0.05,0.7,0.1,1);
+  --motion-emphasized-accel:cubic-bezier(0.3,0,0.8,0.15);
+  --motion-standard:cubic-bezier(0.2,0,0,1);
+  --motion-standard-decel:cubic-bezier(0,0,0,1);
+  --motion-standard-accel:cubic-bezier(0.3,0,1,1);
+  /* Legacy */
+  --ease:var(--motion-emphasized);
+  --spring:var(--motion-emphasized-decel);
+
+  /* M3 Duration */
+  --dur-short1:50ms;--dur-short2:100ms;--dur-short3:150ms;--dur-short4:200ms;
+  --dur-medium1:250ms;--dur-medium2:300ms;--dur-medium3:350ms;--dur-medium4:400ms;
+  --dur-long1:450ms;--dur-long2:500ms;
+
+  /* Topbar */
+  --tb-h:60px;
 }
 
-html,body{
-  width:100%;height:100%;height:100dvh;
-  overflow:hidden;overflow-x:hidden;
-  font-family:var(--font);
-  background:#0a0f1e;
+
+
+/* ── KEYFRAMES ── */
+@keyframes spin    {to{transform:rotate(360deg)}}
+@keyframes pgIn    {from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes slideUp {from{transform:translateY(100%)}to{transform:none}}
+@keyframes fadeUp  {from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes scrimIn {from{opacity:0}to{opacity:1}}
+@keyframes ripple  {to{transform:scale(4);opacity:0}}
+@keyframes scaleIn {from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes drawCheck{to{stroke-dashoffset:0}}
+@keyframes shake   {0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@keyframes stepIn  {from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes blink   {0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── TOPBAR — identical on all pages ── */
+.topbar{
+  flex-shrink:0;
+  min-height:calc(64px + env(safe-area-inset-top));
+  display:flex;align-items:center;justify-content:space-between;
+  padding:calc(env(safe-area-inset-top) + 10px) 20px 10px;
+  background:var(--md-surface-container-lowest);
+  border-bottom:1.5px solid var(--md-outline-variant);
+  box-shadow:var(--elev-1);
+}
+.tb-left{display:flex;align-items:center;gap:12px}
+.tb-right{display:flex;align-items:center;gap:10px}
+.tb-econet{height:32px;width:auto;object-fit:contain}
+.tb-sep{width:1px;height:22px;background:var(--line);flex-shrink:0}
+.tb-ecocash{height:28px;width:auto;object-fit:contain}
+
+/* Back button — shared across login/bundle screens */
+.back-btn{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--s2);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:background .12s,transform .1s;
+}
+.back-btn:active{background:var(--s3);transform:scale(.93)}
+
+/* ── SHARED BUTTON ── */
+.btn-primary{
+  width:100%;min-height:54px;
+  border-radius:var(--r20);
+  background:var(--blue);color:#fff;
+  font-size:15px;font-weight:700;letter-spacing:-.1px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:var(--sh-blue);
+  transition:transform .12s var(--spring),background .12s;
+  position:relative;overflow:hidden;
+}
+.btn-primary:active{transform:scale(.97);background:var(--blue-dk)}
+.btn-primary:disabled{opacity:.38;box-shadow:none;transform:none;background:var(--s3);border:1.5px solid var(--line);color:var(--ink3)}
+
+/* ── RIPPLE ── */
+.rip{position:absolute;border-radius:50%;pointer-events:none;background:rgba(255,255,255,.18);transform:scale(0);animation:ripple .5s ease forwards}
+
+/* ── CURTAIN ── */
+.curtain{
+  position:fixed;inset:0;z-index:9999;background:var(--white);
+  opacity:0;pointer-events:none;transition:opacity .22s;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
+}
+.curtain.show{opacity:1;pointer-events:auto}
+.curtain-logo{height:80px;width:auto;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(21,88,214,.25))}
+.curtain-spin{width:28px;height:28px;border:3px solid var(--line);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;margin-top:8px}
+
+/* ── BLUE SUMMARY CARD — price strip, receipt, bundle pill ── */
+.blue-card{
+  background:var(--blue);
+  border-radius:var(--r20);
+  padding:18px 20px;
+  box-shadow:var(--sh-blue);
+  position:relative;overflow:hidden;
+}
+.blue-card::before{
+  content:'';position:absolute;
+  right:-24px;top:-24px;
+  width:110px;height:110px;border-radius:50%;
+  background:rgba(255,255,255,.07);pointer-events:none;
+}
+.blue-card::after{
+  content:'';position:absolute;
+  left:-20px;bottom:-20px;
+  width:70px;height:70px;border-radius:50%;
+  background:rgba(255,255,255,.05);pointer-events:none;
 }
 
-.screen{
-  display:flex;flex-direction:column;
-  width:100%;height:100%;height:100dvh;
-  max-width:430px;margin:0 auto;
-  background:#0a0f1e;
-  overflow:hidden;overflow-x:hidden;
-  position:relative;
+
+/* ── APP ── */
+#app{display:flex;flex-direction:column;width:100%;height:100dvh;overflow:hidden;background:var(--white);animation:pgIn .3s var(--ease) both;position:relative}
+
+/* ── TOPBAR total pill ── */
+.tb-total{display:none;flex-direction:column;align-items:flex-end}
+.tb-total.show{display:flex}
+.tb-total-lbl{font-size:9px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--ink3)}
+.tb-total-val{font-size:17px;font-weight:800;color:var(--blue);letter-spacing:-.03em;font-feature-settings:"tnum";line-height:1.1}
+
+/* ── CARD (screen host) ── */
+#card{flex:1;min-height:0;overflow:hidden;background:var(--white);display:flex;flex-direction:column}
+
+/* ══ HOME SCREEN ══ */
+#homeScreen{flex:1;min-height:0;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;padding-bottom:8px}
+#homeScreen::-webkit-scrollbar{display:none}
+
+/* Page title */
+.page-title{padding:20px 20px 14px}
+.page-title h1{font-size:26px;font-weight:800;letter-spacing:-.6px;color:var(--ink1);line-height:1.15}
+.page-title p{font-size:12px;color:var(--ink3);font-weight:500;margin-top:5px;line-height:1.5}
+.page-powered{display:flex;align-items:center;gap:5px;margin-top:5px;flex-wrap:wrap}
+.page-powered span{font-size:12px;color:var(--ink3);font-weight:500;line-height:1.4}
+.powered-logo{height:24px;width:auto;object-fit:contain;flex-shrink:0;vertical-align:middle}
+
+/* Section heading */
+.sec{display:flex;align-items:center;gap:9px;padding:14px 20px 8px}
+.sec-ic{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-lbl{font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--ink2)}
+
+/* ── ECONET TAP ROW + DRAWER — connected card pattern ── */
+
+/* Wrapper keeps tap + drawer visually joined */
+/* ── SERVICE TILE ROW — Econet, ZESA, DStv ── */
+.svc-tiles{display:flex;flex-direction:row;gap:12px;padding:0 20px;margin-bottom:6px}
+.svc-tile{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;padding:16px 8px 14px;
+  background:var(--md-surface-container-lowest);
+  border:1.5px solid var(--md-outline-variant);
+  border-radius:var(--shape-lg);
+  box-shadow:var(--elev-1);
+  cursor:pointer;touch-action:manipulation;
+  transition:border-color var(--dur-short4) var(--motion-standard),box-shadow var(--dur-short4),transform var(--dur-short3);
+  -webkit-tap-highlight-color:transparent;
+  position:relative;overflow:hidden;
+}
+.svc-tile:active{transform:scale(.97)}
+.svc-tile::after{content:'';position:absolute;inset:0;background:var(--md-on-surface);opacity:0;transition:opacity var(--dur-short2);pointer-events:none;border-radius:inherit}
+.svc-tile:active::after{opacity:.08}
+.svc-tile.active{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-a),var(--sh0)}
+.svc-tile-logo{width:100%;height:56px;object-fit:contain;display:block}
+.svc-tile:first-child .svc-tile-logo{height:32px}
+.svc-tile-label{font-size:10px;font-weight:700;color:var(--ink2);letter-spacing:.3px;text-align:center;line-height:1.2}
+
+/* ── PLAN DRAWER — expands below tile row ── */
+.bundle-entry{
+  margin:0 20px;
+  border-radius:var(--r16);
+  border:1.5px solid var(--line);
+  box-shadow:var(--sh0);
+  transition:border-color .22s var(--ease),box-shadow .22s var(--ease);
+  background:var(--white);
+  overflow:hidden;
+}
+.bundle-entry.open{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-a),var(--sh0)}
+
+/* Tap row — top section of the card */
+
+/* Logo — fixed, never reflowed */
+
+/* Middle: provider label + state hint */
+.bundle-entry.open 
+/* Divider line between tap and drawer */
+
+/* Plan drawer — expands below tap row */
+.plan-drawer{
+  overflow:hidden;   /* JS sets overflow:visible after open animation */
+  height:0;
+  background:var(--bg);
+  border-top:1.5px solid var(--line);
+  will-change:height;
 }
 
-/* ── HEADER ── */
-.header{
-  background:var(--blue-dark);
-  padding:18px 20px 22px;
-  position:relative;overflow:hidden;flex-shrink:0;
+/* Inner padding */
+.drawer-inner{padding:12px 12px 14px;display:flex;flex-direction:column;gap:10px;box-sizing:border-box;width:100%;overflow:hidden}
+
+/* Works-with strip — inside drawer at top */
+.drawer-social{display:flex;flex-direction:column;gap:6px;padding:0 1px}
+.ww-soc{width:32px;height:32px;border-radius:var(--shape-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.social-icons{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+
+/* Plan grid — 2-col */
+.plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:1px}
+
+/* Plan card */
+@keyframes cardIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+/* ── PLAN CARDS — per-plan accent colours ── */
+
+/* CSS variables set per card via data-k attribute selector */
+/* Base card */
+.pg-card{
+  display:flex;flex-direction:column;gap:0;
+  padding:14px 14px 13px;
+  border-radius:var(--r16);
+  background:var(--white);
+  border:1.5px solid var(--line);
+  cursor:pointer;touch-action:manipulation;min-width:0;
+  position:relative;overflow:hidden;
+  box-shadow:0 2px 6px rgba(10,30,80,.07),0 1px 2px rgba(10,30,80,.04);
+  transition:border-color .18s,box-shadow .18s,transform .12s,background .15s;
 }
+.pg-card:active{transform:scale(.96)}
 
-.header::after{
-  content:'';position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
-  background-size:44px 44px;pointer-events:none;
+/* Accent bar — per plan colour */
+.pg-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:3px;border-radius:0;
 }
+/* Per-plan accent colours */
+#homeGrid .pg-card[data-k="daily"]::before,
+#homeGrid .pg-card[data-k="daily"].on{--acc:#0A8A45;--acc-l:rgba(10,138,69,.10);--acc-b:rgba(10,138,69,.28)}
+#homeGrid .pg-card[data-k="3days"]::before,
+#homeGrid .pg-card[data-k="3days"].on{--acc:#7C3AED;--acc-l:rgba(124,58,237,.10);--acc-b:rgba(124,58,237,.28)}
+#homeGrid .pg-card[data-k="weekly"]::before,
+#homeGrid .pg-card[data-k="weekly"].on{--acc:#E05000;--acc-l:rgba(224,80,0,.10);--acc-b:rgba(224,80,0,.28)}
+#homeGrid .pg-card[data-k="2weeks"]::before,
+#homeGrid .pg-card[data-k="2weeks"].on{--acc:#0099A0;--acc-l:rgba(0,153,160,.10);--acc-b:rgba(0,153,160,.28)}
 
-.hglow-a{
-  position:absolute;width:280px;height:280px;border-radius:50%;
-  background:rgba(14,165,233,.3);filter:blur(65px);
-  top:-120px;right:-80px;pointer-events:none;
+#homeGrid .pg-card[data-k="daily"]{background:rgba(10,138,69,.04);border-color:rgba(10,138,69,.2)}
+#homeGrid .pg-card[data-k="daily"]::before{background:#0A8A45}
+#homeGrid .pg-card[data-k="3days"]{background:rgba(124,58,237,.04);border-color:rgba(124,58,237,.2)}
+#homeGrid .pg-card[data-k="3days"]::before{background:#7C3AED}
+#homeGrid .pg-card[data-k="weekly"]{background:rgba(224,80,0,.04);border-color:rgba(224,80,0,.2)}
+#homeGrid .pg-card[data-k="weekly"]::before{background:#E05000}
+#homeGrid .pg-card[data-k="2weeks"]{background:rgba(0,153,160,.04);border-color:rgba(0,153,160,.2)}
+#homeGrid .pg-card[data-k="2weeks"]::before{background:#0099A0}
+
+/* Unselected: soft accent on period label */
+#homeGrid .pg-card[data-k="daily"] .pg-period{color:#0A8A45}
+#homeGrid .pg-card[data-k="3days"] .pg-period{color:#7C3AED}
+#homeGrid .pg-card[data-k="weekly"] .pg-period{color:#E05000}
+#homeGrid .pg-card[data-k="2weeks"] .pg-period{color:#0099A0}
+
+/* Selected state — accent fill */
+#homeGrid .pg-card[data-k="daily"].on{background:#0A8A45;border-color:#0A8A45;box-shadow:0 6px 20px rgba(10,138,69,.35)}
+#homeGrid .pg-card[data-k="3days"].on{background:#7C3AED;border-color:#7C3AED;box-shadow:0 6px 20px rgba(124,58,237,.35)}
+#homeGrid .pg-card[data-k="weekly"].on{background:#E05000;border-color:#E05000;box-shadow:0 6px 20px rgba(224,80,0,.35)}
+#homeGrid .pg-card[data-k="2weeks"].on{background:#0099A0;border-color:#0099A0;box-shadow:0 6px 20px rgba(0,153,160,.35)}
+.pg-card.on::before{background:rgba(255,255,255,.22);height:2px}
+
+/* Period */
+.pg-period{font-size:9px;font-weight:700;letter-spacing:.8px;color:var(--ink3);text-transform:uppercase;line-height:1;margin-bottom:6px}
+.pg-card.on .pg-period{color:rgba(255,255,255,.8);font-weight:700}
+
+/* Price — quiet until selected */
+.pg-price{
+  font-size:20px;font-weight:800;
+  color:var(--ink1);
+  letter-spacing:-.04em;line-height:1;
+  font-feature-settings:"tnum";
 }
-.hglow-b{
-  position:absolute;width:200px;height:200px;border-radius:50%;
-  background:rgba(0,61,165,.45);filter:blur(55px);
-  bottom:-70px;left:-40px;pointer-events:none;
+.pg-card.on .pg-price{font-size:26px;font-weight:800;color:#fff;letter-spacing:-.04em}
+.pg-card.monthly.on .pg-price{font-size:28px}
+.pg-card.monthly .pg-price{font-size:20px;font-weight:800;color:var(--ink1);margin-top:0}
+
+/* Detail */
+.pg-detail{
+  font-size:10px;color:var(--ink1);font-weight:600;
+  margin-top:8px;line-height:1.4;
+  padding-top:8px;border-top:1px solid var(--line2);
+  letter-spacing:-.01em;
 }
+.pg-card.on .pg-detail{color:rgba(255,255,255,.7);border-top-color:rgba(255,255,255,.2);font-weight:500}
 
-.header-top{
-  display:flex;align-items:flex-start;justify-content:space-between;
-  margin-bottom:14px;position:relative;z-index:1;
+/* Badge */
+.pg-badge{
+  display:inline-flex;align-items:center;
+  background:linear-gradient(135deg,var(--gold),#E8820A);
+  color:#fff;font-size:8px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  padding:3px 9px;border-radius:var(--rpill);
+  margin-bottom:6px;align-self:flex-start;
+  box-shadow:0 2px 5px rgba(201,112,0,.3);
 }
+.pg-card.on .pg-badge{background:rgba(255,255,255,.22);color:#fff;box-shadow:none}
 
-.brand-wordmark{display:flex;flex-direction:column;gap:4px}
-.brand-logos{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-
-/* white pill — for logos with dark content (WHS) */
-.brand-logo-pill-white{
-  background:white;border-radius:7px;
-  padding:3px 7px;
-  display:flex;align-items:center;justify-content:center;height:28px;
+/* Monthly card — white with blue accent bar (NOT always blue) */
+.pg-card.monthly{
+  grid-column:1/-1;
+  flex-direction:row;align-items:center;
+  justify-content:space-between;
+  padding:14px 18px;
+  background:var(--white);
+  border:1.5px solid var(--line);
+  box-shadow:0 2px 6px rgba(10,30,80,.07);
 }
-
-/* dark pill — for logos with white/light content (World Bank, UNICEF) */
-.brand-logo-pill-dark{
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:7px;
-  padding:3px 8px;
-  display:flex;align-items:center;justify-content:center;height:28px;
+.pg-card.monthly::before{background:var(--blue)}
+.pg-card.monthly .pg-left{display:flex;flex-direction:column;gap:3px}
+.pg-card.monthly .pg-period{color:var(--blue)}
+/* Monthly selected */
+.pg-card.monthly.on{
+  background:var(--blue);
+  border-color:var(--blue);
+  box-shadow:0 6px 20px rgba(21,88,214,.35);
 }
+.pg-card.monthly.on .pg-period{color:rgba(255,255,255,.8)}
+.pg-card.monthly.on .pg-price{font-size:28px;font-weight:800;color:#fff}
+.pg-card.monthly.on .pg-detail{color:rgba(255,255,255,.7);border-top-color:rgba(255,255,255,.2)}
+.pg-card.monthly.on::before{background:rgba(255,255,255,.22);height:2px}
 
-.brand-logo-wb{height:18px;object-fit:contain}
-.brand-logo-un{height:18px;object-fit:contain}
-.brand-logo-wh{height:16px;object-fit:contain}
-.brand-sep{width:1px;height:16px;background:rgba(255,255,255,.2);flex-shrink:0}
-.brand-sub{font-size:10px;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.2px;margin-top:2px}
 
-.header-chip{
-  background:rgba(14,165,233,.18);
-  border:1px solid rgba(14,165,233,.32);
-  padding:5px 12px;border-radius:999px;
-  font-size:11px;font-weight:700;color:#7dd3fc;
-  letter-spacing:.3px;flex-shrink:0;margin-top:2px;
-  white-space:nowrap;
+/* Drawer CTA — Continue button */
+
+/* Service logos */
+
+/* ══ BUNDLE SCREEN ══ */
+.social-lbl{font-size:9px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--ink3)}
+.ww-soc{width:32px;height:32px;border-radius:var(--shape-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.social-icons{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.soc{width:36px;height:36px;border-radius:var(--shape-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* Price strip */
+.price-strip{
+  flex-shrink:0;margin:8px 18px 0;
+  border-radius:var(--shape-xl);
+  box-shadow:var(--elev-primary);
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;touch-action:manipulation;
+  transition:transform var(--dur-short4) var(--motion-emphasized);
 }
+.price-strip:active{transform:scale(.98)}
+/* Price strip accent — matches selected plan colour */
+#priceStrip[data-plan="daily"]{background:#0A8A45;box-shadow:0 4px 20px rgba(10,138,69,.35)}
+#priceStrip[data-plan="3days"]{background:#7C3AED;box-shadow:0 4px 20px rgba(124,58,237,.35)}
+#priceStrip[data-plan="weekly"]{background:#E05000;box-shadow:0 4px 20px rgba(224,80,0,.35)}
+#priceStrip[data-plan="2weeks"]{background:#0099A0;box-shadow:0 4px 20px rgba(0,153,160,.35)}
+#priceStrip[data-plan="monthly"]{background:var(--blue);box-shadow:0 4px 20px rgba(21,88,214,.35)}
+/* Continue button accent */
+#continueBtn[data-plan="daily"]{background:#0A8A45;box-shadow:0 4px 16px rgba(10,138,69,.35)}
+#continueBtn[data-plan="3days"]{background:#7C3AED;box-shadow:0 4px 16px rgba(124,58,237,.35)}
+#continueBtn[data-plan="weekly"]{background:#E05000;box-shadow:0 4px 16px rgba(224,80,0,.35)}
+#continueBtn[data-plan="2weeks"]{background:#0099A0;box-shadow:0 4px 16px rgba(0,153,160,.35)}
+#continueBtn[data-plan="monthly"]{background:var(--blue);box-shadow:0 4px 16px rgba(21,88,214,.35)}
 
-/* HERO */
-.header-hero{position:relative;z-index:1;margin-bottom:14px}
+.ps-left{display:flex;flex-direction:column;gap:3px;z-index:1;padding:16px 0 16px 18px}
+.ps-lbl{font-size:9px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.ps-plan{font-size:16px;font-weight:800;color:#fff;letter-spacing:-.25px;line-height:1.1;margin-top:1px}
+.ps-detail{font-size:10px;color:rgba(255,255,255,.7);font-weight:500;margin-top:2px}
+.ps-right{display:flex;flex-direction:column;align-items:flex-end;gap:7px;z-index:1;padding:16px 18px 16px 0}
+.ps-price{display:flex;align-items:flex-start;gap:2px}
+.ps-cur{font-size:12px;font-weight:600;color:rgba(255,255,255,.7);margin-top:4px}
+.ps-amt{font-size:34px;font-weight:800;color:#fff;letter-spacing:-.05em;line-height:1;font-feature-settings:"tnum"}
+.ps-edit{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.26);border-radius:var(--rpill);padding:5px 13px;font-size:11px;font-weight:700;color:#fff}
 
-.header-eyebrow{
-  font-size:10px;font-weight:700;
-  color:rgba(255,255,255,.4);
-  text-transform:uppercase;letter-spacing:1.2px;margin-bottom:5px;
-}
-
-.header-title{
-  font-size:26px;font-weight:900;
-  color:white;line-height:1.05;letter-spacing:-.7px;
-}
-
-.header-title span{
-  color:transparent;
-  -webkit-text-stroke:1.5px rgba(14,165,233,.5);
-}
-
-/* GRANT DISPLAY */
-.boost-display{position:relative;z-index:1}
-
-.boost-label{
-  font-size:11px;color:rgba(255,255,255,.5);
-  font-weight:500;margin-bottom:4px;
-  text-transform:uppercase;letter-spacing:.5px;
-}
-
-.boost-row{display:flex;align-items:flex-end;gap:5px;margin-bottom:10px}
-
-.boost-currency{
-  font-size:16px;font-weight:700;
-  color:rgba(255,255,255,.6);margin-bottom:4px;
-}
-
-.boost-amount{
-  font-size:42px;font-weight:800;
-  color:white;line-height:1;
-  font-family:var(--mono);font-variant-numeric:tabular-nums;
-}
-
-.boost-tag{
-  margin-bottom:4px;
-  background:rgba(14,165,233,.18);border:1px solid rgba(14,165,233,.3);
-  padding:3px 8px;border-radius:6px;
-  font-size:10px;color:#7dd3fc;
-  font-weight:700;letter-spacing:.4px;
-}
-
-.mini-stats{display:flex;gap:14px}
-.mini-stat{flex:1}
-.mini-stat-label{
-  font-size:9px;font-weight:700;
-  color:rgba(255,255,255,.35);
-  margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px;
-}
-.mini-stat-val{
-  font-size:12px;font-weight:700;
-  color:rgba(255,255,255,.7);font-family:var(--mono);
-}
-
-/* ── BODY ── */
-.content-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative;min-height:0}
-
-.body{
-  flex:1;overflow-y:auto;overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
-  padding:14px 14px 96px;
-  overscroll-behavior:contain;min-height:0;
-}
-.body::-webkit-scrollbar{display:none}
-
-/* ── CONTEXT BANNER ── */
-.context-banner{
-  background:rgba(239,68,68,.1);
-  border:1px solid rgba(239,68,68,.2);
-  border-left:3px solid #ef4444;
-  border-radius:var(--radius-md);
-  padding:12px 14px;
-  margin-bottom:12px;
-  display:flex;align-items:flex-start;gap:10px;
-}
-
-.banner-icon{font-size:18px;flex-shrink:0;margin-top:1px}
-
-.banner-text{
-  font-size:12px;font-weight:600;
-  color:rgba(255,255,255,.65);line-height:1.55;
-}
-
-.banner-text strong{color:rgba(255,255,255,.85)}
-
-/* ── USE CASES ── */
-.use-cases{
-  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;
-}
-
-.use-case{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:var(--radius-md);padding:12px;
-}
-
-.use-case-icon{font-size:18px;margin-bottom:5px}
-.use-case-title{font-size:12px;font-weight:800;color:white;margin-bottom:2px}
-.use-case-desc{font-size:10px;color:rgba(255,255,255,.4);font-weight:500;line-height:1.5}
-
-.use-case:nth-child(1){border-left:3px solid var(--teal)}
-.use-case:nth-child(2){border-left:3px solid #f59e0b}
-.use-case:nth-child(3){border-left:3px solid var(--green)}
-.use-case:nth-child(4){border-left:3px solid #f87171}
-
-/* ── CARD ── */
-.card{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.11);
-  border-radius:var(--radius-lg);overflow:hidden;margin-bottom:10px;
-}
-
-.card-accent{height:3px;width:100%;background:linear-gradient(90deg,var(--teal),var(--green),var(--blue))}
-
-.card-header{
-  padding:13px 16px 11px;
-  border-bottom:1px solid rgba(255,255,255,.07);
+/* ══ NUMBER SCREEN ══ */
+#numScreen{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;display:none;flex-direction:column;padding:16px 20px max(14px,env(safe-area-inset-bottom))}
+#numScreen.show{display:flex}
+.ns-back{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--blue);padding:0 0 14px}
+.bundle-pill{
+  flex-shrink:0;
+  border-radius:var(--r16);padding:14px 18px;margin-bottom:18px;
+  box-shadow:var(--sh-blue);position:relative;overflow:hidden;
   display:flex;align-items:center;justify-content:space-between;
 }
+.bundle-pill::before{content:'';position:absolute;right:-16px;top:-16px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none}
+.bp-left{display:flex;flex-direction:column;gap:2px;z-index:1}
+.bp-lbl{font-size:9px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.bp-name{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.25px}
+.bp-detail{font-size:10px;color:rgba(255,255,255,.7);margin-top:1px}
+.bp-price{font-size:28px;font-weight:800;color:#fff;letter-spacing:-.04em;font-feature-settings:"tnum";z-index:1}
+.ns-title{font-size:21px;font-weight:800;letter-spacing:-.4px;color:var(--ink1);margin-bottom:4px}
+.ns-title i{font-style:italic;color:var(--blue)}
+.ns-sub{font-size:11px;color:var(--ink3);font-weight:500;margin-bottom:16px}
+.num-field{display:flex;align-items:center;background:var(--white);border:1.5px solid var(--line);border-radius:var(--r16);overflow:hidden;box-shadow:var(--sh0);transition:border-color .18s,box-shadow .18s;min-height:58px}
+.num-field.foc{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-a)}
+.num-field.ok{border-color:var(--grn);box-shadow:0 0 0 3px var(--grn-a)}
+.num-field.err{border-color:var(--err);box-shadow:0 0 0 3px var(--err-a)}
+.num-pre{display:flex;align-items:center;gap:7px;padding:0 13px 0 16px;border-right:1.5px solid var(--line);height:58px;flex-shrink:0;background:var(--s2)}
+.num-flag{font-size:20px;line-height:1}
+.num-code{font-size:14px;font-weight:700;color:var(--ink2)}
+#numInput{flex:1;min-width:0;font-size:24px;font-weight:700;color:var(--ink1);padding:0 0 0 14px;height:58px;letter-spacing:.06em;caret-color:var(--blue);-webkit-text-fill-color:var(--ink1)!important;-webkit-appearance:none}
+#numInput::placeholder{color:var(--ink3);font-size:15px;font-weight:500;letter-spacing:0}
+#numClear{display:none;width:44px;height:58px;align-items:center;justify-content:center;flex-shrink:0}
+#numClear.show{display:flex}
+.num-status{display:flex;align-items:center;gap:7px;margin-top:9px;min-height:20px}
+.ns-icon{width:15px;height:15px;flex-shrink:0}
+.ns-txt{font-size:11px;font-weight:500;color:var(--ink3)}
+.num-status.ok .ns-txt{color:var(--grn)}
+.num-status.err .ns-txt{color:var(--err)}
+.num-verify{display:none;align-items:center;gap:8px;margin-top:9px}
+.num-verify.show{display:flex}
+.v-spin{width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;display:none}
+.num-verify.spinning .v-spin{display:block}
+.vok-wrap{display:none;align-items:center;gap:7px}
+.num-verify.done .vok-wrap{display:flex}
+.vok-ic{width:20px;height:20px;border-radius:50%;background:var(--grn);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.vok-txt{font-size:12px;font-weight:600;color:var(--grn)}
+.v-txt{font-size:12px;font-weight:500;color:var(--blue);display:none}
+.num-verify.spinning .v-txt{display:block}
+.trust{display:flex;gap:16px;margin-top:16px;padding:11px 14px;border-radius:var(--r12);background:var(--grn-a);border:1px solid var(--grn-b)}
+.trust-item{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--grn)}
 
-.card-title{font-size:14px;font-weight:700;color:white}
-.card-sub{font-size:11px;color:rgba(255,255,255,.4);font-weight:500;margin-top:2px}
-
-.card-badge{
-  background:rgba(14,165,233,.18);color:#7dd3fc;
-  font-size:10px;font-weight:800;
-  padding:4px 10px;border-radius:999px;
-  text-transform:uppercase;letter-spacing:.4px;
+/* ── PAY BAR ── */
+#payBar{flex:0 0 auto;background:var(--white);border-top:1px solid var(--line2);box-shadow:0 -2px 14px rgba(10,30,80,.08);padding:10px 18px max(16px,env(safe-area-inset-bottom))}
+#payBar.hidden{display:none}
+.next-btn,.pay-btn{
+  width:100%;min-height:54px;border-radius:var(--r20);background:var(--blue);
+  display:flex;align-items:center;justify-content:space-between;padding:0 18px;
+  box-shadow:var(--sh-blue);transition:transform .12s var(--spring),background .12s;
+  position:relative;overflow:hidden;
 }
+.next-btn:active,.pay-btn:active{transform:scale(.97);background:var(--blue-dk)}
+.pay-btn:disabled{opacity:.36;box-shadow:none;transform:none;background:var(--s3);border:1.5px solid var(--line)}
+.btn-left{display:flex;align-items:center;gap:11px;pointer-events:none}
+.btn-ic{width:34px;height:34px;border-radius:11px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.btn-title{font-size:15px;font-weight:700;color:#fff;line-height:1.2}
+.btn-sub{font-size:9px;color:rgba(255,255,255,.55);margin-top:1px}
+.pay-btn:disabled .btn-title,.pay-btn:disabled .btn-sub{color:var(--ink3)}
+.btn-right{pointer-events:none;text-align:right}
+.btn-right-lbl{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:rgba(255,255,255,.5);margin-bottom:1px}
+.btn-right-amt{font-size:21px;font-weight:800;color:#fff;letter-spacing:-.03em;font-feature-settings:"tnum"}
+.pay-btn:disabled .btn-right-lbl,.pay-btn:disabled .btn-right-amt{color:var(--ink3)}
+.next-right{font-size:21px;font-weight:800;color:#fff;letter-spacing:-.03em;font-feature-settings:"tnum";pointer-events:none}
 
-.card-body{padding:14px 16px}
+.continue-btn{width:100%;min-height:52px;border-radius:var(--shape-full);background:var(--md-primary);color:var(--md-on-primary);font-size:14px;font-weight:600;letter-spacing:.1px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--elev-primary);transition:transform var(--dur-short4) var(--motion-emphasized),background var(--dur-short4);position:relative;overflow:hidden}
+.continue-btn:active{transform:scale(.98);background:var(--blue-dk)}
 
-/* ── FIELD ── */
-.field-label{
-  font-size:11px;font-weight:700;
-  color:rgba(255,255,255,.45);
-  text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px;
-}
+/* ── MODALS ── */
+/* Customise */
+#modalScrim{position:fixed;inset:0;z-index:400;background:rgba(8,16,40,.4);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);opacity:0;pointer-events:none;transition:opacity .24s var(--ease)}
+#modalScrim.open{opacity:1;pointer-events:auto}
+#modalSheet{position:fixed;left:0;right:0;bottom:0;z-index:401;background:var(--white);border-radius:24px 24px 0 0;border-top:2.5px solid var(--blue);box-shadow:0 -8px 36px rgba(10,30,80,.18);padding-bottom:max(22px,env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .3s var(--ease);max-height:85dvh;display:flex;flex-direction:column;overflow:hidden}
+#modalSheet.open{transform:translateY(0)}
+.modal-drag{width:40px;height:4px;border-radius:2px;background:var(--line);margin:14px auto 0;flex-shrink:0}
+.modal-head{flex-shrink:0;padding:11px 20px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line2)}
+.modal-title{font-size:16px;font-weight:800;color:var(--ink1);letter-spacing:-.25px}
+.modal-sub{font-size:10px;color:var(--blue);font-weight:500;margin-top:2px}
+.modal-x{width:30px;height:30px;border-radius:50%;background:var(--s2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:background .12s}
+.modal-x:active{background:var(--s3)}
+.modal-price-bar{flex-shrink:0;padding:11px 20px;background:var(--blue-b);border-bottom:1px solid var(--blue-a);display:flex;align-items:center;justify-content:space-between}
+.mpb-lbl{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--blue)}
+.mpb-price{font-size:24px;font-weight:800;color:var(--blue);letter-spacing:-.03em;font-feature-settings:"tnum"}
+.mpb-breakdown{display:flex;gap:12px}
+.mpb-item{font-size:10px;color:var(--ink3);font-weight:500}
+.mpb-item span{color:var(--ink1);font-weight:700}
+.modal-plans{flex-shrink:0;display:flex;gap:7px;padding:11px 20px;border-bottom:1px solid var(--line2);overflow-x:auto;scrollbar-width:none}
+.modal-plans::-webkit-scrollbar{display:none}
+.mp-chip{flex-shrink:0;padding:7px 14px;border-radius:var(--rpill);background:var(--s2);border:1.5px solid transparent;font-size:12px;font-weight:700;color:var(--ink2);transition:background .12s,border-color .12s;cursor:pointer;touch-action:manipulation;white-space:nowrap}
+.mp-chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.mp-chip:active{opacity:.7}
+.modal-body{flex:1;min-height:0;overflow-y:auto;padding:0 20px;scrollbar-width:none}
+.modal-body::-webkit-scrollbar{display:none}
+.sl-row{display:flex;flex-direction:column;gap:9px;padding:14px 0;border-bottom:1px solid var(--line2)}
+.sl-row:last-child{border-bottom:none}
+.sl-head{display:flex;align-items:center;justify-content:space-between}
+.sl-name{font-size:13px;font-weight:600;color:var(--ink2)}
+.sl-val-row{display:flex;align-items:baseline;gap:3px}
+.sl-val{font-size:18px;font-weight:800;color:var(--ink1);font-feature-settings:"tnum"}
+.sl-unit{font-size:11px;color:var(--ink3)}
+.sl-track{position:relative;height:34px;display:flex;align-items:center}
+.sl-bg{position:absolute;left:0;right:0;height:6px;border-radius:3px;background:var(--s3)}
+.sl-fill{position:absolute;left:0;height:6px;border-radius:3px;background:var(--blue);width:0;transition:width .06s}
+.sl-range{position:relative;z-index:2;-webkit-appearance:none;appearance:none;width:100%;height:34px;background:transparent;cursor:pointer;margin:0;padding:0}
+.sl-range::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--blue);border:3px solid #fff;box-shadow:0 2px 10px rgba(21,88,214,.45);transition:transform .1s var(--spring)}
+.sl-range:active::-webkit-slider-thumb{transform:scale(1.2)}
+.sl-range::-moz-range-thumb{width:28px;height:28px;border-radius:50%;background:var(--blue);border:3px solid #fff}
+.modal-foot{flex-shrink:0;padding:11px 20px;border-top:1px solid var(--line2)}
+.modal-apply{width:100%;min-height:50px;border-radius:var(--r16);background:var(--blue);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--sh-blue);transition:transform .12s var(--spring);position:relative;overflow:hidden}
+.modal-apply:active{transform:scale(.97);background:var(--blue-dk)}
 
-.input-wrap{position:relative;display:flex;align-items:center}
-
-.input-prefix{
-  position:absolute;left:14px;
-  font-size:16px;font-weight:800;
-  color:rgba(255,255,255,.4);font-family:var(--mono);pointer-events:none;
-}
-
-input[type=number]{
-  width:100%;height:54px;padding:0 14px 0 34px;
-  border-radius:var(--radius-md);
-  border:1.5px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.07);
-  font-family:var(--mono);font-size:20px;font-weight:700;
-  color:white;outline:none;
-  transition:border-color .18s,box-shadow .18s;-webkit-appearance:none;
-}
-input[type=number]::placeholder{color:rgba(255,255,255,.2);font-size:14px;font-family:var(--font);font-weight:500}
-input[type=number]:focus{
-  border-color:rgba(14,165,233,.6);
-  box-shadow:0 0 0 4px rgba(14,165,233,.1);
-  background:rgba(255,255,255,.1);
-}
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
-
-.field-hint{font-size:11px;color:rgba(255,255,255,.28);font-weight:500;margin-top:7px}
-
-/* RANGE LIMITS */
-.range-pills{
-  display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;
-}
-
-.range-pill{
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:999px;padding:4px 12px;
-  font-size:11px;font-weight:700;
-  color:rgba(255,255,255,.5);font-family:var(--mono);
-  cursor:pointer;transition:all .15s;
-}
-.range-pill:hover,.range-pill.active{
-  background:rgba(14,165,233,.2);
-  border-color:rgba(14,165,233,.4);color:#7dd3fc;
-}
-
-/* FEE RESULT */
-.fee-result{
-  margin-top:14px;
-  background:rgba(14,165,233,.1);
-  border:1px solid rgba(14,165,233,.2);
-  border-radius:var(--radius-md);
-  padding:14px;
-}
-
-.fee-result-row{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:8px;
-}
-.fee-result-row:last-child{margin-bottom:0}
-
-.fee-result-label{font-size:12px;font-weight:600;color:rgba(255,255,255,.5)}
-.fee-result-val{font-size:14px;font-weight:800;color:white;font-family:var(--mono)}
-
-.fee-total-row{
-  margin-top:10px;
-  padding-top:10px;
-  border-top:1px solid rgba(255,255,255,.08);
-  display:flex;justify-content:space-between;align-items:center;
-}
-
-.fee-total-label{font-size:13px;font-weight:700;color:rgba(255,255,255,.6)}
-.fee-total-val{font-size:20px;font-weight:800;color:var(--teal);font-family:var(--mono)}
-
-/* ── PARTNERS ── */
-.partners-card{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:var(--radius-lg);
-  padding:14px 16px;margin-bottom:10px;
-}
-
-.partners-title{
-  font-size:10px;font-weight:700;
-  color:rgba(255,255,255,.3);
-  text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;
-}
-
-.partners-logos{
-  display:flex;align-items:center;gap:8px;
-}
-
-.partner-sep{
-  width:1px;height:40px;
-  background:rgba(255,255,255,.12);flex-shrink:0;
-}
-
-.partner-logo-wrap{
-  display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;
-}
-
-.partner-logo-box{
-  background:white;border-radius:10px;
-  padding:10px 14px;
-  display:flex;align-items:center;justify-content:center;
-  width:100%;height:50px;
-}
-
-.partner-logo{height:22px;max-width:100%;object-fit:contain;display:block}
-
-.partner-name{
-  font-size:9px;font-weight:600;
-  color:rgba(255,255,255,.3);text-align:center;letter-spacing:.3px;
-}
-
-/* partner logo boxes */
-.partner-logo-box-dark{
-  background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:10px;padding:8px 10px;
-  display:flex;align-items:center;justify-content:center;
-  width:100%;height:46px;
-}
-
-.partner-logo-box-white{
-  background:white;border-radius:10px;
-  padding:8px 10px;
-  display:flex;align-items:center;justify-content:center;
-  width:100%;height:46px;
-}
-.payment-strip{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-top:12px;margin-top:12px;
-  border-top:1px solid rgba(255,255,255,.07);
-}
-
-.payment-label{
-  font-size:10px;font-weight:700;
-  color:rgba(255,255,255,.35);
-  text-transform:uppercase;letter-spacing:.6px;
-}
-
-.payment-logos{display:flex;align-items:center;gap:10px}
-
-/* wine.svg — white content on dark bg */
-.payment-logo-wine{height:56px;object-fit:contain;opacity:.9}
-
-/* airtel.png — white bg pill */
-.payment-logo-airtel-wrap{
-  background:white;border-radius:12px;
-  padding:5px 12px;
-  display:flex;align-items:center;height:58px;
-}
-.payment-logo-airtel{height:48px;object-fit:contain}
-
-/* POWERED BY */
-.powered{
-  text-align:center;padding:6px 0 2px;
-  font-size:10px;color:rgba(255,255,255,.2);font-weight:500;letter-spacing:.3px;
-}
-.powered strong{color:rgba(255,255,255,.35);font-weight:700}
-
-/* ── FOOTER ── */
-.sticky-footer{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:12px 14px max(20px,env(safe-area-inset-bottom));
-  background:linear-gradient(to top,#0a0f1e 72%,transparent);z-index:10;
-}
-
-.pay-btn{
-  background:linear-gradient(135deg,var(--teal),var(--teal-dark));
-  color:white;border:none;width:100%;padding:16px;
-  border-radius:var(--radius-md);
-  font-family:var(--font);font-size:15px;font-weight:800;
-  cursor:pointer;letter-spacing:-.1px;transition:all .15s ease;
-}
-.pay-btn:active{transform:scale(.98);filter:brightness(.9)}
-
-/* ── MODAL SHEET ── */
-.modal-overlay{
-  position:absolute;inset:0;
-  background:rgba(0,0,0,.65);
-  display:none;align-items:flex-end;justify-content:center;z-index:100;
-}
-.modal-overlay.open{display:flex}
-
-.modal-sheet{
-  background:#fff;width:100%;
-  border-radius:var(--radius-xl) var(--radius-xl) 0 0;
-  padding:0 0 32px;animation:slideUp .22s ease;overflow:hidden;
-}
-
-@keyframes slideUp{
-  from{transform:translateY(100%);opacity:0}
-  to{transform:translateY(0);opacity:1}
-}
-
-.sheet-handle{width:36px;height:4px;background:#e4e4e7;border-radius:2px;margin:12px auto 0}
-
-.sheet-header{
-  padding:16px 20px 14px;border-bottom:1px solid #e4e4e7;
-  display:flex;align-items:center;justify-content:space-between;
-}
-
-.sheet-title{font-size:17px;font-weight:800;color:#18181b}
-
-.sheet-close{
-  width:28px;height:28px;border-radius:50%;background:#f4f4f5;
-  display:flex;align-items:center;justify-content:center;
-  font-size:13px;cursor:pointer;color:#71717a;font-weight:700;border:none;
-}
-
-.sheet-body{padding:16px 20px}
-
-.sheet-sub{font-size:10px;text-transform:uppercase;letter-spacing:.7px;font-weight:700;color:#a1a1aa;margin-bottom:10px}
-
-.sheet-rows{
-  background:#fafafa;border-radius:var(--radius-md);overflow:hidden;
-  border:1px solid #e4e4e7;margin-bottom:14px;
-}
-
-.sheet-row{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:12px 14px;border-bottom:1px solid #f4f4f5;
-}
-.sheet-row:last-child{border-bottom:none}
-.sheet-row-key{font-size:13px;color:#71717a;font-weight:500}
-.sheet-row-val{font-size:13px;font-weight:700;color:#18181b}
-
-.sheet-total{
-  background:#f0f9ff;border-radius:var(--radius-md);
-  padding:14px;display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:18px;border:1px solid rgba(14,165,233,.2);
-}
-.sheet-total-label{font-size:13px;font-weight:700;color:#0369a1}
-.sheet-total-val{font-size:22px;font-weight:800;color:var(--teal-dark);font-family:var(--mono)}
-
-.sheet-actions{display:flex;gap:10px}
-
-.btn-cancel{
-  flex:1;padding:14px;border-radius:var(--radius-md);
-  border:1.5px solid #e4e4e7;background:transparent;
-  font-family:var(--font);font-size:14px;font-weight:700;
-  color:#71717a;cursor:pointer;
-}
-
-.btn-confirm{
-  flex:2;padding:14px;border-radius:var(--radius-md);
-  border:none;background:linear-gradient(135deg,var(--teal),var(--teal-dark));
-  font-family:var(--font);font-size:14px;font-weight:800;color:white;cursor:pointer;
-}
-.btn-confirm:active{filter:brightness(.9)}
-
-/* TOAST */
-.toast{
-  position:absolute;top:16px;left:50%;
-  transform:translateX(-50%) translateY(-8px);
-  background:#fff;color:#18181b;
-  padding:10px 18px;border-radius:999px;
-  font-size:12px;font-weight:700;
-  opacity:0;pointer-events:none;transition:.22s ease;z-index:200;
-  white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.25);
-}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* Coming soon */
+#csScrim{position:fixed;inset:0;z-index:500;background:rgba(8,16,40,.44);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:flex-end;justify-content:center;animation:scrimIn .22s}
+#csScrim.open{display:flex}
+#csSheet{width:100%;max-width:500px;background:var(--md-surface-container-low);border-radius:var(--shape-xl) var(--shape-xl) 0 0;padding-bottom:max(28px,env(safe-area-inset-bottom));box-shadow:0 -2px 6px rgba(10,20,60,.06),0 -8px 40px rgba(10,20,60,.18);animation:slideUp var(--dur-medium4) var(--motion-emphasized-decel);overflow:hidden}
+.cs-drag{width:40px;height:4px;border-radius:2px;background:var(--line);margin:14px auto 0}
+.cs-body{padding:22px 26px 0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:11px}
+.cs-logo-box{width:96px;height:96px;border-radius:28px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:var(--sh2);flex-shrink:0;border:2px solid var(--line)}
+.cs-logo-box img{width:80%;height:80%;object-fit:contain}
+.cs-badge{display:inline-flex;align-items:center;gap:5px;background:var(--gold);color:#fff;font-size:9px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:4px 14px;border-radius:var(--rpill)}
+.cs-title{font-size:22px;font-weight:800;color:var(--ink1);letter-spacing:-.4px}
+.cs-sub{font-size:12px;color:var(--ink3);font-weight:500;line-height:1.65;max-width:300px}
+.cs-feats{width:100%;display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.cs-feat{display:flex;align-items:center;gap:11px;background:var(--s2);border:1px solid var(--line2);border-radius:var(--r12);padding:11px 14px;text-align:left}
+.cs-feat-ic{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cs-feat-t{font-size:12px;font-weight:700;color:var(--ink1)}
+.cs-feat-s{font-size:10px;color:var(--ink3);margin-top:2px;font-weight:500}
+.cs-cta{display:flex;align-items:center;justify-content:center;width:calc(100% - 52px);min-height:52px;margin:16px 26px 0;border-radius:var(--r20);background:var(--blue);color:#fff;font-size:15px;font-weight:700;box-shadow:var(--sh-blue);transition:transform .12s var(--spring);position:relative;overflow:hidden}
+.cs-cta:active{transform:scale(.97)}
 </style>
 </head>
 <body>
+<div id="curtain" class="curtain"><img class="curtain-logo" src="assets/econet.png" alt="Econet Wireless"><div class="curtain-spin"></div></div>
 
-<div class="screen">
-
-  <!-- HEADER -->
-  <div class="header">
-    <div class="hglow-a"></div>
-    <div class="hglow-b"></div>
-
-    <div class="header-top">
-      <div class="brand-wordmark">
-        <div class="brand-logos">
-          <div class="brand-logo-pill-dark"><img src="assets/worldbank.svg" alt="World Bank" class="brand-logo-wb"></div>
-          <span class="brand-sep"></span>
-          <div class="brand-logo-pill-dark"><img src="assets/unicef.webp" alt="UNICEF" class="brand-logo-un"></div>
-        </div>
-        <div class="brand-sub">Fonds Humanitaire Mondial</div>
-      </div>
-      <div class="header-chip">Subventions</div>
-    </div>
-
-    <div class="header-hero">
-      <div class="header-eyebrow">Programme d'aide humanitaire</div>
-      <div class="header-title">Accédez à <span>Votre Subvention</span></div>
-    </div>
-
-    <div class="boost-display">
-      <div class="boost-label">Montant de subvention</div>
-      <div class="boost-row">
-        <span class="boost-currency">USD</span>
-        <span class="boost-amount" id="headerGrant">0.00</span>
-        <span class="boost-tag">SUBVENTION</span>
-      </div>
-      <div class="mini-stats">
-        <div class="mini-stat">
-          <div class="mini-stat-label">Frais d'inscription</div>
-          <div class="mini-stat-val" id="miniFee">$0.00</div>
-        </div>
-        <div class="mini-stat">
-          <div class="mini-stat-label">Minimum</div>
-          <div class="mini-stat-val">$1,500</div>
-        </div>
-        <div class="mini-stat">
-          <div class="mini-stat-label">Maximum</div>
-          <div class="mini-stat-val">$12,500</div>
-        </div>
-      </div>
+<!-- CUSTOMISE MODAL -->
+<div id="modalScrim" onclick="closeModal()"></div>
+<div id="modalSheet">
+  <div class="modal-drag"></div>
+  <div class="modal-head">
+    <div><div class="modal-title" id="modalTitle">Customise bundle</div><div class="modal-sub">Drag to adjust</div></div>
+    <button class="modal-x" onclick="closeModal()"><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--ink3)"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+  </div>
+  <div class="modal-price-bar">
+    <div><div class="mpb-lbl">Your price</div><div class="mpb-price" id="mpbPrice">$0.00</div></div>
+    <div class="mpb-breakdown">
+      <div class="mpb-item"><span id="mpbV">0</span> Min</div>
+      <div class="mpb-item"><span id="mpbD">0</span> GB</div>
+      <div class="mpb-item"><span id="mpbS">0</span> SMS</div>
     </div>
   </div>
-
-  <!-- CONTENT -->
-  <div class="content-wrap">
-  <div class="body">
-
-    <!-- CONTEXT BANNER -->
-    <div class="context-banner">
-      <div class="banner-icon">🌍</div>
-      <div class="banner-text">
-        Programme d'aide destiné aux populations affectées par les conflits armés en <strong>RDC, Soudan, Syrie</strong> et autres zones de crise humanitaire.
-      </div>
-    </div>
-
-    <!-- USE CASES -->
-    <div class="use-cases">
-      <div class="use-case">
-        <div class="use-case-icon">🏠</div>
-        <div class="use-case-title">Logement</div>
-        <div class="use-case-desc">Reconstruction et hébergement d'urgence</div>
-      </div>
-      <div class="use-case">
-        <div class="use-case-icon">🍞</div>
-        <div class="use-case-title">Alimentation</div>
-        <div class="use-case-desc">Aide alimentaire pour familles déplacées</div>
-      </div>
-      <div class="use-case">
-        <div class="use-case-icon">🏥</div>
-        <div class="use-case-title">Santé</div>
-        <div class="use-case-desc">Soins médicaux et médicaments essentiels</div>
-      </div>
-      <div class="use-case">
-        <div class="use-case-icon">📚</div>
-        <div class="use-case-title">Éducation</div>
-        <div class="use-case-desc">Scolarisation des enfants réfugiés</div>
-      </div>
-    </div>
-
-    <!-- CALCULATOR -->
-    <div class="card">
-      <div class="card-accent"></div>
-      <div class="card-header">
-        <div>
-          <div class="card-title">Calculer votre subvention</div>
-          <div class="card-sub">Entrez le montant souhaité pour voir les frais</div>
-        </div>
-        <div class="card-badge">Instantané</div>
-      </div>
-      <div class="card-body">
-
-        <div class="field-label">Montant de la subvention (USD)</div>
-        <div class="input-wrap">
-          <span class="input-prefix">$</span>
-          <input type="number" id="grantAmount" min="1500" max="12500"
-            placeholder="ex. 2 000"
-            oninput="calculateGrant()">
-        </div>
-        <div class="field-hint">Montant entre $1,500 et $12,500 USD</div>
-
-        <div class="range-pills">
-          <div class="range-pill" onclick="setAmount(1500)">$1,500</div>
-          <div class="range-pill" onclick="setAmount(3000)">$3,000</div>
-          <div class="range-pill" onclick="setAmount(5000)">$5,000</div>
-          <div class="range-pill" onclick="setAmount(7500)">$7,500</div>
-          <div class="range-pill" onclick="setAmount(12500)">$12,500</div>
-        </div>
-
-        <div class="fee-result" id="feeResult">
-          <div class="fee-result-row">
-            <span class="fee-result-label">Montant de la subvention</span>
-            <span class="fee-result-val" id="feeGrant">$0.00</span>
-          </div>
-          <div class="fee-result-row">
-            <span class="fee-result-label">Taux des frais d'inscription</span>
-            <span class="fee-result-val">6%</span>
-          </div>
-          <div class="fee-total-row">
-            <span class="fee-total-label">💳 Frais d'inscription à payer</span>
-            <span class="fee-total-val" id="feeTot">$0.00</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- PARTNERS -->
-    <div class="partners-card">
-      <div class="partners-title">Nos partenaires officiels</div>
-      <div class="partners-logos">
-        <div class="partner-logo-wrap">
-          <div class="partner-logo-box-dark"><img src="assets/worldbank.svg" alt="World Bank" class="partner-logo"></div>
-          <span class="partner-name">World Bank</span>
-        </div>
-        <span class="partner-sep"></span>
-        <div class="partner-logo-wrap">
-          <div class="partner-logo-box-dark"><img src="assets/unicef.webp" alt="UNICEF" class="partner-logo"></div>
-          <span class="partner-name">UNICEF</span>
-        </div>
-      </div>
-
-      <div class="payment-strip">
-        <span class="payment-label">Partenaire de paiement</span>
-        <div class="payment-logos">
-          <img src="assets/wine.svg" alt="Wine" class="payment-logo-wine">
-          <div class="payment-logo-airtel-wrap">
-            <img src="assets/airtel.png" alt="Airtel Money" class="payment-logo-airtel">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="powered">
-      Fonds Humanitaire Mondial &middot; <strong>Conditions générales applicables</strong>
-    </div>
-
+  <div class="modal-plans" id="modalPlans">
+    <div class="mp-chip on" data-k="daily">Daily</div>
+    <div class="mp-chip" data-k="3days">3 Days</div>
+    <div class="mp-chip" data-k="weekly">Weekly</div>
+    <div class="mp-chip" data-k="2weeks">2 Weeks</div>
+    <div class="mp-chip" data-k="monthly">Monthly</div>
   </div>
-
-  <!-- FOOTER -->
-  <div class="sticky-footer">
-    <button class="pay-btn" onclick="openModal()">Soumettre ma demande →</button>
+  <div class="modal-body">
+    <div class="sl-row"><div class="sl-head"><span class="sl-name">Voice</span><div class="sl-val-row"><span class="sl-val" id="slVlbl">0</span><span class="sl-unit"> Min</span></div></div><div class="sl-track"><div class="sl-bg"></div><div class="sl-fill" id="tfV"></div><input type="range" class="sl-range" id="slV" min="0" step="1" value="0"></div></div>
+    <div class="sl-row"><div class="sl-head"><span class="sl-name">Data</span><div class="sl-val-row"><span class="sl-val" id="slDlbl">0</span><span class="sl-unit"> GB</span></div></div><div class="sl-track"><div class="sl-bg"></div><div class="sl-fill" id="tfD"></div><input type="range" class="sl-range" id="slD" min="0" step="1" value="0"></div></div>
+    <div class="sl-row"><div class="sl-head"><span class="sl-name">SMS</span><div class="sl-val-row"><span class="sl-val" id="slSlbl">0</span><span class="sl-unit"> SMS</span></div></div><div class="sl-track"><div class="sl-bg"></div><div class="sl-fill" id="tfS"></div><input type="range" class="sl-range" id="slS" min="0" step="1" value="0"></div></div>
   </div>
-  </div>
-
-  <!-- MODAL -->
-  <div class="modal-overlay" id="modal" onclick="handleOverlay(event)">
-    <div class="modal-sheet">
-      <div class="sheet-handle"></div>
-      <div class="sheet-header">
-        <div class="sheet-title">Confirmer la demande</div>
-        <button class="sheet-close" onclick="closeModal()">&#x2715;</button>
-      </div>
-      <div class="sheet-body">
-        <div class="sheet-sub">Détails de la subvention</div>
-        <div class="sheet-rows" id="details"></div>
-        <div class="sheet-total">
-          <div class="sheet-total-label">💳 Frais d'inscription</div>
-          <div class="sheet-total-val" id="modalFee">$0.00</div>
-        </div>
-        <div class="sheet-actions">
-          <button class="btn-cancel" onclick="closeModal()">Annuler</button>
-          <button class="btn-confirm" onclick="goLogin()">Payer via Airtel Money</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TOAST -->
-  <div class="toast" id="toast">Veuillez entrer un montant entre $1,500 et $12,500</div>
-
+  <div class="modal-foot"><button class="modal-apply" onclick="hap(8);closeModal()"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Apply Customisations</button></div>
 </div>
 
+<!-- COMING SOON MODAL -->
+<div id="csScrim" onclick="closeCS()">
+  <div id="csSheet" onclick="event.stopPropagation()">
+    <div class="cs-drag"></div>
+    <div class="cs-body">
+      <div class="cs-logo-box" id="csLogoBox"></div>
+      <div class="cs-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>Coming Soon</div>
+      <div class="cs-title" id="csTitle"></div>
+      <div class="cs-sub" id="csSub"></div>
+      <div class="cs-feats" id="csFeats"></div>
+    </div>
+    <button class="cs-cta" onclick="closeCS()">Got it, notify me</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+
+  <!-- TOPBAR: Econet logo only -->
+  <div id="topbar" class="topbar">
+    <div class="tb-left"><img class="tb-econet" src="assets/econet.png" alt="Econet Wireless"></div>
+    <div class="tb-right">
+      <div class="tb-total" id="tbTotal">
+        <span class="tb-total-lbl">Total</span>
+        <span class="tb-total-val" id="tbTotalVal">$0.00</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="card">
+
+    <!-- ══ HOME SCREEN ══ -->
+    <div id="homeScreen">
+
+      <!-- Title: "Payless with [EcoCash logo]" -->
+      <div class="page-title">
+        <h1>Payless</h1>
+        <div class="page-powered"><span>Econet bundles · Electricity · DStv, powered by</span><img class="powered-logo" src="assets/ecocash.png" alt="EcoCash"></div>
+      </div>
+
+      <!-- SERVICE TILES: Econet · ZESA · DStv — all same size -->
+      <div class="svc-tiles">
+        <button class="svc-tile" id="econetTile" onclick="hap(6);toggleDrawer()">
+          <img class="svc-tile-logo" src="assets/econet.png" alt="Econet Wireless">
+          <span class="svc-tile-label">Mobile Bundles</span>
+        </button>
+        <button class="svc-tile" onclick="hap(8);showCS('zesa')">
+          <img class="svc-tile-logo" src="assets/zesa.png" alt="ZESA">
+          <span class="svc-tile-label">Electricity</span>
+        </button>
+        <button class="svc-tile" onclick="hap(8);showCS('dstv')">
+          <img class="svc-tile-logo" src="assets/dstv.svg" alt="DStv">
+          <span class="svc-tile-label">Entertainment</span>
+        </button>
+      </div>
+
+      <!-- PLAN DRAWER — slides open below tiles when Econet tapped -->
+      <div class="bundle-entry" id="bundleEntry">
+        <div class="plan-drawer" id="planDrawer">
+          <div class="drawer-inner">
+
+            <!-- Plan grid — all 5 plans, scrollable if needed -->
+            <div class="plan-grid" id="homeGrid">
+              <div class="pg-card on" data-k="daily">
+                <span class="pg-period">Daily</span>
+                <span class="pg-price" id="hgp-daily">$1.80</span>
+                <span class="pg-detail" id="hgd-daily">📞 20 Min · 📶 3 GB · ✉ 25 SMS</span>
+              </div>
+              <div class="pg-card" data-k="3days">
+                <span class="pg-period">3 Days</span>
+                <span class="pg-price" id="hgp-3days">$4.20</span>
+                <span class="pg-detail" id="hgd-3days">📞 50 Min · 📶 8 GB · ✉ 25 SMS</span>
+              </div>
+              <div class="pg-card" data-k="weekly">
+                <span class="pg-period">Weekly</span>
+                <span class="pg-price" id="hgp-weekly">$8.40</span>
+                <span class="pg-detail" id="hgd-weekly">📞 120 Min · 📶 20 GB · ✉ 200 SMS</span>
+              </div>
+              <div class="pg-card" data-k="2weeks">
+                <span class="pg-period">2 Weeks</span>
+                <span class="pg-price" id="hgp-2weeks">$15.60</span>
+                <span class="pg-detail" id="hgd-2weeks">📞 250 Min · 📶 45 GB · ✉ 150 SMS</span>
+              </div>
+              <div class="pg-card monthly" data-k="monthly">
+                <div class="pg-left">
+                  <span class="pg-badge">Best Value</span>
+                  <span class="pg-period">Monthly</span>
+                  <span class="pg-detail" id="hgd-monthly">📞 600 Min · 📶 100 GB · ✉ 1000 SMS</span>
+                </div>
+                <span class="pg-price" id="hgp-monthly">$29.70</span>
+              </div>
+            </div>
+
+            <!-- Social strip -->
+            <div class="drawer-social">
+              <span class="social-lbl">Works with all plans</span>
+              <div class="social-icons" id="wwIcons"></div>
+            </div>
+
+            <!-- Price strip: Customise + Continue -->
+            <button class="price-strip blue-card" id="priceStrip" onclick="openModal()">
+              <div class="ps-left">
+                <span class="ps-lbl">Selected plan</span>
+                <span class="ps-plan" id="psPlan">Daily Mix</span>
+                <span class="ps-detail" id="psDetail">20 Min · 3 GB · 25 SMS</span>
+              </div>
+              <div class="ps-right">
+                <div class="ps-price"><span class="ps-cur">USD</span><span class="ps-amt" id="psAmt">1.80</span></div>
+                <span class="ps-edit">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#fff"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                  Customise
+                </span>
+              </div>
+            </button>
+            <button class="continue-btn" id="continueBtn" onclick="hap(10);goToNumScreen()">
+              <span>Continue</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+            </button>
+
+          </div>
+        </div><!-- /planDrawer -->
+      </div><!-- /bundleEntry -->
+
+    </div><!-- /homeScreen -->
+
+
+    <!-- ══ NUMBER SCREEN ══ -->
+    <div id="numScreen">
+      <button class="ns-back" onclick="goHome()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--blue)"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>Back
+      </button>
+      <div class="bundle-pill blue-card">
+        <div class="bp-left">
+          <span class="bp-lbl">Paying for</span>
+          <span class="bp-name" id="bpName">Daily Mix</span>
+          <span class="bp-detail" id="bpDetail">20 Min · 3 GB · 25 SMS</span>
+        </div>
+        <span class="bp-price" id="bpPrice">$1.80</span>
+      </div>
+      <div class="ns-title">Enter your <i>number</i></div>
+      <div class="ns-sub">We'll charge your EcoCash wallet · Econet Zimbabwe</div>
+      <div class="num-field" id="numField">
+        <div class="num-pre"><span class="num-flag">🇿🇼</span><span class="num-code">+263</span></div>
+        <input id="numInput" type="tel" inputmode="numeric" pattern="[0-9]*" placeholder="771 234 567" maxlength="9" autocomplete="tel-national">
+        <button id="numClear"><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--ink3)"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg></button>
+      </div>
+      <div class="num-status" id="numStatus">
+        <div class="ns-icon" id="nsIcon"><svg width="14" height="14" viewBox="0 0 24 24" fill="var(--ink3)"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4 2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg></div>
+        <span class="ns-txt" id="nsTxt">Econet Zimbabwe · 077 · 078 · 073 · 071</span>
+      </div>
+      <div class="num-verify" id="numVerify">
+        <div class="v-spin"></div>
+        <span class="v-txt">Verifying…</span>
+        <div class="vok-wrap">
+          <div class="vok-ic"><svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+          <span class="vok-txt">Number verified</span>
+        </div>
+      </div>
+      <div class="trust">
+        <div class="trust-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="var(--grn)"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>Secure</div>
+        <div class="trust-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="var(--grn)"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.81 6-4.72 7.28L13 17v5h5l-1.22-1.22C19.91 19.07 22 15.76 22 12c0-5.18-3.95-9.45-9-9.95zM11 2.05C5.95 2.55 2 6.82 2 12c0 3.76 2.09 7.07 5.22 8.78L6 22h5v-5l-2.28 2.28C7.06 18.06 6 15.14 6 12c0-4.08 3.05-7.44 7-7.93V2.05z"/></svg>Instant</div>
+        <div class="trust-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="var(--grn)"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>EcoCash</div>
+      </div>
+    </div><!-- /numScreen -->
+
+  </div><!-- /card -->
+
+  <!-- PAY BAR -->
+  <div id="payBar" class="hidden">
+    <button class="next-btn" id="nextBtn" onclick="goToNumScreen()">
+      <div class="btn-left">
+        <div class="btn-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,.85)"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></div>
+        <div><div class="btn-title">Continue</div><div class="btn-sub">Enter your Econet number</div></div>
+      </div>
+      <span class="next-right" id="nextAmt">$1.80</span>
+    </button>
+    <button class="pay-btn" id="payBtn" disabled style="display:none">
+      <div class="btn-left">
+        <div class="btn-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,.85)"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg></div>
+        <div><div class="btn-title" id="payTitle">Verify number first</div><div class="btn-sub" id="paySub">EcoCash · Secure · Instant</div></div>
+      </div>
+      <div class="btn-right"><div class="btn-right-lbl">Total</div><div class="btn-right-amt" id="payAmt">—</div></div>
+    </button>
+  </div>
+
+</div><!-- /app -->
+
 <script>
-const FEE_RATE=0.06; // 6%
-const MIN=1500;
-const MAX=12500;
+'use strict';
 
-let currentGrant=0;
-let currentFee=0;
+/* ── VIEWPORT HEIGHT ── */
+(function(){
+  function setVH(){
+    var vp=window.visualViewport;
+    document.documentElement.style.setProperty('--dvh',(vp?vp.height+vp.offsetTop:window.innerHeight)+'px');
+  }
+  setVH();
+  if(window.visualViewport){
+    window.visualViewport.addEventListener('resize',setVH,{passive:true});
+    window.visualViewport.addEventListener('scroll',setVH,{passive:true});
+  } else window.addEventListener('resize',setVH,{passive:true});
+})();
 
-function fmt(n){return n.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})}
+/* ── HAPTIC ── */
+function hap(p){try{if(navigator.vibrate)navigator.vibrate(p);}catch(e){}}
 
-function setAmount(val){
-  document.getElementById("grantAmount").value=val;
-  document.querySelectorAll(".range-pill").forEach(p=>p.classList.remove("active"));
-  event.target.classList.add("active");
-  calculateGrant();
+/* ── PLANS DATA ── */
+var PLANS={
+  daily:   {l:'Daily',   mV:20,  mS:25,  mD:3,  p:1.80, sv:5,  ss:5,  sd:1},
+  '3days': {l:'3 Days',  mV:50,  mS:25,  mD:8,  p:4.20, sv:10, ss:5,  sd:2},
+  weekly:  {l:'Weekly',  mV:120, mS:200, mD:20, p:8.40, sv:20, ss:50, sd:5},
+  '2weeks':{l:'2 Wks',  mV:250, mS:150, mD:45, p:15.60,sv:50, ss:50, sd:5},
+  monthly: {l:'Monthly', mV:600, mS:1000,mD:100,p:29.70,sv:50, ss:100,sd:10},
+};
+/* Per-plan customised values — starts at max */
+var ST={};
+Object.keys(PLANS).forEach(function(k){var p=PLANS[k];ST[k]={v:p.mV,s:p.mS,d:p.mD};});
+var AK='daily';
+
+/* Price formula: weighted average ratio × base price */
+function price(k){
+  var p=PLANS[k],s=ST[k];
+  return Math.round(((s.v/p.mV)+(s.s/p.mS)+(s.d/p.mD))/3*p.p*100)/100;
 }
 
-function calculateGrant(){
-  const raw=parseFloat(document.getElementById("grantAmount").value)||0;
-  currentGrant=Math.min(Math.max(raw,0),MAX);
-  currentFee=currentGrant*FEE_RATE;
+/* ── SOCIAL ICONS ── */
+var SOCIALS=[
+  {n:'WhatsApp',bg:'#25D366',fc:'#fff',p:'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z'},
+  {n:'TikTok',bg:'#010101',fc:'#fff',p:'M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.95a8.16 8.16 0 004.77 1.52V7.03a4.85 4.85 0 01-1-.34z'},
+  {n:'YouTube',bg:'#FF0000',fc:'#fff',p:'M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z'},
+  {n:'X',bg:'#000',fc:'#fff',p:'M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'},
+  {n:'Instagram',bg:'linear-gradient(135deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888)',fc:'#fff',p:'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'},
+  {n:'Facebook',bg:'#1877F2',fc:'#fff',p:'M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z'},
+  {n:'Snapchat',bg:'#FFFC00',fc:'#000',p:'M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.342 4.868-.006.148-.011.291-.014.432.123.06.264.12.43.174.486.155 1.112.246 1.805.216.7-.03 1.092.122 1.095.538.002.4-.286.71-.83.898-.1.035-.21.07-.31.115-.455.2-1.033.456-1.116 1.015-.019.123.002.24.046.344l.003.01c.45 1.133 1.75 3.887 4.304 4.52.27.068.443.293.443.48 0 .43-1.13.87-2.952 1.15-.168.026-.296.133-.326.307-.04.218-.07.392-.107.624-.02.147-.058.325-.267.325-.07 0-.163-.018-.28-.045-.422-.098-.968-.22-1.717-.22-.68 0-1.365.118-1.994.36-.854.323-1.636.963-2.63 1.71-1.43 1.07-3.024 2.28-5.374 2.28-2.364 0-3.97-1.21-5.405-2.28-.996-.748-1.782-1.387-2.636-1.71-.63-.243-1.317-.362-2-.362-.64 0-1.12.105-1.547.2-.138.03-.258.06-.36.08-.216 0-.25-.173-.268-.322-.037-.232-.07-.406-.108-.624-.032-.172-.16-.28-.327-.305C1.13 16.88 0 16.44 0 16.01c0-.188.174-.412.44-.48 2.554-.633 3.853-3.387 4.303-4.52l.003-.01c.045-.104.066-.22.047-.344-.084-.56-.662-.814-1.118-1.015-.1-.044-.208-.08-.308-.114-.545-.19-.832-.498-.83-.9.003-.416.394-.568 1.094-.537.694.029 1.32-.06 1.806-.216.167-.054.308-.113.43-.174-.003-.14-.008-.283-.014-.43-.06-1.65-.187-3.675.342-4.869C7.858 1.07 11.215.793 12.206.793z'},
+  {n:'Telegram',bg:'#26A5E4',fc:'#fff',p:'M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z'},
+];
 
-  // header
-  document.getElementById("headerGrant").textContent=fmt(currentGrant);
-  document.getElementById("miniFee").textContent="$"+fmt(currentFee);
+function buildWorksWithIcons(id){
+  var el=document.getElementById(id);if(!el)return;
+  var h='';
+  SOCIALS.forEach(function(sc){
+    h+='<div class="ww-soc" style="background:'+sc.bg+';border-radius:8px">'
+      +'<svg width="18" height="18" viewBox="0 0 24 24" fill="'+sc.fc+'"><path d="'+sc.p+'"/></svg></div>';
+  });
+  el.innerHTML=h;
+}
+function buildBundleSocials(id){
+  var el=document.getElementById(id);if(!el)return;
+  var h='';
+  SOCIALS.forEach(function(sc){
+    h+='<div class="soc" style="background:'+sc.bg+'">'
+      +'<svg width="20" height="20" viewBox="0 0 24 24" fill="'+sc.fc+'"><path d="'+sc.p+'"/></svg></div>';
+  });
+  el.innerHTML=h;
+}
 
-  // card
-  document.getElementById("feeGrant").textContent="$"+fmt(currentGrant);
-  document.getElementById("feeTot").textContent="$"+fmt(currentFee);
+/* ── COMING SOON MODALS ── */
+var CS={
+  zesa:{img:'assets/zesa.png',alt:'ZESA',bg:'#FFF0E8',border:'rgba(224,80,0,.22)',title:'ZESA Tokens',
+    sub:'Buy prepaid electricity tokens for any ZETDC meter in Zimbabwe instantly via EcoCash.',
+    feats:[
+      {bg:'rgba(224,80,0,.1)',ic:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#E05000"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>',t:'Instant Token',s:'Delivered to your phone in seconds'},
+      {bg:'rgba(21,88,214,.1)',ic:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#1558D6"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>',t:'$1 to $500',s:'Any amount for any budget'},
+      {bg:'rgba(10,138,69,.1)',ic:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#0A8A45"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>',t:'Any ZETDC Meter',s:'Works with all prepaid meters'},
+    ]},
+  dstv:{img:'assets/dstv.svg',alt:'DStv',bg:'#E6F8F9',border:'rgba(0,153,160,.24)',title:'DStv Renewal',
+    sub:'Renew your DStv subscription from Access to Premium. Activate instantly via EcoCash.',
+    feats:[
+      {bg:'rgba(0,153,160,.1)',ic:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#0099A0"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>',t:'All Bouquets',s:'Access, Compact, Compact Plus, Premium'},
+      {bg:'rgba(21,88,214,.1)',ic:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#1558D6"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>',t:'Instant Activation',s:'Subscription renews on payment'},
+      {bg:'rgba(10,138,69,.1)',ic:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#0A8A45"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>',t:'Any Smartcard',s:'All Zimbabwe DStv smartcards'},
+    ]},
+};
+function showCS(key){
+  hap(8);
+  var d=CS[key];if(!d)return;
+  var box=document.getElementById('csLogoBox');
+  box.innerHTML='<img src="'+d.img+'" alt="'+d.alt+'" style="width:82%;height:82%;object-fit:contain;display:block">';
+  box.style.background=d.bg;
+  box.style.border='2px solid '+d.border;
+  document.getElementById('csTitle').textContent=d.title;
+  document.getElementById('csSub').textContent=d.sub;
+  var html='';
+  d.feats.forEach(function(f){
+    html+='<div class="cs-feat"><div class="cs-feat-ic" style="background:'+f.bg+'">'+f.ic+'</div>'
+         +'<div><div class="cs-feat-t">'+f.t+'</div><div class="cs-feat-s">'+f.s+'</div></div></div>';
+  });
+  document.getElementById('csFeats').innerHTML=html;
+  document.getElementById('csScrim').classList.add('open');
+}
+function closeCS(){document.getElementById('csScrim').classList.remove('open');}
 
-  // remove active pill if manually typed
-  if(![1500,3000,5000,7500,12500].includes(raw)){
-    document.querySelectorAll(".range-pill").forEach(p=>p.classList.remove("active"));
+/* ── DRAWER (smooth RAF height animation) ── */
+var drawerOpen=false;
+var _raf=null;
+
+function toggleDrawer(){
+  drawerOpen=!drawerOpen;
+  hap(6);
+
+  var entry=document.getElementById('bundleEntry');
+  var tile=document.getElementById('econetTile');
+  var drawer=document.getElementById('planDrawer');
+  var inner=drawer.querySelector('.drawer-inner');
+
+  if(entry)entry.classList.toggle('open',drawerOpen);
+  if(tile)tile.classList.toggle('active',drawerOpen);
+  if(_raf)cancelAnimationFrame(_raf);
+
+  if(drawerOpen){
+    /* Measure real height without constraints */
+    drawer.style.height='auto';
+    var target=inner.scrollHeight+14;
+    drawer.style.height='0px';
+    drawer.style.opacity='1';
+    drawer.classList.add('open');
+
+    var t0=null,dur=300;
+    function easeOut(t){return 1-Math.pow(1-t,4);}
+    function stepOpen(ts){
+      if(!t0)t0=ts;
+      var t=Math.min((ts-t0)/dur,1);
+      drawer.style.height=(target*easeOut(t)).toFixed(1)+'px';
+      if(t<1)_raf=requestAnimationFrame(stepOpen);
+      else{drawer.style.height='auto';drawer.style.overflow='visible';}
+    }
+    _raf=requestAnimationFrame(stepOpen);
+  } else {
+    /* Lock pixel height first, then animate down */
+    var from=drawer.scrollHeight;
+    drawer.style.overflow='hidden';
+    drawer.style.height=from+'px';
+
+    var t0=null,dur=240;
+    function easeIn(t){return t*t*t;}
+    function stepClose(ts){
+      if(!t0)t0=ts;
+      var t=Math.min((ts-t0)/dur,1);
+      drawer.style.height=(from*(1-easeIn(t))).toFixed(1)+'px';
+      if(t<1)_raf=requestAnimationFrame(stepClose);
+      else{
+        drawer.classList.remove('open');
+        drawer.style.height='0px';
+        drawer.style.opacity='0';
+        drawer.style.overflow='hidden';
+      }
+    }
+    _raf=requestAnimationFrame(stepClose);
   }
 }
 
+/* ── SCREEN STATE ── */
+var SCREEN='home';
+
+function showPayBar(mode){
+  var bar=document.getElementById('payBar');
+  var nb=document.getElementById('nextBtn');
+  var pb=document.getElementById('payBtn');
+  if(mode==='none'){bar.classList.add('hidden');return;}
+  bar.classList.remove('hidden');
+  if(mode==='next'){nb.style.display='';pb.style.display='none';}
+  else{nb.style.display='none';pb.style.display='';}
+}
+
+function goHome(){
+  SCREEN='home';
+  document.getElementById('homeScreen').style.display='';
+  document.getElementById('numScreen').classList.remove('show');
+  document.getElementById('tbTotal').classList.remove('show');
+  showPayBar('none');
+}
+
+function goToNumScreen(){
+  SCREEN='num';
+  document.getElementById('homeScreen').style.display='none';
+  document.getElementById('numScreen').classList.add('show');
+  document.getElementById('tbTotal').classList.add('show');
+  showPayBar('pay');
+  updateBundlePill();
+  /* Focus after transition settles */
+  if(!numOK)setTimeout(function(){
+    var el=document.getElementById('numInput');
+    if(el)el.focus();
+  },300);
+}
+
+/* ── SYNC UI — single source of truth ── */
+function syncUI(){
+  var k=AK,p=PLANS[k],s=ST[k],v=price(k);
+  var vAmt='$'+v.toFixed(2);
+  var dStr=s.v+' Min · '+s.d+' GB · '+s.s+' SMS';
+
+  /* 1. Highlight selected card */
+  document.querySelectorAll('#homeGrid .pg-card').forEach(function(c){
+    c.classList.toggle('on',c.dataset.k===k);
+  });
+
+  /* 2. Modal plan chip highlight */
+  document.querySelectorAll('#modalPlans .mp-chip').forEach(function(c){
+    c.classList.toggle('on',c.dataset.k===k);
+  });
+
+  /* 3. Update every card's price + detail text */
+  Object.keys(PLANS).forEach(function(k2){
+    var s2=ST[k2],v2=price(k2);
+    var el=document.getElementById('hgp-'+k2);if(el)el.textContent='$'+v2.toFixed(2);
+    var el2=document.getElementById('hgd-'+k2);
+    if(el2)el2.textContent=s2.v+' Min · '+s2.d+' GB · '+s2.s+' SMS';
+  });
+
+  /* 4. Price strip + accent colour */
+  var ps=document.getElementById('priceStrip');if(ps)ps.setAttribute('data-plan',k);
+  var cb=document.getElementById('continueBtn');if(cb)cb.setAttribute('data-plan',k);
+  var psP=document.getElementById('psPlan');if(psP)psP.textContent=p.l+' Mix';
+  var psD=document.getElementById('psDetail');if(psD)psD.textContent=dStr;
+  var psA=document.getElementById('psAmt');if(psA)psA.textContent=v.toFixed(2);
+
+  /* 5. Pay bar amounts */
+  var na=document.getElementById('nextAmt');if(na)na.textContent=vAmt;
+  var tv=document.getElementById('tbTotalVal');if(tv)tv.textContent=vAmt;
+
+  /* 6. Pay button if verified */
+  if(numOK){
+    var pt=document.getElementById('payTitle');if(pt)pt.textContent='Pay USD '+v.toFixed(2);
+    var pa=document.getElementById('payAmt');if(pa)pa.textContent=vAmt;
+  }
+
+  /* 7. Bundle pill if on num screen */
+  if(SCREEN==='num')updateBundlePill();
+
+  /* 8. Sync modal sliders */
+  syncSliders();
+}
+
+/* ── PLAN CARD SELECTION ── */
+document.getElementById('homeGrid').addEventListener('click',function(e){
+  var card=e.target.closest('.pg-card');
+  if(!card||!card.dataset.k)return;
+  var k=card.dataset.k;
+  AK=k;
+  var p=PLANS[k];ST[k]={v:p.mV,s:p.mS,d:p.mD};
+  hap([8,20,8]);
+  syncUI();
+  /* Scroll price strip into view smoothly */
+  setTimeout(function(){
+    var strip=document.getElementById('priceStrip');
+    if(strip)strip.scrollIntoView({behavior:'smooth',block:'nearest'});
+  },60);
+});
+
+/* ── MODAL PLAN SWITCHER ── */
+document.getElementById('modalPlans').addEventListener('click',function(e){
+  var chip=e.target.closest('.mp-chip');
+  if(!chip||!chip.dataset.k)return;
+  var k=chip.dataset.k;
+  if(k===AK)return;
+  hap(6);
+  AK=k;
+  var p=PLANS[k];ST[k]={v:p.mV,s:p.mS,d:p.mD};
+  document.querySelectorAll('#modalPlans .mp-chip').forEach(function(c){
+    c.classList.toggle('on',c.dataset.k===k);
+  });
+  document.getElementById('modalTitle').textContent='Customise '+p.l+' bundle';
+  syncSliders();
+  syncUI();
+});
+
+/* ── CUSTOMISE MODAL ── */
+var modalOpen=false;
 function openModal(){
-  if(currentGrant<MIN||currentGrant>MAX){
-    const t=document.getElementById("toast");
-    t.classList.add("show");
-    setTimeout(()=>t.classList.remove("show"),2400);
-    return;
+  modalOpen=true;
+  hap(6);
+  document.getElementById('modalTitle').textContent='Customise '+PLANS[AK].l+' bundle';
+  document.querySelectorAll('#modalPlans .mp-chip').forEach(function(c){
+    c.classList.toggle('on',c.dataset.k===AK);
+  });
+  syncSliders();
+  document.getElementById('modalScrim').classList.add('open');
+  document.getElementById('modalSheet').classList.add('open');
+}
+function closeModal(){
+  if(!modalOpen)return;
+  modalOpen=false;
+  hap(8);
+  document.getElementById('modalScrim').classList.remove('open');
+  document.getElementById('modalSheet').classList.remove('open');
+  syncUI(); /* Reflects customised price on price strip */
+}
+
+/* Sliders */
+function syncSliders(){
+  var k=AK,p=PLANS[k],s=ST[k];
+  var slV=document.getElementById('slV');
+  slV.max=Math.round(p.mV/p.sv);slV.value=Math.round(s.v/p.sv);
+  document.getElementById('slVlbl').textContent=s.v;setFill('tfV',s.v/p.mV*100);
+  var slD=document.getElementById('slD');
+  slD.max=Math.round(p.mD/p.sd);slD.value=Math.round(s.d/p.sd);
+  document.getElementById('slDlbl').textContent=s.d;setFill('tfD',s.d/p.mD*100);
+  var slS=document.getElementById('slS');
+  slS.max=Math.round(p.mS/p.ss);slS.value=Math.round(s.s/p.ss);
+  document.getElementById('slSlbl').textContent=s.s;setFill('tfS',s.s/p.mS*100);
+  updateModalPrice();
+}
+function setFill(id,pct){
+  var el=document.getElementById(id);
+  if(el)el.style.width=Math.max(0,Math.min(100,pct)).toFixed(1)+'%';
+}
+function updateModalPrice(){
+  var v=price(AK),s=ST[AK];
+  var ep=document.getElementById('mpbPrice');if(ep)ep.textContent='$'+v.toFixed(2);
+  var ev=document.getElementById('mpbV');if(ev)ev.textContent=s.v;
+  var ed=document.getElementById('mpbD');if(ed)ed.textContent=s.d;
+  var es=document.getElementById('mpbS');if(es)es.textContent=s.s;
+}
+
+/* Wire each slider to live-update price strip */
+(function(){
+  function wireSlider(slId,fillId,lblId,key){
+    document.getElementById(slId).addEventListener('input',function(){
+      var k=AK,p=PLANS[k],s=ST[k];
+      var step=p['s'+key];
+      var max=p['m'+key.toUpperCase()];
+      s[key]=Math.max(0,Math.min(Math.round(parseInt(this.value,10)*step),max));
+      document.getElementById(lblId).textContent=s[key];
+      setFill(fillId,s[key]/max*100);
+      hap(4);
+      updateModalPrice();
+      /* Live-update price strip */
+      var v=price(k),vStr='$'+v.toFixed(2);
+      var dStr=s.v+' Min · '+s.d+' GB · '+s.s+' SMS';
+      var psA=document.getElementById('psAmt');if(psA)psA.textContent=v.toFixed(2);
+      var psP=document.getElementById('psPlan');if(psP)psP.textContent=PLANS[k].l+' Mix';
+      var psD=document.getElementById('psDetail');if(psD)psD.textContent=dStr;
+      var na=document.getElementById('nextAmt');if(na)na.textContent=vStr;
+      var tv=document.getElementById('tbTotalVal');if(tv)tv.textContent=vStr;
+      /* Update card text for active plan */
+      var hp=document.getElementById('hgp-'+k);if(hp)hp.textContent=vStr;
+      var hd=document.getElementById('hgd-'+k);if(hd)hd.textContent=dStr;
+    });
   }
+  wireSlider('slV','tfV','slVlbl','v');
+  wireSlider('slD','tfD','slDlbl','d');
+  wireSlider('slS','tfS','slSlbl','s');
+})();
 
-  document.getElementById("details").innerHTML=`
-    <div class="sheet-row"><span class="sheet-row-key">Programme</span><span class="sheet-row-val">Fonds Humanitaire</span></div>
-    <div class="sheet-row"><span class="sheet-row-key">Montant demandé</span><span class="sheet-row-val">$${fmt(currentGrant)}</span></div>
-    <div class="sheet-row"><span class="sheet-row-key">Taux des frais</span><span class="sheet-row-val">6%</span></div>
-  `;
-  document.getElementById("modalFee").textContent="$"+fmt(currentFee);
-  document.getElementById("modal").classList.add("open");
+/* ── BUNDLE PILL (number screen summary) ── */
+function updateBundlePill(){
+  var k=AK,p=PLANS[k],s=ST[k],v=price(k);
+  var bn=document.getElementById('bpName');if(bn)bn.textContent=p.l+' Mix';
+  var bd=document.getElementById('bpDetail');if(bd)bd.textContent=s.v+' Min · '+s.d+' GB · '+s.s+' SMS';
+  var bp=document.getElementById('bpPrice');if(bp)bp.textContent='$'+v.toFixed(2);
 }
 
-function closeModal(){document.getElementById("modal").classList.remove("open")}
+/* ── NUMBER FIELD ── */
+var NETS=['071','077','078','073'];
+var numOK=false,numDigits='',numDisp='',numVerifying=false,vTimer=null;
+var numEl=document.getElementById('numInput');
+var numClearEl=document.getElementById('numClear');
 
-function handleOverlay(e){if(e.target===document.getElementById("modal")) closeModal()}
+function setNS(type,msg){
+  var st=document.getElementById('numStatus');
+  var txt=document.getElementById('nsTxt');
+  var icon=document.getElementById('nsIcon');
+  var field=document.getElementById('numField');
+  if(!st)return;
+  st.className='num-status'+(type?' '+type:'');
+  txt.textContent=msg;
+  if(type==='err')field.classList.add('err');else field.classList.remove('err');
+  var icons={
+    ok:'<svg width="14" height="14" viewBox="0 0 24 24" fill="var(--grn)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>',
+    err:'<svg width="14" height="14" viewBox="0 0 24 24" fill="var(--err)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>',
+    def:'<svg width="14" height="14" viewBox="0 0 24 24" fill="var(--ink3)"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4 2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>',
+  };
+  icon.innerHTML=icons[type]||icons.def;
+}
 
-function goLogin(){
-  sessionStorage.setItem("selectedPlan",JSON.stringify({
-    plan:"Subvention Humanitaire",
-    grantAmount:currentGrant,
-    registrationFee:currentFee,
-    feeRate:"6%"
+numEl.addEventListener('focus',function(){
+  if(!numOK)document.getElementById('numField').classList.add('foc');
+});
+numEl.addEventListener('blur',function(){
+  if(!numOK&&!numVerifying)document.getElementById('numField').classList.remove('foc');
+});
+numEl.addEventListener('paste',function(e){
+  e.preventDefault();
+  var raw=(e.clipboardData||window.clipboardData).getData('text').replace(/\D/g,'');
+  /* Strip country code prefixes */
+  if(raw.startsWith('00263'))raw=raw.slice(5);
+  else if(raw.startsWith('263')&&raw.length>=12)raw=raw.slice(3);
+  /* Strip leading zeros */
+  while(raw.startsWith('0'))raw=raw.slice(1);
+  numEl.value=raw.slice(0,9);
+  numEl.dispatchEvent(new Event('input',{bubbles:true}));
+});
+numEl.addEventListener('input',function(){
+  var raw=this.value.replace(/\D/g,'');
+  /* Strip country code */
+  if(raw.startsWith('00263'))raw=raw.slice(5);
+  else if(raw.startsWith('263')&&raw.length>=12)raw=raw.slice(3);
+  /* Strip leading zeros so 0771234567 → 771234567 */
+  while(raw.startsWith('0'))raw=raw.slice(1);
+  raw=raw.slice(0,9);
+  if(this.value!==raw)this.value=raw;
+  numDigits=raw;
+  numClearEl.classList.toggle('show',raw.length>0);
+  if(numOK||numVerifying)resetVerify();
+  updateNumStatus();
+  clearTimeout(vTimer);
+  /* Auto-verify after 800ms when 9 valid digits entered */
+  if(raw.length===9&&NETS.some(function(n){return('0'+raw).startsWith(n);})){
+    vTimer=setTimeout(doVerify,800);
+  }
+});
+numClearEl.addEventListener('click',function(){
+  numEl.value='';numDigits='';
+  numClearEl.classList.remove('show');
+  resetVerify();updateNumStatus();clearTimeout(vTimer);
+  numEl.focus();
+});
+
+function updateNumStatus(){
+  var d=numDigits,n0='0'+d;
+  var isE=NETS.some(function(n){return n0.startsWith(n);});
+  if(!d.length){setNS('','Econet Zimbabwe · 077 · 078 · 073 · 071');return;}
+  if(d[0]!=='7'){setNS('err','Econet numbers start with 77x, 78x, 73x or 71x');return;}
+  if(!isE&&d.length>=3){setNS('err','Not Econet — use 077, 078, 073 or 071');return;}
+  if(d.length<9){setNS('','Econet · '+d.length+'/9 digits');return;}
+  setNS('','Ready to verify…');
+}
+
+function doVerify(){
+  if(numDigits.length!==9||numOK||numVerifying)return;
+  var msisdn='0'+numDigits;
+  if(!NETS.some(function(n){return msisdn.startsWith(n);}))return;
+  numVerifying=true;
+  hap(6);
+  document.getElementById('numStatus').style.display='none';
+  document.getElementById('numVerify').className='num-verify show spinning';
+  document.getElementById('numField').className='num-field foc';
+  /* Simulate verification — completes after 2s */
+  var done=false;
+  function finish(){if(done)return;done=true;verOK(msisdn);}
+  var to=setTimeout(finish,2000);
+  try{
+    if(typeof EcoCashAPI!=='undefined'){
+      EcoCashAPI.validateSubscriber(msisdn)
+        .then(function(){clearTimeout(to);finish();})
+        .catch(function(){clearTimeout(to);finish();});
+    }
+  }catch(e){}
+}
+
+function verOK(msisdn){
+  numOK=true;numVerifying=false;
+  numDisp='+263'+msisdn.replace(/^0/,'');
+  document.getElementById('numVerify').className='num-verify done';
+  document.getElementById('numStatus').style.display='';
+  document.getElementById('numField').className='num-field ok';
+  setNS('ok','✓ '+numDisp+' verified');
+  var v=price(AK);
+  var pb=document.getElementById('payBtn');if(pb)pb.disabled=false;
+  var pt=document.getElementById('payTitle');if(pt)pt.textContent='Pay USD '+v.toFixed(2);
+  var ps=document.getElementById('paySub');if(ps)ps.textContent=numDisp+' · EcoCash';
+  var pa=document.getElementById('payAmt');if(pa)pa.textContent='$'+v.toFixed(2);
+  hap([10,60,10]);
+}
+
+function resetVerify(){
+  numOK=false;numVerifying=false;numDisp='';
+  var nv=document.getElementById('numVerify');if(nv)nv.className='num-verify';
+  var ns=document.getElementById('numStatus');if(ns)ns.style.display='';
+  var nf=document.getElementById('numField');if(nf)nf.className='num-field';
+  var pb=document.getElementById('payBtn');if(pb)pb.disabled=true;
+  var pt=document.getElementById('payTitle');if(pt)pt.textContent='Verify number first';
+  var ps=document.getElementById('paySub');if(ps)ps.textContent='EcoCash · Secure · Instant';
+  var pa=document.getElementById('payAmt');if(pa)pa.textContent='—';
+}
+
+/* ── PAY ── */
+document.getElementById('payBtn').addEventListener('click',function(){
+  if(!numOK)return;
+  hap([10,60,10]);
+  var k=AK,p=PLANS[k],s=ST[k],v=price(k);
+  sessionStorage.setItem('selectedPlan',JSON.stringify({
+    duration:p.l,voice:s.v,sms:s.s,data:s.d,
+    amount:v.toFixed(2),planKey:k
   }));
-  window.location.href="login.html";
+  sessionStorage.setItem('ecoRecipient',JSON.stringify({
+    raw:'0'+numDigits,display:numDisp
+  }));
+  var curtain=document.getElementById('curtain');
+  if(curtain)curtain.classList.add('show');
+  setTimeout(function(){window.location.href='login.html';},900);
+});
+
+/* ── RIPPLE on buttons ── */
+document.querySelectorAll('.pay-btn,.next-btn,.modal-apply,.cs-cta,.price-strip,.continue-btn').forEach(function(b){
+  b.addEventListener('pointerdown',function(e){
+    var r=b.getBoundingClientRect(),sz=Math.max(r.width,r.height)*2.2;
+    var rip=document.createElement('span');
+    rip.className='rip';
+    rip.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+(e.clientX-r.left-sz/2)+'px;top:'+(e.clientY-r.top-sz/2)+'px;position:absolute;pointer-events:none;';
+    b.appendChild(rip);
+    rip.addEventListener('animationend',function(){rip.remove();});
+  },{passive:true});
+});
+
+/* ── INIT ── */
+buildWorksWithIcons('wwIcons');
+syncUI();
+toggleDrawer(); /* Open drawer on load so plans visible */
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.getRegistrations()
+      .then(function(regs){regs.forEach(function(r){r.unregister();});})
+      .catch(function(){});
+    navigator.serviceWorker.register('/sw.js').catch(function(){});
+  });
 }
+
 </script>
 </body>
 </html>
