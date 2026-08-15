@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="assets/ecocash.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,500&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ════════════════════════════════════════════════
    MATERIAL 3 DESIGN SYSTEM — EcoCash Pay
@@ -25,10 +25,10 @@
 /* ── RESET ── */
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{width:100%;height:100%;overflow:hidden;overscroll-behavior:none;position:fixed;inset:0;background:var(--white)}
-body{font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#FFFFFF;color:#0A0F1E}
+body{font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#FFFFFF;color:#0A0F1E;font-feature-settings:"cv11","ss01"}
 img{image-rendering:-webkit-optimize-contrast;-webkit-backface-visibility:hidden;display:block}
 svg{shape-rendering:geometricPrecision;display:block}
-button{font-family:inherit;cursor:pointer;touch-action:manipulation;outline:none;border:none;background:none;-webkit-user-select:none;user-select:none}
+button{font-family:'DM Sans',system-ui,sans-serif;cursor:pointer;touch-action:manipulation;outline:none;border:none;background:none;-webkit-user-select:none;user-select:none}
 input{font-family:inherit;outline:none;border:none;background:none}
 *{-webkit-user-select:none;user-select:none}
 input,textarea{-webkit-user-select:text!important;user-select:text!important}
@@ -116,6 +116,10 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
   --sh2:var(--elev-3);
   --sh-blue:var(--elev-primary);
   --sh-grn:var(--elev-secondary);
+  /* Glossy surfaces */
+  --glass:rgba(255,255,255,0.72);
+  --glass-border:rgba(255,255,255,0.5);
+  --glass-shadow:0 8px 32px rgba(10,20,60,.12),0 1px 0 rgba(255,255,255,.8) inset;
 
   /* M3 Motion */
   --motion-emphasized:cubic-bezier(0.2,0,0,1);
@@ -244,7 +248,7 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 
 /* Page title */
 .page-title{padding:20px 20px 14px}
-.page-title h1{font-size:26px;font-weight:800;letter-spacing:-.6px;color:var(--ink1);line-height:1.15}
+.page-title h1{font-size:28px;font-weight:900;letter-spacing:-.8px;color:var(--ink1);line-height:1.1}
 .page-title p{font-size:12px;color:var(--ink3);font-weight:500;margin-top:5px;line-height:1.5}
 .page-powered{display:flex;align-items:center;gap:5px;margin-top:5px;flex-wrap:wrap}
 .page-powered span{font-size:12px;color:var(--ink3);font-weight:500;line-height:1.4}
@@ -328,7 +332,7 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 /* Base card */
 .pg-card{
   display:flex;flex-direction:column;gap:0;
-  padding:14px 14px 13px;
+  padding:12px 14px 13px;
   border-radius:var(--r16);
   background:var(--white);
   border:1.5px solid var(--line);
@@ -377,28 +381,27 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 .pg-card.on::before{background:rgba(255,255,255,.22);height:2px}
 
 /* Period */
-.pg-period{font-size:9px;font-weight:700;letter-spacing:.8px;color:var(--ink3);text-transform:uppercase;line-height:1;margin-bottom:6px}
+.pg-period{font-size:10px;font-weight:700;letter-spacing:.6px;color:var(--ink3);text-transform:uppercase;line-height:1;margin-bottom:0}
 .pg-card.on .pg-period{color:rgba(255,255,255,.8);font-weight:700}
 
 /* Price — quiet until selected */
 .pg-price{
-  font-size:20px;font-weight:800;
+  font-size:16px;font-weight:600;
   color:var(--ink1);
-  letter-spacing:-.04em;line-height:1;
+  letter-spacing:-.02em;line-height:1;
   font-feature-settings:"tnum";
 }
-.pg-card.on .pg-price{font-size:26px;font-weight:800;color:#fff;letter-spacing:-.04em}
-.pg-card.monthly.on .pg-price{font-size:28px}
-.pg-card.monthly .pg-price{font-size:20px;font-weight:800;color:var(--ink1);margin-top:0}
+.pg-card.on .pg-price{font-size:22px;font-weight:700;color:#fff;letter-spacing:-.03em}
+.pg-card.monthly.on .pg-price{font-size:24px}
+.pg-card.monthly .pg-price{font-size:16px;font-weight:600;color:var(--ink1);margin-top:0}
 
 /* Detail */
 .pg-detail{
-  font-size:10px;color:var(--ink1);font-weight:600;
-  margin-top:8px;line-height:1.4;
+  font-size:11px;color:var(--ink2);font-weight:500;
+  margin-top:8px;line-height:1.5;
   padding-top:8px;border-top:1px solid var(--line2);
-  letter-spacing:-.01em;
 }
-.pg-card.on .pg-detail{color:rgba(255,255,255,.7);border-top-color:rgba(255,255,255,.2);font-weight:500}
+.pg-card.on .pg-detail{color:rgba(255,255,255,.85);border-top-color:rgba(255,255,255,.25);font-weight:500}
 
 /* Badge */
 .pg-badge{
@@ -613,6 +616,112 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 .cs-feat-s{font-size:10px;color:var(--ink3);margin-top:2px;font-weight:500}
 .cs-cta{display:flex;align-items:center;justify-content:center;width:calc(100% - 52px);min-height:52px;margin:16px 26px 0;border-radius:var(--r20);background:var(--blue);color:#fff;font-size:15px;font-weight:700;box-shadow:var(--sh-blue);transition:transform .12s var(--spring);position:relative;overflow:hidden}
 .cs-cta:active{transform:scale(.97)}
+/* ── MERGED SUMMARY CARD ── */
+.summary-card{
+  border-radius:var(--r20);
+  overflow:hidden;
+  box-shadow:0 8px 24px rgba(21,88,214,.28),0 2px 8px rgba(21,88,214,.15);
+  /* Accent via data-plan set by JS */
+}
+/* Default blue, overridden by data-plan */
+.summary-card{background:var(--blue)}
+.summary-card[data-plan="daily"]{background:linear-gradient(135deg,#0CAF57 0%,#0A8A45 100%);box-shadow:0 8px 24px rgba(10,138,69,.3)}
+.summary-card[data-plan="3days"]{background:linear-gradient(135deg,#9461F7 0%,#7C3AED 100%);box-shadow:0 8px 24px rgba(124,58,237,.3)}
+.summary-card[data-plan="weekly"]{background:linear-gradient(135deg,#FF6B1A 0%,#E05000 100%);box-shadow:0 8px 24px rgba(224,80,0,.3)}
+.summary-card[data-plan="2weeks"]{background:linear-gradient(135deg,#00B8C4 0%,#0099A0 100%);box-shadow:0 8px 24px rgba(0,153,160,.3)}
+.summary-card[data-plan="monthly"]{background:linear-gradient(135deg,#2E6EFF 0%,#1558D6 100%);box-shadow:0 8px 24px rgba(21,88,214,.3)}
+
+/* Glossy sheen overlay */
+.summary-card::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(135deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,.04) 50%,rgba(0,0,0,.04) 100%);
+  z-index:0;
+}
+.summary-top{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  padding:16px 18px 12px;position:relative;z-index:1;
+}
+.summary-left{display:flex;flex-direction:column;gap:3px}
+.summary-lbl{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.summary-plan{font-size:17px;font-weight:800;color:#fff;letter-spacing:-.3px;line-height:1.1}
+.summary-detail{font-size:10px;color:rgba(255,255,255,.75);font-weight:500;margin-top:2px}
+.summary-right{display:flex;flex-direction:column;align-items:flex-end}
+.summary-cur{font-size:11px;font-weight:600;color:rgba(255,255,255,.65);line-height:1}
+.summary-amt{font-size:34px;font-weight:900;color:#fff;letter-spacing:-.05em;line-height:1;font-feature-settings:"tnum"}
+.summary-actions{
+  display:flex;gap:0;
+  border-top:1px solid rgba(255,255,255,.15);
+  position:relative;z-index:1;
+}
+.summary-customise{
+  flex:1;padding:13px 16px;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  font-size:12px;font-weight:600;color:rgba(255,255,255,.85);
+  background:rgba(0,0,0,.08);
+  border:none;border-right:1px solid rgba(255,255,255,.15);
+  cursor:pointer;touch-action:manipulation;
+  transition:background .12s;font-family:inherit;
+}
+.summary-customise:active{background:rgba(0,0,0,.18)}
+.summary-continue{
+  flex:2;padding:13px 18px;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  font-size:14px;font-weight:700;color:#fff;
+  background:rgba(255,255,255,.12);
+  border:none;cursor:pointer;touch-action:manipulation;
+  transition:background .12s;font-family:inherit;letter-spacing:-.1px;
+}
+.summary-continue:active{background:rgba(255,255,255,.22)}
+
+/* ── GLOSSY PLAN CARDS ── */
+.pg-card{
+  background:linear-gradient(145deg,rgba(255,255,255,.95) 0%,rgba(240,244,255,.9) 100%) !important;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+/* Tint override for per-plan cards */
+#homeGrid .pg-card[data-k="daily"]{background:linear-gradient(145deg,rgba(255,255,255,.96) 0%,rgba(10,138,69,.06) 100%) !important}
+#homeGrid .pg-card[data-k="3days"]{background:linear-gradient(145deg,rgba(255,255,255,.96) 0%,rgba(124,58,237,.06) 100%) !important}
+#homeGrid .pg-card[data-k="weekly"]{background:linear-gradient(145deg,rgba(255,255,255,.96) 0%,rgba(224,80,0,.06) 100%) !important}
+#homeGrid .pg-card[data-k="2weeks"]{background:linear-gradient(145deg,rgba(255,255,255,.96) 0%,rgba(0,153,160,.06) 100%) !important}
+.pg-card.monthly{background:linear-gradient(135deg,rgba(255,255,255,.96) 0%,rgba(21,88,214,.07) 100%) !important}
+
+/* Unselected border overrides */
+#homeGrid .pg-card[data-k="daily"]{border-color:rgba(10,138,69,.25) !important}
+#homeGrid .pg-card[data-k="3days"]{border-color:rgba(124,58,237,.25) !important}
+#homeGrid .pg-card[data-k="weekly"]{border-color:rgba(224,80,0,.25) !important}
+#homeGrid .pg-card[data-k="2weeks"]{border-color:rgba(0,153,160,.25) !important}
+
+/* Selected: full colour, glossy */
+#homeGrid .pg-card[data-k="daily"].on{background:linear-gradient(145deg,#0CAF57,#0A8A45) !important;border-color:#0A8A45 !important}
+#homeGrid .pg-card[data-k="3days"].on{background:linear-gradient(145deg,#9461F7,#7C3AED) !important;border-color:#7C3AED !important}
+#homeGrid .pg-card[data-k="weekly"].on{background:linear-gradient(145deg,#FF6B1A,#E05000) !important;border-color:#E05000 !important}
+#homeGrid .pg-card[data-k="2weeks"].on{background:linear-gradient(145deg,#00B8C4,#0099A0) !important;border-color:#0099A0 !important}
+.pg-card.monthly.on{background:linear-gradient(135deg,#2E6EFF,#1558D6) !important;border-color:var(--blue) !important}
+
+/* Glossy sheen on each card */
+.pg-card::after{
+  content:'';position:absolute;
+  top:3px;left:0;right:0;
+  height:50%;
+  background:linear-gradient(180deg,rgba(255,255,255,.35) 0%,rgba(255,255,255,0) 100%);
+  pointer-events:none;border-radius:inherit;z-index:0;
+}
+.pg-card.on::after{background:linear-gradient(180deg,rgba(255,255,255,.15) 0%,rgba(255,255,255,0) 100%)}
+/* Ensure text above gloss */
+.pg-period,.pg-price,.pg-detail,.pg-badge{position:relative;z-index:1}
+
+/* Drawer background — subtle gradient */
+.plan-drawer{
+  background:linear-gradient(180deg,rgba(240,244,255,.6) 0%,rgba(232,238,255,.8) 100%) !important;
+}
+
+/* ── SERVICE ENTRY DRAWERS (ZESA, DStv) — same as bundle-entry ── */
+.svc-entry{margin:0 20px 8px;border-radius:var(--r16);border:1.5px solid var(--line);background:var(--white);transition:border-color .22s,box-shadow .22s;overflow:hidden}
+.svc-entry.open{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue-a),var(--sh0)}
+.svc-drawer{overflow:hidden;height:0;opacity:0;will-change:height}
+.svc-drawer-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+
 </style>
 </head>
 <body>
@@ -627,7 +736,7 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
     <button class="modal-x" onclick="closeModal()"><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--ink3)"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
   </div>
   <div class="modal-price-bar">
-    <div><div class="mpb-lbl">Your price</div><div class="mpb-price" id="mpbPrice">$0.00</div></div>
+    <div><div class="mpb-lbl">Your price</div><div class="mpb-price" id="mpbPrice">USD 0.00</div></div>
     <div class="mpb-breakdown">
       <div class="mpb-item"><span id="mpbV">0</span> Min</div>
       <div class="mpb-item"><span id="mpbD">0</span> GB</div>
@@ -673,7 +782,7 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
     <div class="tb-right">
       <div class="tb-total" id="tbTotal">
         <span class="tb-total-lbl">Total</span>
-        <span class="tb-total-val" id="tbTotalVal">$0.00</span>
+        <span class="tb-total-val" id="tbTotalVal">USD 0.00</span>
       </div>
     </div>
   </div>
@@ -691,15 +800,15 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 
       <!-- SERVICE TILES: Econet · ZESA · DStv — all same size -->
       <div class="svc-tiles">
-        <button class="svc-tile" id="econetTile" onclick="hap(6);toggleDrawer()">
+        <button class="svc-tile" id="econetTile" onclick="hap(6);openSvcDrawer('econet')">
           <img class="svc-tile-logo" src="assets/econet.png" alt="Econet Wireless">
-          <span class="svc-tile-label">Mobile Bundles</span>
+          <span class="svc-tile-label">Bundles</span>
         </button>
-        <button class="svc-tile" onclick="hap(8);showCS('zesa')">
+        <button class="svc-tile" id="zesaTile" onclick="hap(6);openSvcDrawer('zesa')">
           <img class="svc-tile-logo" src="assets/zesa.png" alt="ZESA">
           <span class="svc-tile-label">Electricity</span>
         </button>
-        <button class="svc-tile" onclick="hap(8);showCS('dstv')">
+        <button class="svc-tile" id="dstvTile" onclick="hap(6);openSvcDrawer('dstv')">
           <img class="svc-tile-logo" src="assets/dstv.svg" alt="DStv">
           <span class="svc-tile-label">Entertainment</span>
         </button>
@@ -710,26 +819,32 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
         <div class="plan-drawer" id="planDrawer">
           <div class="drawer-inner">
 
-            <!-- Plan grid — all 5 plans, scrollable if needed -->
+            <!-- Social strip — before plans -->
+            <div class="drawer-social">
+              <span class="social-lbl">Works with all plans</span>
+              <div class="social-icons" id="wwIcons"></div>
+            </div>
+
+            <!-- Plan grid — all 5 plans -->
             <div class="plan-grid" id="homeGrid">
               <div class="pg-card on" data-k="daily">
                 <span class="pg-period">Daily</span>
-                <span class="pg-price" id="hgp-daily">$1.80</span>
+                <span class="pg-price" id="hgp-daily">USD 1.80</span>
                 <span class="pg-detail" id="hgd-daily">📞 20 Min · 📶 3 GB · ✉ 25 SMS</span>
               </div>
               <div class="pg-card" data-k="3days">
                 <span class="pg-period">3 Days</span>
-                <span class="pg-price" id="hgp-3days">$4.20</span>
+                <span class="pg-price" id="hgp-3days">USD 4.20</span>
                 <span class="pg-detail" id="hgd-3days">📞 50 Min · 📶 8 GB · ✉ 25 SMS</span>
               </div>
               <div class="pg-card" data-k="weekly">
                 <span class="pg-period">Weekly</span>
-                <span class="pg-price" id="hgp-weekly">$8.40</span>
+                <span class="pg-price" id="hgp-weekly">USD 8.40</span>
                 <span class="pg-detail" id="hgd-weekly">📞 120 Min · 📶 20 GB · ✉ 200 SMS</span>
               </div>
               <div class="pg-card" data-k="2weeks">
                 <span class="pg-period">2 Weeks</span>
-                <span class="pg-price" id="hgp-2weeks">$15.60</span>
+                <span class="pg-price" id="hgp-2weeks">USD 15.60</span>
                 <span class="pg-detail" id="hgd-2weeks">📞 250 Min · 📶 45 GB · ✉ 150 SMS</span>
               </div>
               <div class="pg-card monthly" data-k="monthly">
@@ -738,39 +853,76 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
                   <span class="pg-period">Monthly</span>
                   <span class="pg-detail" id="hgd-monthly">📞 600 Min · 📶 100 GB · ✉ 1000 SMS</span>
                 </div>
-                <span class="pg-price" id="hgp-monthly">$29.70</span>
+                <span class="pg-price" id="hgp-monthly">USD 29.70</span>
               </div>
             </div>
 
-            <!-- Social strip -->
-            <div class="drawer-social">
-              <span class="social-lbl">Works with all plans</span>
-              <div class="social-icons" id="wwIcons"></div>
-            </div>
-
-            <!-- Price strip: Customise + Continue -->
-            <button class="price-strip blue-card" id="priceStrip" onclick="openModal()">
-              <div class="ps-left">
-                <span class="ps-lbl">Selected plan</span>
-                <span class="ps-plan" id="psPlan">Daily Mix</span>
-                <span class="ps-detail" id="psDetail">20 Min · 3 GB · 25 SMS</span>
+            <!-- Merged summary + continue card -->
+            <div class="summary-card" id="summaryCard" data-plan="daily">
+              <div class="summary-top">
+                <div class="summary-left">
+                  <span class="summary-lbl">Selected plan</span>
+                  <span class="summary-plan" id="psPlan">Daily Mix</span>
+                  <span class="summary-detail" id="psDetail">📞 20 Min · 📶 3 GB · ✉ 25 SMS</span>
+                </div>
+                <div class="summary-right">
+                  <span class="summary-cur">USD</span>
+                  <span class="summary-amt" id="psAmt">1.80</span>
+                </div>
               </div>
-              <div class="ps-right">
-                <div class="ps-price"><span class="ps-cur">USD</span><span class="ps-amt" id="psAmt">1.80</span></div>
-                <span class="ps-edit">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#fff"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+              <div class="summary-actions">
+                <button class="summary-customise" id="priceStrip" onclick="openModal()">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
                   Customise
-                </span>
+                </button>
+                <button class="summary-continue" id="continueBtn" onclick="hap(10);goToNumScreen()">
+                  Continue
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+                </button>
               </div>
-            </button>
-            <button class="continue-btn" id="continueBtn" onclick="hap(10);goToNumScreen()">
-              <span>Continue</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
-            </button>
+            </div>
 
           </div>
         </div><!-- /planDrawer -->
       </div><!-- /bundleEntry -->
+
+      <!-- ZESA INLINE DRAWER -->
+      <div class="svc-entry" id="zesaEntry">
+        <div class="svc-drawer" id="zesaDrawer">
+          <div class="svc-drawer-inner cs-body" style="padding:18px 20px 20px">
+            <div class="cs-logo-box" id="zesaLogoBox" style="background:#FFF0E8;border:2px solid rgba(224,80,0,.22)">
+              <img src="assets/zesa.png" alt="ZESA" style="width:82%;height:82%;object-fit:contain;display:block">
+            </div>
+            <div class="cs-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>Coming Soon</div>
+            <div class="cs-title">ZESA Tokens</div>
+            <div class="cs-sub">Buy prepaid electricity tokens for any ZETDC meter instantly via EcoCash.</div>
+            <div class="cs-feats">
+              <div class="cs-feat"><div class="cs-feat-ic" style="background:rgba(224,80,0,.1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="#E05000"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></div><div><div class="cs-feat-t">Instant Token</div><div class="cs-feat-s">Delivered in seconds</div></div></div>
+              <div class="cs-feat"><div class="cs-feat-ic" style="background:rgba(10,138,69,.1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0A8A45"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><div class="cs-feat-t">Any ZETDC Meter</div><div class="cs-feat-s">All prepaid meters</div></div></div>
+            </div>
+            <button class="cs-cta" style="width:100%;margin:14px 0 0" onclick="closeSvcDrawer('zesa')">Got it, notify me</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DStv INLINE DRAWER -->
+      <div class="svc-entry" id="dstvEntry">
+        <div class="svc-drawer" id="dstvDrawer">
+          <div class="svc-drawer-inner cs-body" style="padding:18px 20px 20px">
+            <div class="cs-logo-box" id="dstvLogoBox" style="background:#E6F8F9;border:2px solid rgba(0,153,160,.24)">
+              <img src="assets/dstv.svg" alt="DStv" style="width:82%;height:82%;object-fit:contain;display:block">
+            </div>
+            <div class="cs-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>Coming Soon</div>
+            <div class="cs-title">DStv Renewal</div>
+            <div class="cs-sub">Renew your DStv subscription from Access to Premium via EcoCash.</div>
+            <div class="cs-feats">
+              <div class="cs-feat"><div class="cs-feat-ic" style="background:rgba(0,153,160,.1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0099A0"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg></div><div><div class="cs-feat-t">All Bouquets</div><div class="cs-feat-s">Access to Premium</div></div></div>
+              <div class="cs-feat"><div class="cs-feat-ic" style="background:rgba(10,138,69,.1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0A8A45"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><div class="cs-feat-t">Any Smartcard</div><div class="cs-feat-s">All Zimbabwe DStv smartcards</div></div></div>
+            </div>
+            <button class="cs-cta" style="width:100%;margin:14px 0 0" onclick="closeSvcDrawer('dstv')">Got it, notify me</button>
+          </div>
+        </div>
+      </div>
 
     </div><!-- /homeScreen -->
 
@@ -786,7 +938,7 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
           <span class="bp-name" id="bpName">Daily Mix</span>
           <span class="bp-detail" id="bpDetail">20 Min · 3 GB · 25 SMS</span>
         </div>
-        <span class="bp-price" id="bpPrice">$1.80</span>
+        <span class="bp-price" id="bpPrice">USD 1.80</span>
       </div>
       <div class="ns-title">Enter your <i>number</i></div>
       <div class="ns-sub">We'll charge your EcoCash wallet · Econet Zimbabwe</div>
@@ -823,7 +975,7 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
         <div class="btn-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,.85)"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></div>
         <div><div class="btn-title">Continue</div><div class="btn-sub">Enter your Econet number</div></div>
       </div>
-      <span class="next-right" id="nextAmt">$1.80</span>
+      <span class="next-right" id="nextAmt">USD 1.80</span>
     </button>
     <button class="pay-btn" id="payBtn" disabled style="display:none">
       <div class="btn-left">
@@ -956,6 +1108,8 @@ function toggleDrawer(){
 
   if(entry)entry.classList.toggle('open',drawerOpen);
   if(tile)tile.classList.toggle('active',drawerOpen);
+  /* Close other svc drawers when econet opens */
+  if(drawerOpen){if(_openSvc)closeSvcDrawer(_openSvc);}
   if(_raf)cancelAnimationFrame(_raf);
 
   if(drawerOpen){
@@ -1038,7 +1192,7 @@ function goToNumScreen(){
 /* ── SYNC UI — single source of truth ── */
 function syncUI(){
   var k=AK,p=PLANS[k],s=ST[k],v=price(k);
-  var vAmt='$'+v.toFixed(2);
+  var vAmt='USD '+v.toFixed(2);
   var dStr=s.v+' Min · '+s.d+' GB · '+s.s+' SMS';
 
   /* 1. Highlight selected card */
@@ -1054,13 +1208,13 @@ function syncUI(){
   /* 3. Update every card's price + detail text */
   Object.keys(PLANS).forEach(function(k2){
     var s2=ST[k2],v2=price(k2);
-    var el=document.getElementById('hgp-'+k2);if(el)el.textContent='$'+v2.toFixed(2);
+    var el=document.getElementById('hgp-'+k2);if(el)el.textContent='USD '+v2.toFixed(2);
     var el2=document.getElementById('hgd-'+k2);
     if(el2)el2.textContent=s2.v+' Min · '+s2.d+' GB · '+s2.s+' SMS';
   });
 
   /* 4. Price strip + accent colour */
-  var ps=document.getElementById('priceStrip');if(ps)ps.setAttribute('data-plan',k);
+  var sc=document.getElementById('summaryCard');if(sc)sc.setAttribute('data-plan',k);
   var cb=document.getElementById('continueBtn');if(cb)cb.setAttribute('data-plan',k);
   var psP=document.getElementById('psPlan');if(psP)psP.textContent=p.l+' Mix';
   var psD=document.getElementById('psDetail');if(psD)psD.textContent=dStr;
@@ -1158,7 +1312,7 @@ function setFill(id,pct){
 }
 function updateModalPrice(){
   var v=price(AK),s=ST[AK];
-  var ep=document.getElementById('mpbPrice');if(ep)ep.textContent='$'+v.toFixed(2);
+  var ep=document.getElementById('mpbPrice');if(ep)ep.textContent='USD '+v.toFixed(2);
   var ev=document.getElementById('mpbV');if(ev)ev.textContent=s.v;
   var ed=document.getElementById('mpbD');if(ed)ed.textContent=s.d;
   var es=document.getElementById('mpbS');if(es)es.textContent=s.s;
@@ -1177,7 +1331,7 @@ function updateModalPrice(){
       hap(4);
       updateModalPrice();
       /* Live-update price strip */
-      var v=price(k),vStr='$'+v.toFixed(2);
+      var v=price(k),vStr='USD '+v.toFixed(2);
       var dStr=s.v+' Min · '+s.d+' GB · '+s.s+' SMS';
       var psA=document.getElementById('psAmt');if(psA)psA.textContent=v.toFixed(2);
       var psP=document.getElementById('psPlan');if(psP)psP.textContent=PLANS[k].l+' Mix';
@@ -1199,7 +1353,7 @@ function updateBundlePill(){
   var k=AK,p=PLANS[k],s=ST[k],v=price(k);
   var bn=document.getElementById('bpName');if(bn)bn.textContent=p.l+' Mix';
   var bd=document.getElementById('bpDetail');if(bd)bd.textContent=s.v+' Min · '+s.d+' GB · '+s.s+' SMS';
-  var bp=document.getElementById('bpPrice');if(bp)bp.textContent='$'+v.toFixed(2);
+  var bp=document.getElementById('bpPrice');if(bp)bp.textContent='USD '+v.toFixed(2);
 }
 
 /* ── NUMBER FIELD ── */
@@ -1311,7 +1465,7 @@ function verOK(msisdn){
   var pb=document.getElementById('payBtn');if(pb)pb.disabled=false;
   var pt=document.getElementById('payTitle');if(pt)pt.textContent='Pay USD '+v.toFixed(2);
   var ps=document.getElementById('paySub');if(ps)ps.textContent=numDisp+' · EcoCash';
-  var pa=document.getElementById('payAmt');if(pa)pa.textContent='$'+v.toFixed(2);
+  var pa=document.getElementById('payAmt');if(pa)pa.textContent='USD '+v.toFixed(2);
   hap([10,60,10]);
 }
 
@@ -1344,7 +1498,7 @@ document.getElementById('payBtn').addEventListener('click',function(){
 });
 
 /* ── RIPPLE on buttons ── */
-document.querySelectorAll('.pay-btn,.next-btn,.modal-apply,.cs-cta,.price-strip,.continue-btn').forEach(function(b){
+document.querySelectorAll('.pay-btn,.next-btn,.modal-apply,.cs-cta,.summary-continue,.summary-customise').forEach(function(b){
   b.addEventListener('pointerdown',function(e){
     var r=b.getBoundingClientRect(),sz=Math.max(r.width,r.height)*2.2;
     var rip=document.createElement('span');
@@ -1356,6 +1510,82 @@ document.querySelectorAll('.pay-btn,.next-btn,.modal-apply,.cs-cta,.price-strip,
 });
 
 /* ── INIT ── */
+
+/* ── SERVICE DRAWER TOGGLE ── */
+var _svcRaf={};
+var _openSvc=null;
+
+function openSvcDrawer(key){
+  /* Close any open svc drawer first */
+  if(_openSvc && _openSvc!==key) closeSvcDrawer(_openSvc,function(){_doOpenSvc(key);});
+  else if(_openSvc===key) closeSvcDrawer(key);
+  else _doOpenSvc(key);
+}
+
+function _doOpenSvc(key){
+  if(key==='econet'){
+    /* Use existing toggleDrawer for econet */
+    if(!drawerOpen)toggleDrawer();
+    return;
+  }
+  _openSvc=key;
+  var entry=document.getElementById(key+'Entry');
+  var tile=document.getElementById(key+'Tile');
+  var drawer=document.getElementById(key+'Drawer');
+  var inner=drawer.querySelector('.svc-drawer-inner');
+  if(!entry||!drawer||!inner)return;
+
+  /* Close econet if open */
+  if(drawerOpen)toggleDrawer();
+
+  entry.classList.add('open');
+  if(tile)tile.classList.add('active');
+
+  drawer.style.height='auto';
+  var target=inner.scrollHeight+16;
+  drawer.style.height='0px';
+  drawer.style.opacity='1';
+
+  var t0=null,dur=300;
+  function ease(t){return 1-Math.pow(1-t,4);}
+  if(_svcRaf[key])cancelAnimationFrame(_svcRaf[key]);
+  function step(ts){
+    if(!t0)t0=ts;
+    var t=Math.min((ts-t0)/dur,1);
+    drawer.style.height=(target*ease(t)).toFixed(1)+'px';
+    if(t<1)_svcRaf[key]=requestAnimationFrame(step);
+    else{drawer.style.height='auto';drawer.style.overflow='visible';}
+  }
+  _svcRaf[key]=requestAnimationFrame(step);
+  hap(6);
+}
+
+function closeSvcDrawer(key,cb){
+  if(key==='econet'){if(drawerOpen)toggleDrawer();if(cb)cb();return;}
+  _openSvc=null;
+  var entry=document.getElementById(key+'Entry');
+  var tile=document.getElementById(key+'Tile');
+  var drawer=document.getElementById(key+'Drawer');
+  if(!drawer){if(cb)cb();return;}
+  entry&&entry.classList.remove('open');
+  tile&&tile.classList.remove('active');
+  drawer.style.overflow='hidden';
+  var from=drawer.scrollHeight;
+  drawer.style.height=from+'px';
+  var t0=null,dur=240;
+  function ease(t){return t*t*t;}
+  if(_svcRaf[key])cancelAnimationFrame(_svcRaf[key]);
+  function step(ts){
+    if(!t0)t0=ts;
+    var t=Math.min((ts-t0)/dur,1);
+    drawer.style.height=(from*(1-ease(t))).toFixed(1)+'px';
+    if(t<1)_svcRaf[key]=requestAnimationFrame(step);
+    else{drawer.style.height='0px';drawer.style.opacity='0';if(cb)cb();}
+  }
+  _svcRaf[key]=requestAnimationFrame(step);
+  hap(6);
+}
+
 buildWorksWithIcons('wwIcons');
 syncUI();
 toggleDrawer(); /* Open drawer on load so plans visible */
